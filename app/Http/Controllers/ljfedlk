@@ -1,0 +1,102 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Log;
+
+
+use App\Models\MasterStatus;
+use App\Models\Store as StoreModel;
+use App\Models\BillingCounter as BillingCounterModel;
+use App\Models\StorePayment as StorePaymentModel;
+use App\Models\PurchaseOrder as PurchaseOrderModel;
+use App\Models\Country as CountryModel;
+use App\Models\MasterStatus as MasterStatusModel;
+use App\Models\MasterTaxOption as MasterTaxOptionModel;
+
+use App\Http\Resources\PurchaseOrderResource;
+
+use Mpdf\Mpdf;
+
+class Payment extends Controller
+{
+    public function phonePe(Request $request, $slack)
+    {
+        // Retrieve order details from your database
+        $purchaseOrder = PurchaseOrderModel::where('slack', $slack)->firstOrFail();
+        $totalAmount = $purchaseOrder->total_order_amount * 1; // Amount in paise
+        
+        // Prepare the request payload
+        $payload = [
+            'merchantId' => 'M110NES2UDXSUAT',  // PhonePe UAT Merchant ID
+            'transactionId' => uniqid(),     // Unique transaction ID
+            'amount' => $totalAmount,        // Amount in paise
+            'merchantOrderId' => $purchaseOrder->id,
+            'merchantUserId' => $purchaseOrder->customer_id,  // User ID
+            'callbackUrl' => url('/payment/callback/' . $slack),  // Callback URL
+            'paymentInstrument' => [
+                'type' => 'PHONEPE'  // Payment type
+            ]
+        ];
+        // Convert payload to JSON
+        $payloadJson = json_encode($payload);
+
+        // Generate the checksum
+        $saltKey = '5afb2d8c-5572-47cf-a5a0-93bb79647ffa';  // PhonePe UAT Salt Key
+        $hashedPayload = hash('sha256', $payloadJson . '/pg/v1/pay' . $saltKey);
+
+        // Initialize GuzzleHTTP client
+        $client = new Client();
+
+        try {
+            // Make POST request to the UAT API URL
+            $response = $client->post('https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay', [
+                'headers' => [
+                    'X-VERIFY' => $hashedPayload . '###1',  // X-VERIFY Header
+                    'Content-Type' => 'application/json',
+                ],
+                'body' => $payloadJson
+            ]);
+
+            // Decode response
+            $responseData = json_decode($response->getBody(), true);
+
+            // Check if the request was successful
+            if ($responseData['success']) {
+                // Redirect user to PhonePe payment URL
+                return redirect($responseData['data']['paymentUrl']);
+            } else {
+                return redirect()->back()->with('error', 'Payment initiation failed: ' . $responseData['message']);
+            }
+        } catch (\Exception $e) {
+            // Log the error and handle it accordingly
+            Log::error('PhonePe payment error: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+        }
+    }
+
+    // Callback function to handle the payment response from PhonePe
+    public function paymentCallback(Request $request, $slack)
+    {
+        // Retrieve order details using the slack
+        $purchaseOrder = PurchaseOrder::where('slack', $slack)->firstOrFail();
+
+        // Get transaction ID and payment status from PhonePe's response
+        $transactionId = $request->input('transactionId');
+        $status = $request->input('status');
+
+        if ($status === 'SUCCESS') {
+            // Update the order status to 'Paid'
+            $purchaseOrder->status = 'PAID';
+            $purchaseOrder->save();
+            return redirect()->route('order.success', ['slack' => $slack]);
+        } else {
+            return redirect()->route('order.failure', ['slack' => $slack]);
+        }
+    }
+}

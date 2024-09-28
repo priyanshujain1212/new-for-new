@@ -1,0 +1,28 @@
+// Import the color module first
+@use "sass:color";
+
+// Import your custom bootstrap styles using @use
+@use 'custom-bootstrap';
+
+// Variables
+$primary-color: #3490dc;
+$secondary-color: #ffed4a;
+$font-stack: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+// Global styles
+body {
+    font-family: $font-stack;
+    background-color: $secondary-color;
+    
+}
+
+// Custom styles
+.navbar {
+    background-color: $primary-color;
+    .nav-link {
+        color: white;
+        &:hover {
+            color: color.adjust($primary-color, $lightness: -15%); // Adjust the hover color
+        }
+    }
+}
