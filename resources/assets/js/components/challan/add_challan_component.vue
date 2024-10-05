@@ -1,20 +1,40 @@
 <template>
     <div class="row">
         <div class="col-md-12">
-            <Form ref="form" @formSubmitted="submit_form" class="mb-3">
-                <div class="d-flex flex-wrap mb-4">
+            <Form ref="form" @submit.prevent="submit_form" class="mb-3">
+                <div class="d-flex flex-wrap mb-4 p-3 align-items-center" :style="{'background-color': update_stock ? '#c8e6c9' : '#ffcdd2', 'border-radius': '8px'}">
+                    <!-- Title on the left side -->
                     <div class="mr-auto">
                         <span class="text-title">{{ !challan_order_slack ? "Add New Challan" : "Edit Challan" }}</span>
                     </div>
-                    <div :style="{'background-color': update_stock ? '#ffcdd2' : '#c8e6c9', 'padding': '5px', 'border-radius': '5px', 'text-align': 'center', 'font-weight': 'bold', 'margin-right': '15px', 'width': '120px', 'height': '35px'}">
-                        {{ update_stock ? 'Due' : 'Paid' }}
-                    </div>
-                    <div>
-                        <button type="formSubmitted" class="btn btn-primary" :disabled="processing">
-                            <i class='fa fa-circle-notch fa-spin' v-if="processing"></i> {{ "Save" }}
-                        </button>
+
+                    <!-- Right side: Payment Status Switch and Save Button grouped together -->
+                    <div class="d-flex align-items-center">
+                        <!-- Payment Status Switch -->
+                        <div class="form-group mb-0 mr-3">
+                            <label for="name">{{ "Payment Status" }}</label>
+                            <div class="d-flex align-items-center" style="position: relative; top: -4px;">
+                                <div class="custom-control custom-switch" style="position: relative; top: -17px;">
+                                    <Field name="update_stock" as="input" type="checkbox" class="custom-control-input" id="update_stock_switch" v-model="update_stock" @change="toggleSwitch" style="transform: scale(1.3);" :value="true" :checked="update_stock" />
+                                    <label class="custom-control-label" for="update_stock_switch"></label>
+                                </div>
+                                <span class="ml-2" style="font-size: 1rem; position: relative; top: -7px;">
+                                    Payment is <b>{{ update_stock ? 'Paid' : 'Due' }}</b>.
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Save Button next to the switch -->
+                        <div>
+                            <button type="button" @click="show_modal = true" class="btn btn-primary" :disabled="processing">
+                                <i class='fa fa-circle-notch fa-spin' v-if="processing"></i> {{ "Save" }}
+                            </button>
+                        </div>
                     </div>
                 </div>
+
+                <hr>
+
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
                         <label for="po_number">{{ "Challan Number" }}</label>
@@ -49,6 +69,14 @@
                     </div>
 
                     <div class="form-group col-md-3">
+                        <label for="order_date">{{ "Challan Date" }}</label>
+                        <Field  name="order_date"  v-model="order_date" as="input"  type="date" rules="required"  class="form-control form-control-custom" placeholder="Pick a date or type a date"  style="width: 275px;" />
+                        <ErrorMessage name="order_date" v-slot="{ message }">
+                            <span class="error">{{ message }}</span>
+                        </ErrorMessage>
+                     </div>
+
+                    <div class="form-group col-md-3">
                         <label for="po_reference">{{ "Reference Challan Number (if any)" }}</label>
                         <Field name="po_reference" v-model="po_reference"  as="input"  type="text"  class="form-control form-control-custom"  placeholder="Reference Challan Number"  rules="max:30" />
                         <ErrorMessage name="po_reference" v-slot="{ message }">
@@ -57,55 +85,116 @@
                     </div>
                 </div>
 
-                <div class="form-row mb-2">
-                <div class="form-group col-md-3">
-                        <label for="order_date">{{ "Challan Date" }}</label>
-                        <Field  name="order_date"  v-model="order_date" as="input"  type="date" rules="required"  class="form-control form-control-custom" placeholder="Pick a date or type a date"  style="width: 275px;" />
-                        <ErrorMessage name="order_date" v-slot="{ message }">
-                            <span class="error">{{ message }}</span>
-                        </ErrorMessage>
-                </div>
+                <hr>
 
+                <div class="form-row mb-2">
                 <div class="form-group col-md-3">
                         <label for="payment_type">{{ "Payment Type" }}</label>
                         <Field as="select" name="payment_type" v-model="selectedPaymentType" class="form-control form-control-custom" rules="required" @change="selectPaymentType">
                             <option value="" disabled>Select Payment Type</option> 
                             <option v-for="(type, index) in payment_types" :key="index" :value="type">{{ type }}</option> </Field>
-                        <ErrorMessage name="payment_type" v-slot="{ message }">
-                            <span class="error">{{ message }}</span>
-                        </ErrorMessage>
-                </div>
-                <div class="form-group col-md-2">
-                        <label for="name">{{ "Payment Status" }}</label>
-                            <div class="d-flex align-items-center" style="position: relative; top: 7px; left: 15px; ">
-                                <div class="custom-control custom-switch" style="position: relative; top: -17px;">
-            <Field name="update_stock" as="input" type="checkbox" 
-                   class="custom-control-input" 
-                   id="update_stock_switch" 
-                   v-model="update_stock" 
-                   @change="toggleSwitch" 
-                   style="transform: scale(1.3);" 
-                   :value="true" 
-                   :checked="update_stock" />
-            <label class="custom-control-label" for="update_stock_switch"></label>
-        </div>
-        <span class="ml-2" style="font-size: 1rem; position: relative; top: -7px;">
-            Payment is <b>{{ update_stock ? 'Due' : 'Paid' }}</b>.
-        </span>
-                            </div>
-                </div>
                 </div>
 
+                <div class="form-group col-md-3" v-if="selectedPaymentType">
+                    <label for="payment_date">{{ "Payment Date" }}</label>
+                    <Field name="payment_date" v-model="payment_date" as="input" type="date" class="form-control form-control-custom" rules="required" />
+                    <ErrorMessage name="payment_date" v-slot="{ message }">
+                        <span class="error">{{ message }}</span>
+                    </ErrorMessage>
+                </div>
+              
+                </div>
+
+                <hr>
+
+                <div class="form-row">
+    <div class="form-group col-md-6 mb-1">
+        <label>{{ "Particulars" }}</label>
+        <input 
+            type="text" 
+            v-model="particularSearchQuery" 
+            @input="onParticularSearch" 
+            class="form-control" 
+            placeholder="Search Particular" 
+        />
+        <ul v-if="filteredParticulars.length > 0" class="dropdown-suggestions">
+            <li 
+                v-for="(particular, index) in filteredParticulars" 
+                :key="index" 
+                @click="selectParticular(particular)"
+            >
+                {{ particular }} <!-- Make sure this is the correct property name -->
+            </li>
+        </ul>
+    </div>
+ 
+</div>
+<div class="form-row">
+                        <div class="form-group col-md-6 mb-1"><label>{{ "Particulars" }}</label></div>
+                        <div class="form-group col-md-2 mb-1"><label>{{ "Amount" }}</label></div>
+                    </div>
+<div class="form-row mb-10" style=" top: 7px" v-for="(particular, index) in selected_particulars" :key="index" >
+    <div class="form-group col-md-6" >
+        <input type="text" class="form-control" :value="particular.name" readonly />
+    </div>
+    <div class="form-group col-md-2">
+        <input 
+            type="number" 
+            class="form-control" 
+            v-model="particular.amount" 
+            @input="calculateTotal" 
+            step="0.00" 
+            min="0" 
+        />
+    </div>
+    <div class="form-group col-md-1">
+        <button 
+            type="button" 
+            class="btn btn-outline-danger" 
+            @click="removeParticular(index)"
+        >
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+</div>
+
+<div class="form-row mb-3">
+    <div class="form-group col-md-5"></div>
+    <div class="form-group col-md-1 text-right">
+        <label for="grand_total" style="position: relative; top: 5px;">{{ "Grand Total" }}</label>
+    </div>
+    <div class="mr">
+        <span class="text-subhead" style="font-size: 1.5rem; position: relative; top: 5px;">{{ currency_listString }}</span>
+    </div>
+    <div class="form-group col-md-2">
+        <Field 
+            name="grand_total" 
+            v-model="grandTotal" 
+            as="input" 
+            type="text" 
+            class="form-control form-control-custom" 
+            readonly 
+        />
+    </div>
+</div>
+<div class="form-row mb-2">
+                    <div class="form-group col-md-6">
+                        <label for="terms">{{ "Terms" }}</label>
+                        <Field name="terms" v-model="terms" as="textarea" class="form-control form-control-custom" rows="5" :placeholder="('Enter Terms')" rules="max:65535" />
+                        <ErrorMessage name="terms" v-slot="{ message }"><span class="error">{{ message }}</span></ErrorMessage>
+                    </div>
+                </div>
                 <modalcomponent v-if="show_modal" @close="show_modal = false">
                     <template v-slot:modal-header>
                         Confirm
                     </template>
                     <template v-slot:modal-body>
-                        Are you sure you want to proceed?
+                        Are you sure you want to proceed with the following data?
+                        <!-- <pre>{{ formData }}</pre> This shows the data to be sent -->
                     </template>
                     <template v-slot:modal-footer>
-                        <button type="button" class="btn btn-light" @click="$emit('close')">Cancel</button>
-                        <button type="button" class="btn btn-primary" @click="$emit('submit')" :disabled="processing">
+                        <button type="button" class="btn btn-light" @click="show_modal = false">Cancel</button>
+                        <button type="button" class="btn btn-primary" @click="submit_form" :disabled="processing">
                             <i class='fa fa-circle-notch fa-spin' v-if="processing"></i> Continue
                         </button>
                     </template>
@@ -126,7 +215,7 @@ export default {
     components: {
         Field,
         Form,
-        ErrorMessage,
+        ErrorMessage,   
     },
     data() {
         return {
@@ -138,8 +227,8 @@ export default {
             supplier_list: [],
             filteredSuppliers: [],
             selectedSupplier: null, // To hold selected supplier data
-
-            update_stock: (this.challan_order_data == null) ? true : (this.challan_order_data.update_stock != null) ? ((this.challan_order_data.update_stock == 1) ? true : false) : true,
+            grandTotal: 0,
+            update_stock: (this.challan_order_data == null) ? false : (this.challan_order_data.update_stock != null) ? ((this.challan_order_data.update_stock == 1) ? true : false) : true,
      
             // update_stock : (this.challan_order_data == null)?false:(this.challan_order_data.update_stock != null)?((this.challan_order_data.update_stock == 1)?true:false):false,
             supplier_name: (this.challan_order_data == null) ? '' : (this.challan_order_data.supplier_name)?this.challan_order_data.supplier_name:'',
@@ -147,9 +236,15 @@ export default {
             po_number : (this.challan_order_data == null)?'':(this.challan_order_data.po_number)?this.challan_order_data.po_number:'',
             po_reference : (this.challan_order_data == null)?'':(this.challan_order_data.po_reference != null)?this.challan_order_data.po_reference:'',
             order_date : (this.challan_order_data == null)?'':(this.challan_order_data.order_date != null)?new Date(this.challan_order_data.order_date):'',
+            payment_date: (this.challan_order_data == null)?'':(this.challan_order_data.payment_date != null)?new Date(this.challan_order_data.payment_date):'',
             challan_order_slack: this.challan_order_data ? this.challan_order_data.slack : '',
             payment_type: (this.challan_order_data == null)?'':(this.challan_order_data.payment_type != null)?this.challan_order_data.payment_type:'',
-            
+            particularSearchQuery: '',
+            filteredParticulars: [],
+            selected_particulars: [], // to hold selected particulars with amounts
+            terms : (this.challan_order_data == null)?'':(this.challan_order_data.terms != null)?this.challan_order_data.terms:'',
+               
+        particulars: this.challan_order_data ? this.challan_order_data.products : this.particulars,
         };
     },
 
@@ -159,31 +254,79 @@ export default {
         payment_types: {
             type: Array,
             default: () => [],
-        }
+        },
+        particulars: {
+        type: Array,
+        default: () => [],
+    },
     },
 
     created() {
         defineRule('required', required);
         defineRule('max', max);
         defineRule('numeric', numeric);
+        if (this.challan_order_data && this.challan_order_data.products) {
+            this.selected_particulars = this.challan_order_data.products.map(product => ({ name: product.name, amount: product.total_amount }));
+            this.calculateTotal(); // Calculate the grand total
+        } else {
+            this.selected_particulars = [];
+            this.grandTotal = 0;
+        }
     },
-
+    computed: {
+        formData() {
+            // Compile form data to display in the modal
+            return {
+                po_number: this.po_number,
+                supplier: this.selectedSupplier,
+                order_date: this.order_date,
+                payment_type: this.selectedPaymentType,
+                particulars: this.selected_particulars,
+                grand_total: this.grandTotal,
+                terms: this.terms,
+                // Include other fields as needed
+            };
+        }
+    },
     methods: {
-        selectPaymentType() {
+            onParticularSearch() {
+                    if (this.particularSearchQuery.length >= 2) {
+                        this.filteredParticulars = this.particulars.filter(particular =>
+                            particular.toLowerCase().includes(this.particularSearchQuery.toLowerCase())
+                        );
+                    } else {
+                        this.filteredParticulars = [];
+                    }
+            },
+            selectParticular(particular) {
+                    if (!this.selected_particulars.some(p => p.name === particular)) {
+                        this.selected_particulars.push({ name: particular, amount: 0 });
+                    }
+                    this.particularSearchQuery = ''; // Reset the search field
+                    this.filteredParticulars = []; // Clear filtered list after selection
+            },
+            removeParticular(index) {
+                    this.selected_particulars.splice(index, 1);
+                    this.calculateTotal(); // Recalculate total after removal
+            },
+            calculateTotal() {
+            this.grandTotal = this.selected_particulars.reduce((total, p) => total + parseFloat(p.amount || 0), 0);
+        },
+            selectPaymentType() {
                 if (this.selectedPaymentType) {
-                    this.update_stock = false;
+                    this.update_stock = true; // Turn the switch on when a payment type is selected
                 }
             },
 
-
-        toggleSwitch() {
-            if (!this.update_stock) {
-                this.update_stock = false; // Keep it closed
-            } else {
-                this.update_stock = true; // Allow it to become open
-            }
-        },
-        onSupplierSearch() {
+            toggleSwitch() {
+                if (!this.update_stock) {
+                    this.update_stock = 1; // Keep it closed
+                    this.selectedPaymentType = ''; // Reset selected payment type when switch is turned off
+                } else {
+                    this.update_stock = 0; // Allow it to become open
+                }
+            },
+         onSupplierSearch() {
             if (this.supplierSearchQuery.length >= 2) {
                 this.load_suppliers();
             } else {
@@ -221,7 +364,7 @@ export default {
 
         submit_form() {
             this.processing = true;
-
+            this.show_modal = true;
             // Prepare data to be sent to the server
             const dataToSubmit = {
                 po_number: this.po_number,
@@ -230,6 +373,11 @@ export default {
                 supplier_code: this.selectedSupplier ? this.selectedSupplier.supplier_code : this.supplier, // Use selected supplier code or existing
                 supplier_name: this.selectedSupplier ? this.selectedSupplier.name : this.supplier_name, // Use selected supplier name or existing
                 payment_type: this.selectedPaymentType ? this.selectedPaymentType : "Due payment",
+                particulars:  JSON.stringify(this.selected_particulars),
+                update_stock: (this.update_stock ? 1 : 0),
+                grand_total : this.grand_total,
+                
+                terms: this.terms, // Adjust based on your needs
                 
                 // Add other form fields as necessary
             };
@@ -237,16 +385,16 @@ export default {
             console.log('Submitting form with data:', dataToSubmit); // Debug log
 
             // Make the API call for submission (replace with your actual endpoint)
-            axios.post('/api/submit_challan', dataToSubmit)
-                .then(response => {
-                    // Handle successful submission response
-                    this.processing = false;
-                    console.log('Form submitted successfully:', response.data);
-                })
-                .catch(error => {
-                    this.processing = false;
-                    console.log('Error submitting form:', error);
-                });
+            // axios.post('/api/submit_challan', dataToSubmit)
+            //     .then(response => {
+            //         // Handle successful submission response
+            //         this.processing = false;
+            //         console.log('Form submitted successfully:', response.data);
+            //     })
+            //     .catch(error => {
+            //         this.processing = false;
+            //         console.log('Error submitting form:', error);
+            //     });
         }
     },
 };
