@@ -130,7 +130,9 @@ class BillingCounter extends Controller
                 throw new Exception("Invalid request", 400);
             }
 
-            $this->validate_request($request);
+            // $this->validate_request($request);
+
+            // dd(validate_request($request));
 
             $billing_counter_code_data_exists = BillingCounterModel::select('id')
             ->where('billing_counter_code', '=', trim($request->billing_counter_code))
@@ -145,8 +147,8 @@ class BillingCounter extends Controller
             if (!empty($billing_counter_data_exists)) {
                 throw new Exception("Billing counter name already exists", 400);
             }
-
-            dd($request);
+          
+            
 
             DB::beginTransaction();
             $billing_counter = [
@@ -268,7 +270,7 @@ class BillingCounter extends Controller
                 throw new Exception("Invalid request", 400);
             }
 
-            $this->validate_request($request);
+            // $this->validate_request($request);
 
             $billing_counter_code_data_exists = BillingCounterModel::select('id')
             ->where([
@@ -335,17 +337,16 @@ class BillingCounter extends Controller
         //
     }
 
-    public function validate_request($request)
-    {
-        $validator = Validator::make($request->all(), [
-            // 'billing_counter_code' => $this->get_validation_rules("codes", true),
-            'billing_counter_name' => 'max:150|required',
-            'description' => $this->get_validation_rules("text", false),
-            'status' => $this->get_validation_rules("status", true),
-        ]);
-        $validation_status = $validator->fails();
-        if($validation_status){
-            throw new Exception($validator->errors());
-        }
-    }
+    // public function validate_request($request)
+    // {
+    //     $validator = Validator::make($request->all(), [
+    //         // 'billing_counter_code' => $this->get_validation_rules("codes", true),
+    //         'billing_counter_name' => 'max:150|required',
+    //         'description' => $this->get_validation_rules("text", false),
+    //         'status' => $this->get_validation_rules("status", true),
+    //     ]);
+    //     if ($validator->fails()) {
+    //         throw new Exception(json_encode($validator->errors()), 422);  // Throwing as JSON to handle easily in the catch
+    //     }   
+    // }
 }

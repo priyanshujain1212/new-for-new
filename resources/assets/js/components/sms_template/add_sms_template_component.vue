@@ -6,10 +6,10 @@
 
                 <div class="d-flex flex-wrap mb-4">
                     <div class="mr-auto">
-                        <span class="text-title"> <span class='text-muted'>{{ $t("Edit SMS Template") }}</span> {{ template_key }} </span>
+                        <span class="text-title"> <span class='text-muted'>{{ ("Edit SMS Template") }}</span> {{ template_key }} </span>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> {{ $t("Save") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> {{ ("Save") }}</button>
                     </div>
                 </div>
                     
@@ -17,12 +17,12 @@
 
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
-                        <label for="message">{{ $t("Message") }}</label>
-                        <textarea name="message" v-model="message" v-validate="'required|max:65535'" class="form-control form-control-custom" rows="5" :placeholder="$t('Enter message')"></textarea>
+                        <label for="message">{{ ("Message") }}</label>
+                        <textarea name="message" v-model="message" v-validate="'required|max:65535'" class="form-control form-control-custom" rows="5" :placeholder="('Enter message')"></textarea>
                         <span v-bind:class="{ 'error' : errors.has('message') }">{{ errors.first('message') }}</span>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="status" v-validate="'required|numeric'" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in statuses" v-bind:value="status.value" v-bind:key="index">

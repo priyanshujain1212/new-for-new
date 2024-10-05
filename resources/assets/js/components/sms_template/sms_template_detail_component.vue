@@ -6,7 +6,7 @@
                 <div class="mr-auto">
                    <div class="d-flex">
                         <div>
-                            <span class="text-title"> <span class='text-muted'>{{ $t("SMS Template") }}</span> {{ sms_template.template_key }} </span>
+                            <span class="text-title"> <span class='text-muted'>{{ ("SMS Template") }}</span> {{ sms_template.template_key }} </span>
                         </div>
                     </div>
                 </div>
@@ -19,34 +19,34 @@
 
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="template_name">{{ $t("Template Name") }}</label>
+                    <label for="template_name">{{ ("Template Name") }}</label>
                     <p class="">{{ sms_template.template_key  }}</p>
                 </div>
                 <div class="form-group col-md-9">
-                    <label for="message">{{ $t("Message") }}</label>
+                    <label for="message">{{ ("Message") }}</label>
                     <p>{{ sms_template.message }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="created_by">{{ $t("Created By") }}</label>
+                    <label for="created_by">{{ ("Created By") }}</label>
                     <p>{{ (sms_template.created_by == null)?'-':sms_template.created_by['fullname']+' ('+sms_template.created_by['user_code']+')' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_by">{{ $t("Updated By") }}</label>
+                    <label for="updated_by">{{ ("Updated By") }}</label>
                     <p>{{ (sms_template.updated_by == null)?'-':sms_template.updated_by['fullname']+' ('+sms_template.updated_by['user_code']+')' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="created_on">{{ $t("Created On") }}</label>
+                    <label for="created_on">{{ ("Created On") }}</label>
                     <p>{{ sms_template.created_at_label }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_on">{{ $t("Updated On") }}</label>
+                    <label for="updated_on">{{ ("Updated On") }}</label>
                     <p>{{ sms_template.updated_at_label }}</p>
                 </div>
             </div>
 
             <div class="form-row mb-2">
                 <div class="form-group col-md-12">
-                    <label for="available_variables">{{ $t("Available Variables") }}</label>
+                    <label for="available_variables">{{ ("Available Variables") }}</label>
                     <p class="">{{ sms_template.available_variables  }}</p>
                 </div>
             </div>

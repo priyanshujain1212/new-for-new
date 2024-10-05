@@ -6,7 +6,7 @@
                 <div class="mr-auto">
                    <div class="d-flex">
                         <div>
-                            <span class="text-title">{{ $t("Reports") }}</span>
+                            <span class="text-title">{{ ("Reports") }}</span>
                         </div>
                     </div>
                 </div>
@@ -20,12 +20,12 @@
                     <div class="mr-auto">
                     <div class="d-flex">
                             <div>
-                                <span class="text-subhead">{{ $t("POS Sales Tax Report") }}</span>
+                                <span class="text-subhead">{{ ("POS Sales Tax Report") }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="sales_tax_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="sales_tax_report_form.processing == true"></i> {{ $t("Download") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="sales_tax_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="sales_tax_report_form.processing == true"></i> {{ ("Download") }}</button>
                     </div>
                 </div>
 
@@ -33,15 +33,15 @@
 
                 <div class="form-row mb-1">
                     <div class="form-group col-md-3">
-                        <label for="from_created_date">{{ $t("From Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="sales_tax_report_form.from_date"  input-class="form-control bg-white" :placeholder="$t('Select from created date')"></date-picker>
+                        <label for="from_created_date">{{ ("From Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="sales_tax_report_form.from_date"  input-class="form-control bg-white" :placeholder="('Select from created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="to_created_date">{{ $t("To Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format" v-model="sales_tax_report_form.to_date" input-class="form-control bg-white" :placeholder="$t('Select to created date')"></date-picker>
+                        <label for="to_created_date">{{ ("To Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format" v-model="sales_tax_report_form.to_date" input-class="form-control bg-white" :placeholder="('Select to created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="role">{{ $t("Group By Day or Month") }}</label>
+                        <label for="role">{{ ("Group By Day or Month") }}</label>
                         <select name="role" v-model="sales_tax_report_form.group_type" class="form-control form-control-custom custom-select">
                             <option v-for="(group_type_array_item, index) in sales_tax_report_form.group_type_array" v-bind:value="group_type_array_item" v-bind:key="index">
                                 {{ group_type_array_item }}
@@ -58,12 +58,12 @@
                     <div class="mr-auto">
                     <div class="d-flex">
                             <div>
-                                <span class="text-subhead">{{ $t("Day Wise Billing Counter Report") }}</span>
+                                <span class="text-subhead">{{ ("Day Wise Billing Counter Report") }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="billing_counter_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="billing_counter_report_form.processing == true"></i> {{ $t("Download") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="billing_counter_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="billing_counter_report_form.processing == true"></i> {{ ("Download") }}</button>
                     </div>
                 </div>
 
@@ -71,12 +71,12 @@
 
                 <div class="form-row mb-1">
                     <div class="form-group col-md-3">
-                        <label for="from_created_date">{{ $t("From Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="billing_counter_report_form.from_date"  input-class="form-control bg-white" :placeholder="$t('Select from created date')"></date-picker>
+                        <label for="from_created_date">{{ ("From Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="billing_counter_report_form.from_date"  input-class="form-control bg-white" :placeholder="('Select from created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="to_created_date">{{ $t("To Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format" v-model="billing_counter_report_form.to_date" input-class="form-control bg-white" :placeholder="$t('Select to created date')"></date-picker>
+                        <label for="to_created_date">{{ ("To Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format" v-model="billing_counter_report_form.to_date" input-class="form-control bg-white" :placeholder="('Select to created date')"></date-picker>
                     </div>
                 </div>
             </form>
@@ -88,12 +88,12 @@
                     <div class="mr-auto">
                     <div class="d-flex">
                             <div>
-                                <span class="text-subhead">{{ $t("User Report") }}</span>
+                                <span class="text-subhead">{{ ("User Report") }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="user_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="user_report_form.processing == true"></i> {{ $t("Download") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="user_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="user_report_form.processing == true"></i> {{ ("Download") }}</button>
                     </div>
                 </div>
 
@@ -101,15 +101,15 @@
 
                 <div class="form-row mb-1">
                     <div class="form-group col-md-3">
-                        <label for="from_created_date">{{ $t("From Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="user_report_form.from_created_date"  input-class="form-control bg-white" :placeholder="$t('Select from created date')"></date-picker>
+                        <label for="from_created_date">{{ ("From Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="user_report_form.from_created_date"  input-class="form-control bg-white" :placeholder="('Select from created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="to_created_date">{{ $t("To Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format" v-model="user_report_form.to_created_date" input-class="form-control bg-white" :placeholder="$t('Select to created date')"></date-picker>
+                        <label for="to_created_date">{{ ("To Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format" v-model="user_report_form.to_created_date" input-class="form-control bg-white" :placeholder="('Select to created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="role">{{ $t("Role") }}</label>
+                        <label for="role">{{ ("Role") }}</label>
                         <select name="role" v-model="user_report_form.role" class="form-control form-control-custom custom-select">
                             <option value="">Choose Role..</option>
                             <option v-for="(role, index) in roles" v-bind:value="role.slack" v-bind:key="index">
@@ -118,7 +118,7 @@
                         </select>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="user_report_form.status" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in user_statuses" v-bind:value="status.value" v-bind:key="index">
@@ -136,12 +136,12 @@
                     <div class="mr-auto">
                     <div class="d-flex">
                             <div>
-                                <span class="text-subhead">{{ $t("Product Report") }}</span>
+                                <span class="text-subhead">{{ ("Product Report") }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="product_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="product_report_form.processing == true"></i> {{ $t("Download") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="product_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="product_report_form.processing == true"></i> {{ ("Download") }}</button>
                     </div>
                 </div>
 
@@ -149,7 +149,7 @@
 
                 <div class="form-row mb-1">
                     <div class="form-group col-md-3" v-if="restaurant_mode == 1">
-                        <label for="product_type">{{ $t("Product Type") }}</label>
+                        <label for="product_type">{{ ("Product Type") }}</label>
                         <select name="product_type" v-model="product_report_form.product_type" class="form-control form-control-custom custom-select">
                             <option value="all">All</option>
                             <option value="billing_products">Billing Products</option>
@@ -157,15 +157,15 @@
                         </select>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="from_created_date">{{ $t("From Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="product_report_form.from_created_date" input-class="form-control bg-white" :placeholder="$t('Select from created date')"></date-picker>
+                        <label for="from_created_date">{{ ("From Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="product_report_form.from_created_date" input-class="form-control bg-white" :placeholder="('Select from created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="to_created_date">{{ $t("To Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="product_report_form.to_created_date" input-class="form-control bg-white" :placeholder="$t('Select to created date')"></date-picker>
+                        <label for="to_created_date">{{ ("To Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="product_report_form.to_created_date" input-class="form-control bg-white" :placeholder="('Select to created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="supplier">{{ $t("Supplier") }}</label>
+                        <label for="supplier">{{ ("Supplier") }}</label>
                         <select name="supplier" v-model="product_report_form.supplier" v-validate="''" class="form-control form-control-custom custom-select">
                             <option value="">Choose Supplier..</option>
                             <option v-for="(supplier, index) in suppliers" v-bind:value="supplier.slack" v-bind:key="index">
@@ -175,7 +175,7 @@
                         <span v-bind:class="{ 'error' : errors.has('supplier') }">{{ errors.first('supplier') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="category">{{ $t("Category") }}</label>
+                        <label for="category">{{ ("Category") }}</label>
                         <select name="category" v-model="product_report_form.category" v-validate="''" class="form-control form-control-custom custom-select">
                             <option value="">Choose Category..</option>
                             <option v-for="(category, index) in categories" v-bind:value="category.slack" v-bind:key="index">
@@ -185,7 +185,7 @@
                         <span v-bind:class="{ 'error' : errors.has('category') }">{{ errors.first('category') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="tax_code">{{ $t("Tax Code") }}</label>
+                        <label for="tax_code">{{ ("Tax Code") }}</label>
                         <select name="tax_code" v-model="product_report_form.tax_code" v-validate="''" class="form-control form-control-custom custom-select">
                             <option value="">Choose Tax Code..</option>
                             <option v-for="(taxcode, index) in taxcodes" v-bind:value="taxcode.slack" v-bind:key="index">
@@ -195,7 +195,7 @@
                         <span v-bind:class="{ 'error' : errors.has('tax_code') }">{{ errors.first('tax_code') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="discount_code">{{ $t("Discount Code") }}</label>
+                        <label for="discount_code">{{ ("Discount Code") }}</label>
                         <select name="discount_code" v-model="product_report_form.discount_code" v-validate="''" class="form-control form-control-custom custom-select">
                             <option value="">Choose Discount Code..</option>
                             <option v-for="(discount_code, index) in discountcodes" v-bind:value="discount_code.slack" v-bind:key="index">
@@ -205,7 +205,7 @@
                         <span v-bind:class="{ 'error' : errors.has('discount_code') }">{{ errors.first('discount_code') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="product_report_form.status" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in user_statuses" v-bind:value="status.value" v-bind:key="index">
@@ -223,12 +223,12 @@
                     <div class="mr-auto">
                     <div class="d-flex">
                             <div>
-                                <span class="text-subhead">{{ $t("Order Report") }}</span>
+                                <span class="text-subhead">{{ ("Order Report") }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="order_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="order_report_form.processing == true"></i> {{ $t("Download") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="order_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="order_report_form.processing == true"></i> {{ ("Download") }}</button>
                     </div>
                 </div>
 
@@ -236,15 +236,15 @@
 
                 <div class="form-row mb-1">
                     <div class="form-group col-md-3">
-                        <label for="from_created_date">{{ $t("From Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="order_report_form.from_created_date" input-class="form-control bg-white" :placeholder="$t('Select from created date')"></date-picker>
+                        <label for="from_created_date">{{ ("From Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="order_report_form.from_created_date" input-class="form-control bg-white" :placeholder="('Select from created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="to_created_date">{{ $t("To Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="order_report_form.to_created_date" input-class="form-control bg-white" :placeholder="$t('Select to created date')"></date-picker>
+                        <label for="to_created_date">{{ ("To Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="order_report_form.to_created_date" input-class="form-control bg-white" :placeholder="('Select to created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="order_report_form.status" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in order_statuses" v-bind:value="status.value" v-bind:key="index">
@@ -262,12 +262,12 @@
                     <div class="mr-auto">
                     <div class="d-flex">
                             <div>
-                                <span class="text-subhead">{{ $t("Purchase Order Report") }}</span>
+                                <span class="text-subhead">{{ ("Purchase Order Report") }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="purchase_order_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="purchase_order_report_form.processing == true"></i> {{ $t("Download") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="purchase_order_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="purchase_order_report_form.processing == true"></i> {{ ("Download") }}</button>
                     </div>
                 </div>
 
@@ -275,15 +275,15 @@
 
                 <div class="form-row mb-1">
                     <div class="form-group col-md-3">
-                        <label for="from_created_date">{{ $t("From Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="purchase_order_report_form.from_created_date" input-class="form-control bg-white" :placeholder="$t('Select from created date')"></date-picker>
+                        <label for="from_created_date">{{ ("From Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="purchase_order_report_form.from_created_date" input-class="form-control bg-white" :placeholder="('Select from created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="to_created_date">{{ $t("To Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="purchase_order_report_form.to_created_date" input-class="form-control bg-white" :placeholder="$t('Select to created date')"></date-picker>
+                        <label for="to_created_date">{{ ("To Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="purchase_order_report_form.to_created_date" input-class="form-control bg-white" :placeholder="('Select to created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="purchase_order_report_form.status" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in purchase_order_statuses" v-bind:value="status.value" v-bind:key="index">
@@ -301,12 +301,12 @@
                     <div class="mr-auto">
                     <div class="d-flex">
                             <div>
-                                <span class="text-subhead">{{ $t("Customer Report") }}</span>
+                                <span class="text-subhead">{{ ("Customer Report") }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="customer_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="customer_report_form.processing == true"></i> {{ $t("Download") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="customer_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="customer_report_form.processing == true"></i> {{ ("Download") }}</button>
                     </div>
                 </div>
 
@@ -314,15 +314,15 @@
 
                 <div class="form-row mb-1">
                     <div class="form-group col-md-3">
-                        <label for="from_created_date">{{ $t("From Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format" v-model="customer_report_form.from_created_date" input-class="form-control bg-white" :placeholder="$t('Select from created date')"></date-picker>
+                        <label for="from_created_date">{{ ("From Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format" v-model="customer_report_form.from_created_date" input-class="form-control bg-white" :placeholder="('Select from created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="to_created_date">{{ $t("To Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="customer_report_form.to_created_date" input-class="form-control bg-white" :placeholder="$t('Select to created date')"></date-picker>
+                        <label for="to_created_date">{{ ("To Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="customer_report_form.to_created_date" input-class="form-control bg-white" :placeholder="('Select to created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="customer_report_form.status" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in customer_statuses" v-bind:value="status.value" v-bind:key="index">
@@ -340,12 +340,12 @@
                     <div class="mr-auto">
                     <div class="d-flex">
                             <div>
-                                <span class="text-subhead">{{ $t("Invoice Report") }}</span>
+                                <span class="text-subhead">{{ ("Invoice Report") }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="invoice_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="invoice_report_form.processing == true"></i> {{ $t("Download") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="invoice_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="invoice_report_form.processing == true"></i> {{ ("Download") }}</button>
                     </div>
                 </div>
 
@@ -353,15 +353,15 @@
 
                 <div class="form-row mb-1">
                     <div class="form-group col-md-3">
-                        <label for="from_created_date">{{ $t("From Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="invoice_report_form.from_created_date" input-class="form-control bg-white" :placeholder="$t('Select from created date')"></date-picker>
+                        <label for="from_created_date">{{ ("From Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="invoice_report_form.from_created_date" input-class="form-control bg-white" :placeholder="('Select from created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="to_created_date">{{ $t("To Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="invoice_report_form.to_created_date" input-class="form-control bg-white" :placeholder="$t('Select to created date')"></date-picker>
+                        <label for="to_created_date">{{ ("To Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="invoice_report_form.to_created_date" input-class="form-control bg-white" :placeholder="('Select to created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="invoice_report_form.status" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in invoice_statuses" v-bind:value="status.value" v-bind:key="index">
@@ -379,12 +379,12 @@
                     <div class="mr-auto">
                     <div class="d-flex">
                             <div>
-                                <span class="text-subhead">{{ $t("Quotation Report") }}</span>
+                                <span class="text-subhead">{{ ("Quotation Report") }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="quotation_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="quotation_report_form.processing == true"></i> {{ $t("Download") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="quotation_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="quotation_report_form.processing == true"></i> {{ ("Download") }}</button>
                     </div>
                 </div>
 
@@ -392,15 +392,15 @@
 
                 <div class="form-row mb-1">
                     <div class="form-group col-md-3">
-                        <label for="from_created_date">{{ $t("From Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="quotation_report_form.from_created_date" input-class="form-control bg-white" :placeholder="$t('Select from created date')"></date-picker>
+                        <label for="from_created_date">{{ ("From Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="quotation_report_form.from_created_date" input-class="form-control bg-white" :placeholder="('Select from created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="to_created_date">{{ $t("To Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="quotation_report_form.to_created_date" input-class="form-control bg-white" :placeholder="$t('Select to created date')"></date-picker>
+                        <label for="to_created_date">{{ ("To Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="quotation_report_form.to_created_date" input-class="form-control bg-white" :placeholder="('Select to created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="quotation_report_form.status" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in quotation_statuses" v-bind:value="status.value" v-bind:key="index">
@@ -418,12 +418,12 @@
                     <div class="mr-auto">
                     <div class="d-flex">
                             <div>
-                                <span class="text-subhead">{{ $t("Transaction Report") }}</span>
+                                <span class="text-subhead">{{ ("Transaction Report") }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="transaction_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="transaction_report_form.processing == true"></i> {{ $t("Download") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="transaction_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="transaction_report_form.processing == true"></i> {{ ("Download") }}</button>
                     </div>
                 </div>
 
@@ -431,15 +431,15 @@
 
                 <div class="form-row mb-1">
                     <div class="form-group col-md-3">
-                        <label for="from_created_date">{{ $t("From Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="transaction_report_form.from_created_date" input-class="form-control bg-white" :placeholder="$t('Select from created date')"></date-picker>
+                        <label for="from_created_date">{{ ("From Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="transaction_report_form.from_created_date" input-class="form-control bg-white" :placeholder="('Select from created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="to_created_date">{{ $t("To Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="transaction_report_form.to_created_date" input-class="form-control bg-white" :placeholder="$t('Select to created date')"></date-picker>
+                        <label for="to_created_date">{{ ("To Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="transaction_report_form.to_created_date" input-class="form-control bg-white" :placeholder="('Select to created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="account">{{ $t("Account") }}</label>
+                        <label for="account">{{ ("Account") }}</label>
                         <select name="account" v-model="transaction_report_form.account" class="form-control form-control-custom custom-select">
                             <option value="">Choose Account..</option>
                             <option v-for="(account, index) in accounts" v-bind:value="account.slack" v-bind:key="index">
@@ -448,7 +448,7 @@
                         </select> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="transaction_type">{{ $t("Transaction Type") }}</label>
+                        <label for="transaction_type">{{ ("Transaction Type") }}</label>
                         <select name="transaction_type" v-model="transaction_report_form.transaction_type" class="form-control form-control-custom custom-select">
                             <option value="">Choose Transaction Type..</option>
                             <option v-for="(transaction_type_item, index) in transaction_types" v-bind:value="transaction_type_item.transaction_type_constant" v-bind:key="index">
@@ -457,7 +457,7 @@
                         </select> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="payment_method">{{ $t("Payment Method") }}</label>
+                        <label for="payment_method">{{ ("Payment Method") }}</label>
                         <select name="payment_method" v-model="transaction_report_form.payment_method" class="form-control form-control-custom custom-select">
                             <option value="">Choose Payment Method..</option>
                             <option v-for="(payment_method, index) in payment_methods" v-bind:value="payment_method.slack" v-bind:key="index">
@@ -475,12 +475,12 @@
                     <div class="mr-auto">
                     <div class="d-flex">
                             <div>
-                                <span class="text-subhead">{{ $t("Tax Code Report") }}</span>
+                                <span class="text-subhead">{{ ("Tax Code Report") }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="taxcode_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="taxcode_report_form.processing == true"></i> {{ $t("Download") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="taxcode_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="taxcode_report_form.processing == true"></i> {{ ("Download") }}</button>
                     </div>
                 </div>
 
@@ -488,15 +488,15 @@
 
                 <div class="form-row mb-1">
                     <div class="form-group col-md-3">
-                        <label for="from_created_date">{{ $t("From Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="taxcode_report_form.from_created_date" input-class="form-control bg-white" :placeholder="$t('Select from created date')"></date-picker>
+                        <label for="from_created_date">{{ ("From Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="taxcode_report_form.from_created_date" input-class="form-control bg-white" :placeholder="('Select from created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="to_created_date">{{ $t("To Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="taxcode_report_form.to_created_date" input-class="form-control bg-white" :placeholder="$t('Select to created date')"></date-picker>
+                        <label for="to_created_date">{{ ("To Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="taxcode_report_form.to_created_date" input-class="form-control bg-white" :placeholder="('Select to created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="taxcode_report_form.status" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in taxcode_statuses" v-bind:value="status.value" v-bind:key="index">
@@ -514,12 +514,12 @@
                     <div class="mr-auto">
                     <div class="d-flex">
                             <div>
-                                <span class="text-subhead">{{ $t("Discount Code Report") }}</span>
+                                <span class="text-subhead">{{ ("Discount Code Report") }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="discountcode_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="discountcode_report_form.processing == true"></i> {{ $t("Download") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="discountcode_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="discountcode_report_form.processing == true"></i> {{ ("Download") }}</button>
                     </div>
                 </div>
 
@@ -527,15 +527,15 @@
 
                 <div class="form-row mb-1">
                     <div class="form-group col-md-3">
-                        <label for="from_created_date">{{ $t("From Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="discountcode_report_form.from_created_date" input-class="form-control bg-white" :placeholder="$t('Select from created date')"></date-picker>
+                        <label for="from_created_date">{{ ("From Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="discountcode_report_form.from_created_date" input-class="form-control bg-white" :placeholder="('Select from created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="to_created_date">{{ $t("To Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="discountcode_report_form.to_created_date" input-class="form-control bg-white" :placeholder="$t('Select to created date')"></date-picker>
+                        <label for="to_created_date">{{ ("To Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="discountcode_report_form.to_created_date" input-class="form-control bg-white" :placeholder="('Select to created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="discountcode_report_form.status" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in discountcode_statuses" v-bind:value="status.value" v-bind:key="index">
@@ -553,12 +553,12 @@
                     <div class="mr-auto">
                     <div class="d-flex">
                             <div>
-                                <span class="text-subhead">{{ $t("Supplier Report") }}</span>
+                                <span class="text-subhead">{{ ("Supplier Report") }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="supplier_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="supplier_report_form.processing == true"></i> {{ $t("Download") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="supplier_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="supplier_report_form.processing == true"></i> {{ ("Download") }}</button>
                     </div>
                 </div>
 
@@ -566,15 +566,15 @@
 
                 <div class="form-row mb-1">
                     <div class="form-group col-md-3">
-                        <label for="from_created_date">{{ $t("From Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="supplier_report_form.from_created_date" input-class="form-control bg-white" :placeholder="$t('Select from created date')"></date-picker>
+                        <label for="from_created_date">{{ ("From Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="supplier_report_form.from_created_date" input-class="form-control bg-white" :placeholder="('Select from created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="to_created_date">{{ $t("To Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="supplier_report_form.to_created_date" input-class="form-control bg-white" :placeholder="$t('Select to created date')"></date-picker>
+                        <label for="to_created_date">{{ ("To Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="supplier_report_form.to_created_date" input-class="form-control bg-white" :placeholder="('Select to created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="supplier_report_form.status" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in supplier_statuses" v-bind:value="status.value" v-bind:key="index">
@@ -592,12 +592,12 @@
                     <div class="mr-auto">
                     <div class="d-flex">
                             <div>
-                                <span class="text-subhead">{{ $t("Category Report") }}</span>
+                                <span class="text-subhead">{{ ("Category Report") }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="category_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="category_report_form.processing == true"></i> {{ $t("Download") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="category_report_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="category_report_form.processing == true"></i> {{ ("Download") }}</button>
                     </div>
                 </div>
 
@@ -605,15 +605,15 @@
 
                 <div class="form-row mb-1">
                     <div class="form-group col-md-3">
-                        <label for="from_created_date">{{ $t("From Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="category_report_form.from_created_date" input-class="form-control bg-white" :placeholder="$t('Select from created date')"></date-picker>
+                        <label for="from_created_date">{{ ("From Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="category_report_form.from_created_date" input-class="form-control bg-white" :placeholder="('Select from created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="to_created_date">{{ $t("To Created Date") }}</label>
-                        <date-picker :lang='date.lang' :format="date.format"  v-model="category_report_form.to_created_date" input-class="form-control bg-white" :placeholder="$t('Select to created date')"></date-picker>
+                        <label for="to_created_date">{{ ("To Created Date") }}</label>
+                        <date-picker :lang='date.lang' :format="date.format"  v-model="category_report_form.to_created_date" input-class="form-control bg-white" :placeholder="('Select to created date')"></date-picker>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="category_report_form.status" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in category_statuses" v-bind:value="status.value" v-bind:key="index">

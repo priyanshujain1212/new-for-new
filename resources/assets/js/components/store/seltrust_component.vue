@@ -4,10 +4,10 @@
             <div class="col-sm-12 col-md-8 col-lg-6 col-lg-6">
                 <div class="d-flex flex-wrap mb-1">
                     <div class="mr-auto">
-                        <span class="text-title">{{ $t("Choose Trust") }}</span>
+                        <span class="text-title">{{ ("Choose Trust") }}</span>
                     </div>
                     <div class="">
-                        <a href="/addtrust" class="btn btn-primary" v-if="stores.length == 0 && is_super_admin"> {{ $t("New Trust") }}</a>
+                        <a href="/addtrust" class="btn btn-primary" v-if="stores.length == 0 && is_super_admin"> {{ ("New Trust") }}</a>
                     </div>
                 </div>
                 <p v-html="server_errors" v-bind:class="[error_class]"></p>
@@ -19,13 +19,13 @@
                         </div>
                     </div>
                     <div class="d-flex flex-column p-3" v-if="stores.length == 0 && is_super_admin == false">
-                        <p class="mb-1">{{ $t("Oh, currently you dont have any store access. Please contact your administartor for trust access.") }}</p>
+                        <p class="mb-1">{{ ("Oh, currently you dont have any store access. Please contact your administartor for trust access.") }}</p>
                     </div>
                     <div class="d-flex flex-column p-3" v-if="stores.length == 0 && is_super_admin == true">
-                        <p class="mb-1">{{ $t("You can add a trust to get started.") }}</p>
+                        <p class="mb-1">{{ ("You can add a trust to get started.") }}</p>
                     </div>
                 </div>
-                <div class="mt-2">{{ $t("You can choose from") }} {{ stores.length }} {{ $t("trust(s)") }}</div>
+                <div class="mt-2">{{ ("You can choose from") }} {{ stores.length }} {{ ("trust(s)") }}</div>
             </div>
         </div>
     </div>

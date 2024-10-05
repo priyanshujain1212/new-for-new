@@ -24,7 +24,6 @@
                         <th>{{ __("Amount") }}</th>
                         <th>{{ __("Status") }}</th>
                         <th>{{ __("Created By") }}</th>
-                        
                         <th>{{ __("Action") }}</th>
                     </tr>
                 </thead>
@@ -38,13 +37,16 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.0/js/jquery.dataTables.min.js"></script>
+
     <script src="{{ asset('plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('js/datatable.js') }}"></script>
-    <script src="{{ asset('js/pages/purchase_orders.js') }}"></script>
+    <script src="{{ asset('js/pages/challans.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> <!-- Add Bootstrap JS -->
     <script>
         'use strict';
-        var purchase_orders = new PurchaseOrders();
-        purchase_orders.load_listing_table();
+        var challans = new Challans();
+        challans.load_listing_table();
     </script>
 @endpush

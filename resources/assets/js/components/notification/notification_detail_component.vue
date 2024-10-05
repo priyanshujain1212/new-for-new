@@ -6,29 +6,29 @@
                 <div class="mr-auto">
                    <div class="d-flex">
                         <div>
-                            <span class="text-title"> <span class='text-muted'>{{ $t("Notification") }}</span></span>
+                            <span class="text-title"> <span class='text-muted'>{{ ("Notification") }}</span></span>
                         </div>
                     </div>
                 </div>
                 <div class="">
-                    <button type="submit" class="btn btn-danger mr-1" v-if="delete_notification_access == true" v-on:click="delete_notification()" v-bind:disabled="delete_processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="delete_processing == true"></i> {{ $t("Delete Notification") }}</button>
+                    <button type="submit" class="btn btn-danger mr-1" v-if="delete_notification_access == true" v-on:click="delete_notification()" v-bind:disabled="delete_processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="delete_processing == true"></i> {{ ("Delete Notification") }}</button>
                 </div>
             </div>
 
             <div class="form-row mb-2">
                 <div class="form-group col-md-6">
-                    <label for="notification">{{ $t("Notification") }}</label>
+                    <label for="notification">{{ ("Notification") }}</label>
                     <p>{{ (notification.notification_text)?notification.notification_text:'-' }}</p>
                 </div>
             </div>
 
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="created_by">{{ $t("Created By") }}</label>
+                    <label for="created_by">{{ ("Created By") }}</label>
                     <p>{{ (notification.created_by == null)?'-':notification.created_by['fullname']+' ('+notification.created_by['user_code']+')' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="created_on">{{ $t("Created On") }}</label>
+                    <label for="created_on">{{ ("Created On") }}</label>
                     <p>{{ notification.created_at_label }}</p>
                 </div>
             </div>

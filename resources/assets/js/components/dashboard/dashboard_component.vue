@@ -6,7 +6,7 @@
                 <div class="mr-auto">
                    <div class="d-flex">
                         <div>
-                            <span class="text-title"> {{ $t("Dashboard") }} </span>
+                            <span class="text-title"> {{ ("Dashboard") }} </span>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                                     </div>
 
                                     <div class="d-flex align-items-end flex-column col-sm-12 col-md-12 col-lg-4 col-xl-4 p-0">
-                                        <div class="p-2">{{ $t("Total Piad Rasid - Piad Amount") }}</div>
+                                        <div class="p-2">{{ ("Total Piad Rasid - Piad Amount") }}</div>
 
                                         <div class="mt-auto p-2">
                                             <span class="text-headline">
@@ -54,7 +54,7 @@
                                     </div>
 
                                     <div class="d-flex align-items-end flex-column col-sm-12 col-md-12 col-lg-4 col-xl-4 p-0">
-                                        <div class="p-2">{{ $t("Total Unpaid Rasids - Unpaid Amount") }} ({{ store_currency }})</div>
+                                        <div class="p-2">{{ ("Total Unpaid Rasids - Unpaid Amount") }} ({{ store_currency }})</div>
 
                                         <div class="mt-auto p-2">
                                             <span class="text-headline">
@@ -80,7 +80,7 @@
                         <div class="d-flex align-items-start flex-column p-1 mb-1 col-md-3 box" :title="get_total_rasid.raw">
                             <div class="col-12 p-3 bg-light">
                                 <div class="d-flex align-items-end flex-column box-content">
-                                    <div class="p-2">{{ $t("Total Rasid") }}</div>
+                                    <div class="p-2">{{ ("Total Rasid") }}</div>
 
                                     <div class="mt-auto p-2">
                                         <span class="text-headline">
@@ -95,7 +95,7 @@
                         <div class="d-flex align-items-start flex-column p-1 mb-1 col-md-3 box" :title="get_total_rasid_amount.raw">
                             <div class="col-12 p-3 bg-light">
                                 <div class="d-flex align-items-end flex-column box-content">
-                                    <div class="p-2">{{ $t("Total Rasid Amount") }} ({{ store_currency }})</div>
+                                    <div class="p-2">{{ ("Total Rasid Amount") }} ({{ store_currency }})</div>
 
                                     <div class="mt-auto p-2">
                                         <span class="text-headline">
@@ -110,7 +110,7 @@
                         <div class="d-flex align-items-start flex-column p-1 mb-1 col-md-3 box" :title="get_total_paid_rasid.raw">
                             <div class="col-12 p-3 bg-light">
                                 <div class="d-flex align-items-end flex-column box-content">
-                                    <div class="p-2">{{ $t("Total Paid Rasid") }}</div>
+                                    <div class="p-2">{{ ("Total Paid Rasid") }}</div>
 
                                     <div class="mt-auto p-2">
                                         <span class="text-headline">
@@ -125,7 +125,7 @@
                         <div class="d-flex align-items-start flex-column p-1 mb-1 col-md-3 box" :title="get_total_paid_rasid_amount.raw">
                             <div class="col-12 p-3 bg-light">
                                 <div class="d-flex align-items-end flex-column box-content">
-                                    <div class="p-2">{{ $t("Total Paid Rasid Amount") }} ({{ store_currency }})</div>
+                                    <div class="p-2">{{ ("Total Paid Rasid Amount") }} ({{ store_currency }})</div>
 
                                     <div class="mt-auto p-2">
                                         <span class="text-headline">
@@ -140,7 +140,7 @@
                         <div class="d-flex align-items-start flex-column p-1 mb-1 col-md-3 box" :title="get_total_unpaid_rasid.raw">
                             <div class="col-12 p-3 bg-light">
                                 <div class="d-flex align-items-end flex-column box-content">
-                                    <div class="p-2">{{ $t("Total Unpaid Rasid") }}</div>
+                                    <div class="p-2">{{ ("Total Unpaid Rasid") }}</div>
 
                                     <div class="mt-auto p-2">
                                         <span class="text-headline">
@@ -155,7 +155,7 @@
                         <div class="d-flex align-items-start flex-column p-1 mb-1 col-md-3 box" :title="get_total_unpaid_rasid_amount.raw">
                             <div class="col-12 p-3 bg-light">
                                 <div class="d-flex align-items-end flex-column box-content">
-                                    <div class="p-2">{{ $t("Total Unapid Rasid Amount") }} ({{ store_currency }})</div>
+                                    <div class="p-2">{{ ("Total Unapid Rasid Amount") }} ({{ store_currency }})</div>
 
                                     <div class="mt-auto p-2">
                                         <span class="text-headline">
@@ -170,7 +170,7 @@
                         <div v-if="access === 'Store_Admin' || access === 'Main_admin'" class="d-flex align-items-start flex-column p-1 mb-1 col-md-3 box" :title="customer_count.raw">
                             <div class="col-12 p-3 bg-light">
                                 <div class="d-flex align-items-end flex-column box-content">
-                                    <div class="p-2">{{ $t("Total Customers") }}</div>
+                                    <div class="p-2">{{ ("Total Customers") }}</div>
 
                                     <div class="mt-auto p-2">
                                         <span class="text-headline">
@@ -184,7 +184,7 @@
                         <div v-if="access === 'Main_admin'" class="d-flex align-items-start flex-column p-1 mb-1 col-md-3 box" :title="store_count.raw">
                             <div class="col-12 p-3 bg-light">
                                 <div class="d-flex align-items-end flex-column box-content">
-                                    <div class="p-2">{{ $t("Total Stores") }}</div>
+                                    <div class="p-2">{{ ("Total Stores") }}</div>
 
                                     <div class="mt-auto p-2">
                                         <span class="text-headline">
@@ -198,7 +198,7 @@
                         <div v-if="access === 'Main_admin'" class="d-flex align-items-start flex-column p-1 mb-1 col-md-3 box" :title="active_store_count.raw">
                             <div class="col-12 p-3 bg-light">
                                 <div class="d-flex align-items-end flex-column box-content">
-                                    <div class="p-2">{{ $t("Total Active Stores") }}</div>
+                                    <div class="p-2">{{ ("Total Active Stores") }}</div>
 
                                     <div class="mt-auto p-2">
                                         <span class="text-headline">
@@ -212,7 +212,7 @@
                         <div v-if="access === 'Main_admin'" class="d-flex align-items-start flex-column p-1 mb-1 col-md-3 box" :title="inactive_store_count.raw">
                             <div class="col-12 p-3 bg-light">
                                 <div class="d-flex align-items-end flex-column box-content">
-                                    <div class="p-2">{{ $t("Total In-Active Stores") }}</div>
+                                    <div class="p-2">{{ ("Total In-Active Stores") }}</div>
 
                                     <div class="mt-auto p-2">
                                         <span class="text-headline">

@@ -4,7 +4,7 @@
             
             <div class="d-flex flex-wrap mb-4">
                 <div class="mr-auto">
-                    <span class="text-title">{{ $t("Edit Profile") }}</span>
+                    <span class="text-title">{{ ("Edit Profile") }}</span>
                 </div>
             </div>
 
@@ -27,10 +27,10 @@
             <form @submit.prevent="update_basic_profile('basic_profile_form')" data-vv-scope="basic_profile_form" class="mb-4">
                 <div class="d-flex flex-wrap mb-1">
                     <div class="mr-auto">
-                        <span class="text-subhead">{{ $t("Basic Information") }}</span>
+                        <span class="text-subhead">{{ ("Basic Information") }}</span>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="basic_profile_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="basic_profile_form.processing == true"></i> {{ $t("Save") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="basic_profile_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="basic_profile_form.processing == true"></i> {{ ("Save") }}</button>
                     </div>
                 </div>
 
@@ -38,18 +38,18 @@
 
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
-                        <label for="fullname">{{ $t("Fullname") }}</label>
-                        <input type="text" name="fullname" v-model="fullname" v-validate="'required|max:250'" class="form-control form-control-custom" :placeholder="$t('Please enter fullname')"  autocomplete="off">
+                        <label for="fullname">{{ ("Fullname") }}</label>
+                        <input type="text" name="fullname" v-model="fullname" v-validate="'required|max:250'" class="form-control form-control-custom" :placeholder="('Please enter fullname')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('basic_profile_form.fullname') }">{{ errors.first('basic_profile_form.fullname') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="email">{{ $t("Email") }}</label>
-                        <input type="text" name="email" v-model="email" v-validate="'required|email|max:150'" class="form-control form-control-custom" :placeholder="$t('Please enter email')"  autocomplete="off">
+                        <label for="email">{{ ("Email") }}</label>
+                        <input type="text" name="email" v-model="email" v-validate="'required|email|max:150'" class="form-control form-control-custom" :placeholder="('Please enter email')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('basic_profile_form.email') }">{{ errors.first('basic_profile_form.email') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="phone">{{ $t("Contact No.") }}</label>
-                        <input type="text" name="phone" v-model="phone" v-validate="'required|min:10|max:15'" class="form-control form-control-custom" :placeholder="$t('Please enter Contact Number')" autocomplete="off">
+                        <label for="phone">{{ ("Contact No.") }}</label>
+                        <input type="text" name="phone" v-model="phone" v-validate="'required|min:10|max:15'" class="form-control form-control-custom" :placeholder="('Please enter Contact Number')" autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('basic_profile_form.phone') }">{{ errors.first('basic_profile_form.phone') }}</span> 
                     </div>
                 </div>
@@ -58,10 +58,10 @@
             <form @submit.prevent="update_password('password_form')" data-vv-scope="password_form" class="mb-4">
                 <div class="d-flex flex-wrap mb-1">
                     <div class="mr-auto">
-                        <span class="text-subhead">{{ $t("Change Password") }}</span>
+                        <span class="text-subhead">{{ ("Change Password") }}</span>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="password_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="password_form.processing == true"></i> {{ $t("Save") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="password_form.processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="password_form.processing == true"></i> {{ ("Save") }}</button>
                     </div>
                 </div>
 
@@ -69,18 +69,18 @@
 
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
-                        <label for="password">{{ $t("Current Password") }}</label>
-                        <input type="password" name="current_password" v-model="current_password" v-validate="'required|alpha_dash|min:6|max:100'" class="form-control form-control-custom" :placeholder="$t('Please enter your current password')">
+                        <label for="password">{{ ("Current Password") }}</label>
+                        <input type="password" name="current_password" v-model="current_password" v-validate="'required|alpha_dash|min:6|max:100'" class="form-control form-control-custom" :placeholder="('Please enter your current password')">
                         <span v-bind:class="{ 'error' : errors.has('password_form.current_password') }">{{ errors.first('password_form.current_password') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="password">{{ $t("New Password") }}</label>
-                        <input type="password" name="new_password" v-model="new_password" v-validate="'required|alpha_dash|min:6|max:100'" class="form-control form-control-custom" :placeholder="$t('Please enter your new password')">
+                        <label for="password">{{ ("New Password") }}</label>
+                        <input type="password" name="new_password" v-model="new_password" v-validate="'required|alpha_dash|min:6|max:100'" class="form-control form-control-custom" :placeholder="('Please enter your new password')">
                         <span v-bind:class="{ 'error' : errors.has('password_form.new_password') }">{{ errors.first('password_form.new_password') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="password">{{ $t("Re Enter New Password") }}</label>
-                        <input type="password" name="new_password_confirmation" v-model="new_password_confirmation" v-validate="'required|alpha_dash|min:6|max:100'" class="form-control form-control-custom" :placeholder="$t('Please re enter your new password')">
+                        <label for="password">{{ ("Re Enter New Password") }}</label>
+                        <input type="password" name="new_password_confirmation" v-model="new_password_confirmation" v-validate="'required|alpha_dash|min:6|max:100'" class="form-control form-control-custom" :placeholder="('Please re enter your new password')">
                         <span v-bind:class="{ 'error' : errors.has('password_form.new_password_confirmation') }">{{ errors.first('password_form.new_password_confirmation') }}</span>  
                     </div>
                 </div>

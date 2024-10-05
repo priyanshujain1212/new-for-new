@@ -6,7 +6,7 @@
                 <div class="mr-auto">
                    <div class="d-flex">
                         <div>
-                            <span class="text-title"> {{ $t("Best Seller Report") }} </span>
+                            <span class="text-title"> {{ ("Best Seller Report") }} </span>
                         </div>
                     </div>
                 </div>

@@ -4,52 +4,52 @@
 
             <div class="d-flex flex-wrap mb-4">
                 <div class="mr-auto">
-                    <span class="text-title">{{ $t("Email Settings") }}</span>
+                    <span class="text-title">{{ ("Email Settings") }}</span>
                 </div>
                 <div class="">
-                    <a v-bind:href="edit_link" class="btn btn-primary"> {{ $t("Edit") }}</a>
+                    <a v-bind:href="edit_link" class="btn btn-primary"> {{ ("Edit") }}</a>
                 </div>
             </div>
 
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("Type") }}</label>
+                    <label for="email">{{ ("Type") }}</label>
                     <p>{{ type }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("Driver") }}</label>
+                    <label for="email">{{ ("Driver") }}</label>
                     <p>{{ driver }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("Host") }}</label>
+                    <label for="email">{{ ("Host") }}</label>
                     <p>{{ host }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("Port") }}</label>
+                    <label for="email">{{ ("Port") }}</label>
                     <p>{{ port }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("Username") }}</label>
+                    <label for="email">{{ ("Username") }}</label>
                     <p>{{ username }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("Password") }}</label>
+                    <label for="email">{{ ("Password") }}</label>
                     <p>{{ hideSensitiveInfo(password, 20) }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("Encryption") }}</label>
+                    <label for="email">{{ ("Encryption") }}</label>
                     <p>{{ encryption }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("From Email") }}</label>
+                    <label for="email">{{ ("From Email") }}</label>
                     <p>{{ from_email }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("From Email Name") }}</label>
+                    <label for="email">{{ ("From Email Name") }}</label>
                     <p>{{ from_email_name }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("Status") }}</label>
+                    <label for="email">{{ ("Status") }}</label>
                     <p><span v-bind:class="status_color">{{ status_label }}</span></p>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <template>
     <div class="dropdown">
         <a href="#" class="nav-link nav-link-dark dropdown-toggle text-bold" id="user_store_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-if="selected_store.length != 0">
-            <span class="text-thin">{{ $t("Store") }}</span> {{ truncate(selected_store.store_code +' - '+ selected_store.name, 45) }}
+            <span class="text-thin">{{ ("Store") }}</span> {{ truncate(selected_store.store_code +' - '+ selected_store.name, 45) }}
         </a>
         <div class="dropdown-menu dropdown-menu-left store-selector-dropdown" aria-labelledby="user_store_dropdown">
             <small class="dropdown-header">CHOOSE FROM {{ stores.length }} STORE(S)</small>

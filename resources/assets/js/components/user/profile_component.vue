@@ -14,30 +14,30 @@
                     </div>
                 </div>
                 <div class="">
-                    <a href="/edit_profile" class="btn btn-primary" v-if="slack == logged_user"> {{ $t("Edit") }}</a>
+                    <a href="/edit_profile" class="btn btn-primary" v-if="slack == logged_user"> {{ ("Edit") }}</a>
                 </div>
             </div>
 
             <div class="mb-2">
-                <span class="text-subhead">{{ $t("Basic Information") }}</span>
+                <span class="text-subhead">{{ ("Basic Information") }}</span>
             </div>
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("Fullname") }}</label>
+                    <label for="email">{{ ("Fullname") }}</label>
                     <p>{{ fullname }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("Email") }}</label>
+                    <label for="email">{{ ("Email") }}</label>
                     <p>{{ email }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("Phone") }}</label>
+                    <label for="email">{{ ("Phone") }}</label>
                     <p>{{ phone }}</p>
                 </div>
             </div>
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("Role") }}</label>
+                    <label for="email">{{ ("Role") }}</label>
                     <p>{{ role }}</p>
                 </div>
             </div>

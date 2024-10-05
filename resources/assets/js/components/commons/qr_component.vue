@@ -4,18 +4,18 @@
                 
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="size">{{ $t("Size") }}</label>
-                    <input type="number" name="size" v-model="size" v-validate="'required|numeric'" class="form-control form-control-custom" :placeholder="$t('Please enter QR Code size')"  autocomplete="off">
+                    <label for="size">{{ ("Size") }}</label>
+                    <input type="number" name="size" v-model="size" v-validate="'required|numeric'" class="form-control form-control-custom" :placeholder="('Please enter QR Code size')"  autocomplete="off">
                     <span v-bind:class="{ 'error' : errors.has('size') }">{{ errors.first('size') }}</span> 
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="foreground">{{ $t("Foreground Color") }}</label>
-                    <input type="text" name="foreground" v-model="foreground" v-validate="'required'" class="form-control form-control-custom" :placeholder="$t('Please enter foreground color')"  autocomplete="off">
+                    <label for="foreground">{{ ("Foreground Color") }}</label>
+                    <input type="text" name="foreground" v-model="foreground" v-validate="'required'" class="form-control form-control-custom" :placeholder="('Please enter foreground color')"  autocomplete="off">
                     <span v-bind:class="{ 'error' : errors.has('foreground') }">{{ errors.first('foreground') }}</span> 
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="background">{{ $t("Background Color") }}</label>
-                    <input type="text" name="background" v-model="background" v-validate="'required'" class="form-control form-control-custom" :placeholder="$t('Please enter background color')"  autocomplete="off">
+                    <label for="background">{{ ("Background Color") }}</label>
+                    <input type="text" name="background" v-model="background" v-validate="'required'" class="form-control form-control-custom" :placeholder="('Please enter background color')"  autocomplete="off">
                     <span v-bind:class="{ 'error' : errors.has('background') }">{{ errors.first('background') }}</span> 
                 </div>
             </div>

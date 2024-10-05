@@ -3,41 +3,41 @@
         <div class="d-flex justify-content-center pt-5">
             <div class="col-sm-12 col-md-6 col-lg-4">
                 <img :src="company_logo" class="d-block mb-4 entry_logo" alt="appsthing">
-                <span class="text-display-0 d-block mb-3">{{ $t('Sign in') }}</span>
+                <span class="text-display-0 d-block mb-3">{{ ('Sign in') }}</span>
                 <p v-html="server_errors" :class="error_class"></p>
                 {{ message }}
 
                 <Form @submit="submit_form" class="mb-3"> <!-- v-slot is used to access errors -->
                     <div class="form-group">
-                        <label for="email">{{ $t("Email") }}</label>
+                        <label for="email">{{ ("Email") }}</label>
                         <Field 
                             name="email" 
                             type="email" 
                             v-model="email" 
                             class="form-control form-control-lg" 
-                            :placeholder="$t('Please enter your registered email')" 
+                            :placeholder="('Please enter your registered email')" 
                             autocomplete="off"
                             rules="required|email" 
                         />
                         <ErrorMessage name="email" as="span" class="text-danger"/>
                     </div>
                     <div class="form-group">
-                        <label for="password">{{ $t("Password") }}</label>
+                        <label for="password">{{ ("Password") }}</label>
                         <Field 
                             name="password" 
                             type="password" 
                             v-model="password" 
                             class="form-control form-control-lg" 
-                            :placeholder="$t('Please enter your password')"
+                            :placeholder="('Please enter your password')"
                             rules="required" 
                         />
                         <ErrorMessage name="password" as="span" class="text-danger"/>
                     </div>
                     <div class="form-group">
-                        <a href="/forgot_password" class="btn-label">{{ $t('Forgot Password') }}</a>
+                        <a href="/forgot_password" class="btn-label">{{ ('Forgot Password') }}</a>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg" :disabled="processing"> 
-                        <i class='fa fa-circle-notch fa-spin' v-if="processing"></i> {{ $t('Sign in') }}
+                        <i class='fa fa-circle-notch fa-spin' v-if="processing"></i> {{ ('Sign in') }}
                     </button>
                 </Form>
             </div>
@@ -47,9 +47,16 @@
 
 <script>
 import { Field, Form, ErrorMessage } from 'vee-validate';
-import axios from 'axios'; // Import axios here
+import { required, email } from '@vee-validate/rules'; // Import validation rules
+import { defineRule } from 'vee-validate'; // Used to define rules globally
+import axios from 'axios';
 
 export default {
+    components: {
+        Field,
+        Form,
+        ErrorMessage
+    },
     props: {
         prop_message: String,
         is_demo: Boolean,
@@ -66,15 +73,20 @@ export default {
             message: this.prop_message
         };
     },
+    created() {
+        // Register rules globally in the component lifecycle
+        defineRule('required', required);
+        defineRule('email', email);
+    },
     methods: {
         submit_form(values) {
-            // values contains the form data already, no need to use v-model
             this.processing = true;
             const formData = new FormData();
             formData.append("email", values.email || '');
             formData.append("password", values.password || '');
 
-            axios.post('/api/user/authenticate', formData).then((response) => {
+            axios.post('/api/user/authenticate', formData)
+            .then((response) => {
                 this.processing = false;
                 if (response.data.status_code === 200) {
                     window.location.assign(response.data.link);
@@ -87,7 +99,8 @@ export default {
                     }
                     this.error_class = 'error';
                 }
-            }).catch((error) => {
+            })
+            .catch((error) => {
                 console.log('Full error:', error);
             });
         }

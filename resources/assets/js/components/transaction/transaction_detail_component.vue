@@ -6,7 +6,7 @@
                 <div class="mr-auto">
                    <div class="d-flex">
                         <div>
-                            <span class="text-title"> <span class='text-muted'>{{ $t("Transaction") }}</span> #{{ transaction.transaction_code }}</span>
+                            <span class="text-title"> <span class='text-muted'>{{ ("Transaction") }}</span> #{{ transaction.transaction_code }}</span>
                         </div>
                     </div>
                 </div>
@@ -28,86 +28,86 @@
             </div>
 
             <div class="mb-2">
-                <span class="text-subhead">{{ $t("Billing Information") }}</span>
+                <span class="text-subhead">{{ ("Billing Information") }}</span>
             </div>
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="bill_to">{{ $t("Bill To") }}</label>
+                    <label for="bill_to">{{ ("Bill To") }}</label>
                     <p>{{ transaction.bill_to  }}</p>
                 </div>
                 <div class="form-group col-md-3" v-show='bill_to_link != ""'>
-                    <label for="bill_to">{{ $t("Bill To Link") }}</label>
+                    <label for="bill_to">{{ ("Bill To Link") }}</label>
                     <p><a v-bind:href="bill_to_link" target="_blank">{{ bill_to_link_text  }}</a></p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="bill_to_name">{{ $t("Name") }}</label>
+                    <label for="bill_to_name">{{ ("Name") }}</label>
                     <p>{{ transaction.bill_to_name }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="bill_to_contact">{{ $t("Contact") }}</label>
+                    <label for="bill_to_contact">{{ ("Contact") }}</label>
                     <p>{{ (transaction.bill_to_contact)?transaction.bill_to_contact:'-' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="bill_to_address">{{ $t("Address") }}</label>
+                    <label for="bill_to_address">{{ ("Address") }}</label>
                     <p>{{ (transaction.bill_to_address)?transaction.bill_to_address:'-' }}</p>
                 </div>
             </div>
             <hr>
 
             <div class="mb-2">
-                <span class="text-subhead">{{ $t("Payment Information") }}</span>
+                <span class="text-subhead">{{ ("Payment Information") }}</span>
             </div>
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="currency_code">{{ $t("Currency Code") }}</label>
+                    <label for="currency_code">{{ ("Currency Code") }}</label>
                     <p>{{ transaction.currency_code }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="amount">{{ $t("Amount") }}</label>
+                    <label for="amount">{{ ("Amount") }}</label>
                     <p>{{ transaction.amount }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="payment_method">{{ $t("Payment Method") }}</label>
+                    <label for="payment_method">{{ ("Payment Method") }}</label>
                     <p>{{ transaction.payment_method }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="pg_transaction_id">{{ $t("Payment Gateway Reference Id") }}</label>
+                    <label for="pg_transaction_id">{{ ("Payment Gateway Reference Id") }}</label>
                     <p>{{ (transaction.pg_transaction_id)?transaction.pg_transaction_id:'-' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="pg_transaction_status">{{ $t("Payment Gateway Status") }}</label>
+                    <label for="pg_transaction_status">{{ ("Payment Gateway Status") }}</label>
                     <p>{{ (transaction.pg_transaction_status)?transaction.pg_transaction_status:'-' }}</p>
                 </div>
             </div>
             <hr>
 
             <div class="mb-2">
-                <span class="text-subhead">{{ $t("Transaction Information") }}</span>
+                <span class="text-subhead">{{ ("Transaction Information") }}</span>
             </div>
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="transaction_type">{{ $t("Transaction Type") }}</label>
+                    <label for="transaction_type">{{ ("Transaction Type") }}</label>
                     <p>{{ transaction.transaction_type_data.label }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="transaction_code">{{ $t("Transaction Code") }}</label>
+                    <label for="transaction_code">{{ ("Transaction Code") }}</label>
                     <p>{{ transaction.transaction_code  }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="transaction_date">{{ $t("Transaction Date") }}</label>
+                    <label for="transaction_date">{{ ("Transaction Date") }}</label>
                     <p>{{ transaction.transaction_date }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="account">{{ $t("Account") }}</label>
+                    <label for="account">{{ ("Account") }}</label>
                     <p v-if="transaction.account != null">{{ transaction.account.label }} ({{ transaction.account.account_type_data.account_type_constant }})</p>
                     <p v-else>-</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="created_by">{{ $t("Created By") }}</label>
+                    <label for="created_by">{{ ("Created By") }}</label>
                     <p>{{ (transaction.created_by == null)?'-':transaction.created_by['fullname']+' ('+transaction.created_by['user_code']+')' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="created_on">{{ $t("Created On") }}</label>
+                    <label for="created_on">{{ ("Created On") }}</label>
                     <p>{{ transaction.created_at_label }}</p>
                 </div>
             </div>
@@ -115,7 +115,7 @@
 
             <div class="form-row mb-2">
                 <div class="form-group col-md-6">
-                    <label for="notes">{{ $t("Notes") }}</label>
+                    <label for="notes">{{ ("Notes") }}</label>
                     <p>{{ (transaction.notes)?transaction.notes:'-' }}</p>
                 </div>
             </div>

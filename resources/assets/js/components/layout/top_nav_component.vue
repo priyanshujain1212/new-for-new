@@ -34,17 +34,17 @@
                                 <i class="fas fa-bolt"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="quicklink_dropdown">
-                                <a class="dropdown-item" v-for="(quick_link, index) in quick_link_array" v-bind:key="index" :href="quick_link.route">{{ $t(quick_link.label) }}</a>
+                                <a class="dropdown-item" v-for="(quick_link, index) in quick_link_array" v-bind:key="index" :href="quick_link.route">{{ (quick_link.label) }}</a>
                             </div>
                         </div>
                     </li>
 
                     <li class="nav-item text-right pl-md-4 pl-lg-4 pl-xl-4">
-                        <a href="/search" class="nav-link nav-link-dark text-bold"><i class="fas fa-search search-icon"></i> {{ $t("Search") }}</a>
+                        <a href="/search" class="nav-link nav-link-dark text-bold"><i class="fas fa-search search-icon"></i> {{ ("Search") }}</a>
                     </li>
 
                     <li class="nav-item text-right pl-md-4 pl-lg-4 pl-xl-4" v-if="new_order_access == true">
-                        <a :href="new_order_link" class="nav-link nav-link-dark text-bold">+ {{ $t("New Order") }}</a>
+                        <a :href="new_order_link" class="nav-link nav-link-dark text-bold">+ {{ ("New Order") }}</a>
                     </li>
 
                     <li class="nav-item text-right pl-md-4 pl-lg-4 pl-xl-4">
@@ -58,8 +58,8 @@
                                 {{ user_fullname }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user_menu_dropdown" >
-                                <a class="dropdown-item" :href="profile_link"> {{ $t("Profile") }}</a>
-                                <a class="dropdown-item" :href="logout_link">{{ $t("Logout") }}</a>
+                                <a class="dropdown-item" :href="profile_link"> {{ ("Profile") }}</a>
+                                <a class="dropdown-item" :href="logout_link">{{ ("Logout") }}</a>
                             </div>
                         </div>
                     </li>
@@ -67,12 +67,12 @@
                 </ul>
             </div>
 
-            <notifications 
+            <!-- <notifications 
             group="notification_bar"
             classes="n-light" 
             :duration="55000"
             :width="500"
-            position="top right"/>
+            position="top right"/> -->
             
         </div>
     </nav>
@@ -81,13 +81,13 @@
 <script>
     'use strict';
     import notificationcomponent from '@components/commons/notification_component.vue';
-
     export default {
         components: {
             notificationcomponent,
         },
-        data() {
-            return {
+        data(){
+            return{
+               
                 stores: this.logged_user_data.user_stores,
                 selected_store: this.logged_user_data.selected_store,
                 quick_link_array: this.quick_links,
@@ -97,7 +97,7 @@
                 all_notifications_link_data: this.logged_user_data.all_notifications_link,
                 profile_link: this.logged_user_data.profile_link,
                 logout_link: this.logged_user_data.logout_link,
-                user_fullname: this.logged_user_data.fullname,
+                user_fullname: this.logged_user_data.fullname
             }
         },
         props: {
@@ -111,10 +111,7 @@
             console.log('Top Navigation loaded');
         },
         methods: {
-            // Add methods if necessary
+           
         }
     }
 </script>
-
-
-

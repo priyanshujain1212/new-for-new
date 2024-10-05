@@ -8,8 +8,8 @@
                 <p v-html="server_errors" v-bind:class="[error_class]"></p>
                 <form @submit.prevent="submit_form" class="mb-3" v-if="email_response_sent == false">
                     <div class="form-group">
-                        <label for="email">{{ $t("Email") }}</label>
-                        <input type="email" name="email" v-model="email" v-validate="'required|email'" class="form-control form-control-custom" :placeholder="$t('Please enter your registered email')"  autocomplete="off">
+                        <label for="email">{{ ("Email") }}</label>
+                        <input type="email" name="email" v-model="email" v-validate="'required|email'" class="form-control form-control-custom" :placeholder="('Please enter your registered email')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('email') }">{{ errors.first('email') }}</span> 
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> Forgot Password</button>

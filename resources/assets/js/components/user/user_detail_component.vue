@@ -6,7 +6,7 @@
                 <div class="mr-auto">
                    <div class="d-flex">
                         <div>
-                            <span class="text-title"> <span class='text-muted'>{{ $t("User") }}</span> {{ user.fullname }} ({{ user.user_code }}) </span>
+                            <span class="text-title"> <span class='text-muted'>{{ ("User") }}</span> {{ user.fullname }} ({{ user.user_code }}) </span>
                         </div>
                     </div>
                 </div>
@@ -16,60 +16,60 @@
             </div>
 
             <div class="mb-2">
-                <span class="text-subhead">{{ $t("Basic Information") }}</span>
+                <span class="text-subhead">{{ ("Basic Information") }}</span>
             </div>
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="user_code">{{ $t("User Code") }}</label>
+                    <label for="user_code">{{ ("User Code") }}</label>
                     <p>{{ user.user_code }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="fullname">{{ $t("Fullname") }}</label>
+                    <label for="fullname">{{ ("Fullname") }}</label>
                     <p>{{ user.fullname }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("Email") }}</label>
+                    <label for="email">{{ ("Email") }}</label>
                     <p>{{ user.email }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="phone">{{ $t("Phone") }}</label>
+                    <label for="phone">{{ ("Phone") }}</label>
                     <p>{{ user.phone }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="role">{{ $t("Role") }}</label>
+                    <label for="role">{{ ("Role") }}</label>
                     <p>{{ user.role.label }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="created_by">{{ $t("Created By") }}</label>
+                    <label for="created_by">{{ ("Created By") }}</label>
                     <p>{{ (user.created_by == null)?'-':user.created_by['fullname']+' ('+user.created_by['user_code']+')' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_by">{{ $t("Updated By") }}</label>
+                    <label for="updated_by">{{ ("Updated By") }}</label>
                     <p>{{ (user.updated_by == null)?'-':user.updated_by['fullname']+' ('+user.updated_by['user_code']+')' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="created_on">{{ $t("Created On") }}</label>
+                    <label for="created_on">{{ ("Created On") }}</label>
                     <p>{{ user.created_at_label }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_on">{{ $t("Updated On") }}</label>
+                    <label for="updated_on">{{ ("Updated On") }}</label>
                     <p>{{ user.updated_at_label }}</p>
                 </div>
             </div>
             <hr>
 
             <div class="mb-2">
-                <span class="text-subhead">{{ $t("Store Access") }}</span>
+                <span class="text-subhead">{{ ("Store Access") }}</span>
             </div>
             <div class="table-responsive table-sm" v-if="user.stores !=''">
                 <table class="table display nowrap text-nowrap w-100">
                     <thead>
                         <tr>
                         <th scope="col">#</th>
-                        <th scope="col">{{ $t("Store Code") }}</th>
-                        <th scope="col">{{ $t("Name") }}</th>
-                        <th scope="col">{{ $t("Address") }}</th>
-                        <th scope="col">{{ $t("Pincode") }}</th>
+                        <th scope="col">{{ ("Store Code") }}</th>
+                        <th scope="col">{{ ("Name") }}</th>
+                        <th scope="col">{{ ("Address") }}</th>
+                        <th scope="col">{{ ("Pincode") }}</th>
                         </tr>
                     </thead>
                     <tbody>
