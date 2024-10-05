@@ -6,7 +6,7 @@
 
                 <div class="d-flex flex-wrap mb-4">
                     <div class="mr-auto">
-                        <span class="text-title">{{ $t("Search") }}</span>
+                        <span class="text-title">{{ ("Search") }}</span>
                     </div>
                     <div class="">
                         
@@ -22,10 +22,10 @@
                         </select>
                     </div>
                     <div class="form-group col-md-3">
-                        <input type="text" v-model="search_query" class="form-control" :placeholder="$t('Search by keyword')" autocomplete="off">
+                        <input type="text" v-model="search_query" class="form-control" :placeholder="('Search by keyword')" autocomplete="off">
                     </div>
                     <div class="form-group col-md-3">
-                        <button type="submit" class="btn btn-primary" :disabled="search_query.length == 0"> {{ $t("Search") }}</button>
+                        <button type="submit" class="btn btn-primary" :disabled="search_query.length == 0"> {{ ("Search") }}</button>
                     </div>
                 </div>
 
@@ -37,27 +37,27 @@
                     <div class="card-body p-3">
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label for="order_number">{{ $t("Order Number") }}</label>
+                                <label for="order_number">{{ ("Order Number") }}</label>
                                 <p class="m-0">{{ order.order_number }}&nbsp;&nbsp;<a v-if="order.detail_link != ''" v-bind:href="order.detail_link" target="_blank"><i class="fas fa-external-link-alt"></i></a></p>
                             </div> 
                             <div class="form-group col-md-3">
-                                <label for="email">{{ $t("Email") }}</label>
+                                <label for="email">{{ ("Email") }}</label>
                                 <p class="m-0">{{ order.customer_email }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="email">{{ $t("Phone") }}</label>
+                                <label for="email">{{ ("Phone") }}</label>
                                 <p class="m-0">{{ order.customer_phone }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="email">{{ $t("Amount") }}</label>
+                                <label for="email">{{ ("Amount") }}</label>
                                 <p class="m-0">{{ order.total_order_amount }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="created_on">{{ $t("Created On") }}</label>
+                                <label for="created_on">{{ ("Created On") }}</label>
                                 <p class="m-0">{{ order.created_at_label }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="status">{{ $t("Status") }}</label>
+                                <label for="status">{{ ("Status") }}</label>
                                 <p class="m-0"><span v-bind:class="order.status.color">{{ order.status.label }}</span></p>
                             </div>
                         </div>
@@ -69,23 +69,23 @@
                     <div class="card-body p-3">
                         <div class="form-row mb-2">
                             <div class="form-group col-md-3">
-                                <label for="fullname">{{ $t("Fullname") }}</label>
+                                <label for="fullname">{{ ("Fullname") }}</label>
                                 <p class="m-0">{{ customer.name }}&nbsp;&nbsp;<a v-if="customer.detail_link != ''" v-bind:href="customer.detail_link" target="_blank"><i class="fas fa-external-link-alt"></i></a></p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="email">{{ $t("Email") }}</label>
+                                <label for="email">{{ ("Email") }}</label>
                                 <p class="m-0">{{ customer.email }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="phone">{{ $t("Phone") }}</label>
+                                <label for="phone">{{ ("Phone") }}</label>
                                 <p class="m-0">{{ customer.phone }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="created_on">{{ $t("Created On") }}</label>
+                                <label for="created_on">{{ ("Created On") }}</label>
                                 <p class="m-0">{{ customer.created_at_label }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="status">{{ $t("Status") }}</label>
+                                <label for="status">{{ ("Status") }}</label>
                                 <p class="m-0"><span v-bind:class="customer.status.color">{{ customer.status.label }}</span></p>
                             </div>
                         </div>
@@ -97,27 +97,27 @@
                     <div class="card-body p-3">
                         <div class="form-row mb-2">
                             <div class="form-group col-md-3">
-                                <label for="po_reference">{{ $t("Transaction Number") }}</label>
+                                <label for="po_reference">{{ ("Transaction Number") }}</label>
                                 <p class="m-0">{{ transaction_item.transaction_code }}&nbsp;&nbsp;<a v-if="transaction_item.detail_link != ''" v-bind:href="transaction_item.detail_link" target="_blank"><i class="fas fa-external-link-alt"></i></a></p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="po_reference">{{ $t("Payment Method") }}</label>
+                                <label for="po_reference">{{ ("Payment Method") }}</label>
                                 <p class="m-0">{{ transaction_item.payment_method }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="order_date">{{ $t("Transaction Date") }}</label>
+                                <label for="order_date">{{ ("Transaction Date") }}</label>
                                 <p class="m-0">{{ transaction_item.transaction_date }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="created_by">{{ $t("Created By") }}</label>
+                                <label for="created_by">{{ ("Created By") }}</label>
                                 <p class="m-0">{{ (transaction_item.created_by == null)?'-':transaction_item.created_by['fullname']+' ('+transaction_item.created_by['user_code']+')' }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="created_on">{{ $t("Created On") }}</label>
+                                <label for="created_on">{{ ("Created On") }}</label>
                                 <p class="m-0">{{ transaction_item.created_at_label }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="updated_on">{{ $t("Updated On") }}</label>
+                                <label for="updated_on">{{ ("Updated On") }}</label>
                                 <p class="m-0">{{ transaction_item.updated_at_label }}</p>
                             </div>
                         </div>
@@ -129,35 +129,35 @@
                     <div class="card-body p-3">
                         <div class="form-row mb-2">
                             <div class="form-group col-md-3">
-                                <label for="po_reference">{{ $t("Invoice Number") }}</label>
+                                <label for="po_reference">{{ ("Invoice Number") }}</label>
                                 <p class="m-0">{{ invoice.invoice_number }}&nbsp;&nbsp;<a v-if="invoice.detail_link != ''" v-bind:href="invoice.detail_link" target="_blank"><i class="fas fa-external-link-alt"></i></a></p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="po_reference">{{ $t("Reference Number") }}</label>
+                                <label for="po_reference">{{ ("Reference Number") }}</label>
                                 <p class="m-0">{{ invoice.invoice_reference }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="order_date">{{ $t("Invoice Date") }}</label>
+                                <label for="order_date">{{ ("Invoice Date") }}</label>
                                 <p class="m-0">{{ invoice.invoice_date }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="order_due_date">{{ $t("Invoice Due Date") }}</label>
+                                <label for="order_due_date">{{ ("Invoice Due Date") }}</label>
                                 <p class="m-0">{{ invoice.invoice_due_date }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="created_by">{{ $t("Created By") }}</label>
+                                <label for="created_by">{{ ("Created By") }}</label>
                                 <p class="m-0">{{ (invoice.created_by == null)?'-':invoice.created_by['fullname']+' ('+invoice.created_by['user_code']+')' }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="created_on">{{ $t("Created On") }}</label>
+                                <label for="created_on">{{ ("Created On") }}</label>
                                 <p class="m-0">{{ invoice.created_at_label }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="updated_on">{{ $t("Updated On") }}</label>
+                                <label for="updated_on">{{ ("Updated On") }}</label>
                                 <p class="m-0">{{ invoice.updated_at_label }}</p>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="updated_on">{{ $t("Status") }}</label>
+                                <label for="updated_on">{{ ("Status") }}</label>
                                 <p class="m-0"><span v-bind:class="invoice.status.color">{{ invoice.status.label }}</span></p>
                             </div>
                         </div>

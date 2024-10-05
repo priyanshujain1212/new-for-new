@@ -6,10 +6,10 @@
 
                 <div class="d-flex flex-wrap mb-4">
                     <div class="mr-auto">
-                        <span class="text-title">{{ $t("Edit App Setting") }}</span>
+                        <span class="text-title">{{ ("Edit App Setting") }}</span>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> {{ $t("Save") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> {{ ("Save") }}</button>
                     </div>
                 </div>
                     
@@ -17,17 +17,17 @@
 
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
-                        <label for="company_name">{{ $t("Company Name") }}</label>
-                        <input type="text" name="company_name" v-model="company_name" v-validate="'required|max:250'" class="form-control form-control-custom" :placeholder="$t('Please enter Company Name')"  autocomplete="off">
+                        <label for="company_name">{{ ("Company Name") }}</label>
+                        <input type="text" name="company_name" v-model="company_name" v-validate="'required|max:250'" class="form-control form-control-custom" :placeholder="('Please enter Company Name')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('company_name') }">{{ errors.first('company_name') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="app_title">{{ $t("App Title") }}</label>
-                        <input type="text" name="app_title" v-model="app_title" v-validate="'required|max:250'" class="form-control form-control-custom" :placeholder="$t('Please enter App Title')"  autocomplete="off">
+                        <label for="app_title">{{ ("App Title") }}</label>
+                        <input type="text" name="app_title" v-model="app_title" v-validate="'required|max:250'" class="form-control form-control-custom" :placeholder="('Please enter App Title')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('app_title') }">{{ errors.first('app_title') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="app_timezone">{{ $t("App Timezone") }}</label>
+                        <label for="app_timezone">{{ ("App Timezone") }}</label>
                         <select name="app_timezone" v-model="app_timezone" v-validate="'required'" class="form-control form-control-custom custom-select">
                             <option value="">Choose App Timezone..</option>
                             <option v-for="(timezone, index) in timezones" v-bind:value="timezone" v-bind:key="index">
@@ -37,7 +37,7 @@
                         <span v-bind:class="{ 'error' : errors.has('app_timezone') }">{{ errors.first('app_timezone') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="app_date_time_format">{{ $t("Date Time format") }}</label>
+                        <label for="app_date_time_format">{{ ("Date Time format") }}</label>
                         <select name="app_date_time_format" v-model="app_date_time_format" v-validate="'required'" class="form-control form-control-custom custom-select">
                             <option value="">Choose Date Time format..</option>
                             <option v-for="(date_time_format, index) in date_time_formats" v-bind:value="date_time_format.date_format_value" v-bind:key="index">
@@ -47,7 +47,7 @@
                         <span v-bind:class="{ 'error' : errors.has('app_date_time_format') }">{{ errors.first('app_date_time_format') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="app_date_format">{{ $t("Date Format") }}</label>
+                        <label for="app_date_format">{{ ("Date Format") }}</label>
                         <select name="app_date_format" v-model="app_date_format" v-validate="'required'" class="form-control form-control-custom custom-select">
                             <option value="">Choose Date Format..</option>
                             <option v-for="(date_format, index) in date_formats" v-bind:value="date_format.date_format_value" v-bind:key="index">
@@ -60,14 +60,14 @@
 
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
-                        <label for="company_logo">{{ $t("Company Logo (jpeg, jpg, png)") }}</label>
+                        <label for="company_logo">{{ ("Company Logo (jpeg, jpg, png)") }}</label>
                         <input type="file" class="form-control-file form-control form-control-custom file-input" name="company_logo" ref="company_logo" accept="image/x-png,image/jpeg" v-validate="'ext:jpg,jpeg,png|size:150'">
                         <small class="form-text text-muted">Allowed file size is max 150KB</small>
                         <small class="form-text text-muted">Optional: Recommended image height is 40px</small>
                         <span v-bind:class="{ 'error' : errors.has('company_logo') }">{{ errors.first('company_logo') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="company_logo">{{ $t("Current Company Logo") }}</label>
+                        <label for="company_logo">{{ ("Current Company Logo") }}</label>
                         <div class="d-block">
                             <img :src="company_logo" class="company-logo-image">
                             <span class="btn-label ml-3" v-show="company_logo_exists == true" @click="remove_logo('company_logo')">Remove</span>
@@ -77,13 +77,13 @@
 
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
-                        <label for="invoice_print_logo">{{ $t("Invoice Print Logo (jpeg, jpg, png)") }}</label>
+                        <label for="invoice_print_logo">{{ ("Invoice Print Logo (jpeg, jpg, png)") }}</label>
                         <input type="file" class="form-control-file form-control form-control-custom file-input" name="invoice_print_logo" ref="invoice_print_logo" accept="image/x-png,image/jpeg" v-validate="'ext:jpg,jpeg,png|dimensions:200,100|size:150'">
                         <small class="form-text text-muted">Allowed file size is max 150KB and dimensions must be 200px x 100px</small>
                         <span v-bind:class="{ 'error' : errors.has('invoice_print_logo') }">{{ errors.first('invoice_print_logo') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="invoice_print_logo">{{ $t("Current Invoice Print Logo") }}</label>
+                        <label for="invoice_print_logo">{{ ("Current Invoice Print Logo") }}</label>
                         <div class="d-block">
                             <img :src="invoice_print_logo" class="company-logo-image">
                             <span class="btn-label ml-3" v-show="invoice_print_logo_exists == true" @click="remove_logo('invoice_print_logo')">Remove</span>
@@ -93,13 +93,13 @@
 
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
-                        <label for="navbar_logo">{{ $t("Top Navbar Logo (jpeg, jpg, png)") }}</label>
+                        <label for="navbar_logo">{{ ("Top Navbar Logo (jpeg, jpg, png)") }}</label>
                         <input type="file" class="form-control-file form-control form-control-custom file-input" name="navbar_logo" ref="navbar_logo" accept="image/x-png,image/jpeg" v-validate="'ext:jpg,jpeg,png|dimensions:30,30|size:50'">
                         <small class="form-text text-muted">Allowed file size is max 50KB and dimensions must be 30px x 30px</small>
                         <span v-bind:class="{ 'error' : errors.has('navbar_logo') }">{{ errors.first('navbar_logo') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="navbar_logo">{{ $t("Current Top Navbar Logo") }}</label>
+                        <label for="navbar_logo">{{ ("Current Top Navbar Logo") }}</label>
                         <div class="d-block">
                             <img :src="navbar_logo" class="company-logo-image">
                             <span class="btn-label ml-3" v-show="navbar_logo_exists == true" @click="remove_logo('navbar_logo')">Remove</span>
@@ -109,13 +109,13 @@
 
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
-                        <label for="favicon">{{ $t("Favicon (jpeg, jpg, png)") }}</label>
+                        <label for="favicon">{{ ("Favicon (jpeg, jpg, png)") }}</label>
                         <input type="file" class="form-control-file form-control form-control-custom file-input" name="favicon" ref="favicon" accept="image/x-png,image/jpeg" v-validate="'ext:jpg,jpeg,png|dimensions:30,30|size:10'">
                         <small class="form-text text-muted">Allowed file size is max 10KB and dimensions must be 30px x 30px</small>
                         <span v-bind:class="{ 'error' : errors.has('favicon') }">{{ errors.first('favicon') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="favicon">{{ $t("Current Favicon") }}</label>
+                        <label for="favicon">{{ ("Current Favicon") }}</label>
                         <div class="d-block">
                             <img :src="favicon" class="company-logo-image">
                             <span class="btn-label ml-3" v-show="favicon_exists == true" @click="remove_logo('favicon')">Remove</span>
@@ -127,7 +127,7 @@
 
                 <div class="d-flex flex-wrap mb-1">
                     <div class="mr-auto">
-                        <span class="text-subhead">{{ $t("Cache and Storage") }}</span>
+                        <span class="text-subhead">{{ ("Cache and Storage") }}</span>
                     </div>
                     <div class="">
                         
@@ -136,7 +136,7 @@
 
                 <div class="mb-2">
                     <div class="mb-2">
-                        <label for="clear_cache">{{ $t("Clear Cache") }}</label>
+                        <label for="clear_cache">{{ ("Clear Cache") }}</label>
                     </div>
                     <div class="mb-2">
                         <button type="button" class="btn btn-outline-primary" v-bind:disabled="clear_cache_processing == true" v-on:click="clear_cache"> <i class='fa fa-circle-notch fa-spin'  v-if="clear_cache_processing == true"></i> Clear App Cache</button>
@@ -145,12 +145,12 @@
 
                 <div class="mb-2">
                     <div class="mb-2">
-                        <label for="clear_old_files">{{ $t("Clear Old Files From Storage") }}</label>
+                        <label for="clear_old_files">{{ ("Clear Old Files From Storage") }}</label>
                     </div>
                     <div class="mb-2">
                         <button type="button" class="btn btn-outline-primary" v-bind:disabled="clear_storage_processing == true" v-on:click="clear_storage"> <i class='fa fa-circle-notch fa-spin'  v-if="clear_storage_processing == true"></i> Clear Old Files</button>
                     </div>
-                    <small class="form-text text-muted">{{ $t("This option will delete files (older than 3 days) from reports and order stroage folder") }}</small>
+                    <small class="form-text text-muted">{{ ("This option will delete files (older than 3 days) from reports and order stroage folder") }}</small>
                 </div>
 
                 <hr>
@@ -184,8 +184,8 @@
                 <form data-vv-scope="purchase_code_form">
                     <p v-html="purchase_code_server_errors" v-bind:class="[purchase_code_error_class]"></p>
                     <div class="form-group">
-                        <label for="purchase_code">{{ $t("Purchase Code") }}</label>
-                        <input type="text" name="purchase_code" v-model="purchase_code" v-validate="'required|max:200'" class="form-control form-control-custom" :placeholder="$t('Please enter Purchase Code')"  autocomplete="off">
+                        <label for="purchase_code">{{ ("Purchase Code") }}</label>
+                        <input type="text" name="purchase_code" v-model="purchase_code" v-validate="'required|max:200'" class="form-control form-control-custom" :placeholder="('Please enter Purchase Code')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('purchase_code_form.purchase_code') }">{{ errors.first('purchase_code_form.purchase_code') }}</span> 
                     </div>
                 </form>

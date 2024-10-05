@@ -13,14 +13,13 @@ class Challans{
                 { name: 'challans.po_number' },
                 { name: 'challans.supplier_name' },
                 { name: 'challans.order_date' },
-             
                 { name: 'challans.total_order_amount' },
                 { name: 'master_status.label' },
                 { name: 'user_created.fullname' },
             ],
-            order: [[ 7, "desc" ]],
+            order: [[ 5, "desc" ]],
             columnDefs: [
-                { "orderable": false, "targets": [8] }
+                { "orderable": false, "targets": [6] }
             ]
         });
     }

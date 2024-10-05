@@ -7,13 +7,13 @@
                 <p v-html="server_errors" v-bind:class="[error_class]"></p>
                 <form @submit.prevent="submit_form" class="mb-3" v-if="password_reset_response == false">
                     <div class="form-group">
-                        <label for="password">{{ $t("New Password") }}</label>
-                        <input type="password" name="new_password" v-model="new_password" v-validate="'required|alpha_dash|min:6|max:100'" class="form-control form-control-custom" :placeholder="$t('Please enter your new password')">
+                        <label for="password">{{ ("New Password") }}</label>
+                        <input type="password" name="new_password" v-model="new_password" v-validate="'required|alpha_dash|min:6|max:100'" class="form-control form-control-custom" :placeholder="('Please enter your new password')">
                         <span v-bind:class="{ 'error' : errors.has('new_password') }">{{ errors.first('new_password') }}</span> 
                     </div>
                     <div class="form-group">
-                        <label for="password">{{ $t("Re Enter New Password") }}</label>
-                        <input type="password" name="new_password_confirmation" v-model="new_password_confirmation" v-validate="'required|alpha_dash|min:6|max:100'" class="form-control form-control-custom" :placeholder="$t('Please re enter your new password')">
+                        <label for="password">{{ ("Re Enter New Password") }}</label>
+                        <input type="password" name="new_password_confirmation" v-model="new_password_confirmation" v-validate="'required|alpha_dash|min:6|max:100'" class="form-control form-control-custom" :placeholder="('Please re enter your new password')">
                         <span v-bind:class="{ 'error' : errors.has('new_password_confirmation') }">{{ errors.first('new_password_confirmation') }}</span>  
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> Forgot Password</button>

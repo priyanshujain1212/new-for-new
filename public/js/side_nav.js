@@ -1,3 +1,5 @@
+
+
 $(document).on("click", "#menu-toggle", function () {
     "use strict";
     $('.side-nav').toggleClass('active');
@@ -5,5 +7,9 @@ $(document).on("click", "#menu-toggle", function () {
 
 $(function () {
     "use strict";
-    $('[data-toggle="tooltip"]').tooltip();
-})
+    // For Bootstrap 5: Initializes tooltips for elements with data-bs-toggle="tooltip"
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+        new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});

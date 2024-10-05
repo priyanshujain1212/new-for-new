@@ -41,6 +41,8 @@
 </div>
 
 <script>
+import axios from 'axios';
+    
 function updateStatus(slack, status) {
     axios.post('/api/update_po_status/'+ slack, {
         status: status,

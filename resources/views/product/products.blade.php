@@ -67,14 +67,14 @@
         var products = new Products();
         products.load_listing_table();
 
-        $(document).on('change', '#product_type_filter', function(){
-            var product_type = $(this).val();
+        (document).on('change', '#product_type_filter', function(){
+            var product_type = (this).val();
             event = new CustomEvent("product_type_filter", { "detail": product_type });
             document.dispatchEvent(event);
         });
 
-        $(document).ready(function(){
-            var product_type = $('#product_type_filter').val();
+        (document).ready(function(){
+            var product_type = ('#product_type_filter').val();
             console.log(product_type);
             event = new CustomEvent("product_type_filter", { "detail": product_type });
             document.dispatchEvent(event);

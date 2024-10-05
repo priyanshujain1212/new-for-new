@@ -6,13 +6,13 @@
                 <div class="mr-auto">
                    <div class="d-flex">
                         <div>
-                            <span class="text-title"> {{ $t("Rasid") }} #{{ po_basic.po_number }} </span>
+                            <span class="text-title"> {{ ("Rasid") }} #{{ po_basic.po_number }} </span>
                         </div>
                     </div>
                 </div>
                 <div class="">
                     <button type="button" class="btn btn-outline-primary mr-1" v-if="update_stock === 'Due'" v-on:click="generate_invoice()">
-                        {{ $t("Payment") }}
+                        {{ ("Payment") }}
                     </button>
                     <span v-bind:class="po_basic.status.color">{{ po_basic.status.label }}</span>
                 </div>
@@ -30,15 +30,15 @@
 
                 <div class="ml-auto">
                     
-                    <a class="btn btn-outline-primary mr-1" v-bind:href="'/print_purchase_order/'+slack" target="_blank">{{ $t("Print") }}</a>
+                    <a class="btn btn-outline-primary mr-1" v-bind:href="'/print_purchase_order/'+slack" target="_blank">{{ ("Print") }}</a>
                 
 
                 
-                    <button type="submit" class="btn btn-danger mr-1" v-show="!block_delete_po.includes(po_basic.status.constant)" v-if="delete_po_access == true" v-on:click="delete_po()" v-bind:disabled="po_delete_processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="po_delete_processing == true"></i> {{ $t("Delete Purchase Order") }}</button>
+                    <button type="submit" class="btn btn-danger mr-1" v-show="!block_delete_po.includes(po_basic.status.constant)" v-if="delete_po_access == true" v-on:click="delete_po()" v-bind:disabled="po_delete_processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="po_delete_processing == true"></i> {{ ("Delete Purchase Order") }}</button>
 
                     <div class="dropdown d-inline">
                         <button class="btn btn-primary dropdown-toggle" type="button" id="po_action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ $t("Change Status") }}
+                            {{ ("Change Status") }}
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="po_action">
                             <button class="dropdown-item" type="button" v-for="(po_status, key, index) in po_statuses" v-bind:value="po_status.value_constant" v-bind:key="index" v-on:click="change_po_status(po_status.value_constant)">Mark as {{ po_status.label }}</button>
@@ -51,26 +51,26 @@
             <hr>
 
             <div class="mb-2">
-                <span class="text-subhead">{{ $t("Basic Information") }}</span>
+                <span class="text-subhead">{{ ("Basic Information") }}</span>
             </div>
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="po_reference">{{ $t("Reference Number") }}</label>
+                    <label for="po_reference">{{ ("Reference Number") }}</label>
                     <p>{{ po_basic.po_reference }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="order_date">{{ $t("Order Date") }}</label>
+                    <label for="order_date">{{ ("Order Date") }}</label>
                     <p>{{ po_basic.order_date }}</p>
                 </div>
                
                 <div class="form-group col-md-3">
-                    <label for="payment_type">{{ $t("Payment Type") }}</label>
+                    <label for="payment_type">{{ ("Payment Type") }}</label>
                     <p v-if="po_basic.payment_type">{{ po_basic.payment_type }}</p>
-                    <p v-else>{{ $t("No payment is selected") }}</p>
+                    <p v-else>{{ ("No payment is selected") }}</p>
                 </div>
                             
                 <div class="form-group col-md-3">
-                    <label for="updated_on">{{ $t("Payment is ") }}</label>
+                    <label for="updated_on">{{ ("Payment is ") }}</label>
                     <p>{{ update_stock }}</p>
                 </div>
                
@@ -81,7 +81,7 @@
             <div v-if="po_basic.invoices != null && po_basic.invoices.length != 0">
                 <hr>
                 <div class="mb-2">
-                    <span class="text-subhead">{{ $t("Invoices") }}</span>
+                    <span class="text-subhead">{{ ("Invoices") }}</span>
                 </div>
                 <div class="d-flex flex-wrap mb-4">
                     <span v-for="(invoice, key, index) in po_basic.invoices" v-bind:value="invoice.slack" v-bind:key="index">
@@ -93,16 +93,16 @@
             <hr>
 
             <div class="mb-2">
-                <span class="text-subhead">{{ $t("Product Information") }}</span>
+                <span class="text-subhead">{{ ("Product Information") }}</span>
             </div>
 
             <div class="form-row">
        
                 <div class="form-group col-md-6 mb-1">
-                    <label for="name">{{ $t("Particulars") }}</label>
+                    <label for="name">{{ ("Particulars") }}</label>
                 </div>
                 <div class="form-group col-md-2 mb-1">
-                    <label for="amount">{{ $t("Amount") }}</label>
+                    <label for="amount">{{ ("Amount") }}</label>
                 </div>
                 </div>
                 <div class="form-row mb-2" v-for="(po_product,key, index) in products" v-bind:value="po_product.product_slack" v-bind:key="index">
@@ -118,7 +118,7 @@
                 <div class="form-row mb-3">
                     <div class="form-group col-md-5"></div>
                     <div class="form-group col-md-1 text-right">
-                        <label for="grand_total" style="position: relative; top: 5px;">{{ $t("Grand Total") }}</label>
+                        <label for="grand_total" style="position: relative; top: 5px;">{{ ("Grand Total") }}</label>
                     </div>
                 
                     <div class="form-group col-md-2">
@@ -131,7 +131,7 @@
                 <hr>
 
             <div class="mb-2">
-                <span class="text-subhead">{{ $t("Terms") }}</span>
+                <span class="text-subhead">{{ ("Terms") }}</span>
             </div>
             <div class="form-row mb-2">
                 <div class="form-group col-md-6">
@@ -140,19 +140,19 @@
             </div>
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="created_by">{{ $t("Created By") }}</label>
+                    <label for="created_by">{{ ("Created By") }}</label>
                     <p>{{ (po_basic.created_by == null)?'-':po_basic.created_by['fullname']+' ('+po_basic.created_by['user_code']+')' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_by">{{ $t("Updated By") }}</label>
+                    <label for="updated_by">{{ ("Updated By") }}</label>
                     <p>{{ (po_basic.updated_by == null)?'-':po_basic.updated_by['fullname']+' ('+po_basic.updated_by['user_code']+')' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="created_on">{{ $t("Created On") }}</label>
+                    <label for="created_on">{{ ("Created On") }}</label>
                     <p>{{ po_basic.created_at_label }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_on">{{ $t("Updated On") }}</label>
+                    <label for="updated_on">{{ ("Updated On") }}</label>
                     <p>{{ po_basic.updated_at_label }}</p>
                 </div>
             </div>

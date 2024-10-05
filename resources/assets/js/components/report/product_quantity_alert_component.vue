@@ -6,7 +6,7 @@
                 <div class="mr-auto">
                    <div class="d-flex">
                         <div>
-                            <span class="text-title"> {{ $t("Stock Quantity Alert") }} </span>
+                            <span class="text-title"> {{ ("Stock Quantity Alert") }} </span>
                         </div>
                     </div>
                 </div>
@@ -25,10 +25,10 @@
                 <table id="listing-table" class="table display nowrap w-100">
                     <thead>
                         <tr>
-                            <th>{{ $t("Product Code") }}</th>
-                            <th>{{ $t("Product") }}</th>
-                            <th>{{ $t("Alert Quantity") }}</th>
-                            <th>{{ $t("Available Quantity") }}</th>
+                            <th>{{ ("Product Code") }}</th>
+                            <th>{{ ("Product") }}</th>
+                            <th>{{ ("Alert Quantity") }}</th>
+                            <th>{{ ("Available Quantity") }}</th>
                         </tr>
                     </thead>
                     <tbody>

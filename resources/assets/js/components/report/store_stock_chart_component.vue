@@ -6,7 +6,7 @@
                 <div class="mr-auto">
                    <div class="d-flex">
                         <div>
-                            <span class="text-title"> {{ $t("Store Stock Chart") }} </span>
+                            <span class="text-title"> {{ ("Store Stock Chart") }} </span>
                         </div>
                     </div>
                 </div>
@@ -18,10 +18,10 @@
                 <table class="table table-striped display nowrap text-nowrap w-100">
                     <thead>
                         <tr>
-                        <th scope="col" class="text-right">{{ $t("Total Quantity") }}</th>
-                        <th scope="col" class="text-right">{{ $t("Total Purchase Cost") }}  ({{ store.currency_code }})</th>
-                        <th scope="col" class="text-right">{{ $t("Total Sale Price") }}  ({{ store.currency_code }})</th>
-                        <th scope="col" class="text-right">{{ $t("Estimated Profit") }}  ({{ store.currency_code }})</th>
+                        <th scope="col" class="text-right">{{ ("Total Quantity") }}</th>
+                        <th scope="col" class="text-right">{{ ("Total Purchase Cost") }}  ({{ store.currency_code }})</th>
+                        <th scope="col" class="text-right">{{ ("Total Sale Price") }}  ({{ store.currency_code }})</th>
+                        <th scope="col" class="text-right">{{ ("Estimated Profit") }}  ({{ store.currency_code }})</th>
                         </tr>
                     </thead>
                     <tbody>

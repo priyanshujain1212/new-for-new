@@ -6,10 +6,10 @@
 
                 <div class="d-flex flex-wrap mb-4">
                     <div class="mr-auto">
-                        <span class="text-title">{{ $t("Edit SMS Setting") }} - {{ gateway_type }}</span>
+                        <span class="text-title">{{ ("Edit SMS Setting") }} - {{ gateway_type }}</span>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> {{ $t("Save") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> {{ ("Save") }}</button>
                     </div>
                 </div>
                     
@@ -17,22 +17,22 @@
 
                 <div class="form-row mb-2" v-if="gateway_type == 'TWILIO'">
                     <div class="form-group col-md-3">
-                        <label for="account_sid">{{ $t("Account SID") }}</label>
-                        <input type="text" name="account_sid" v-model="account_sid" v-validate="'required|max:150'" class="form-control form-control-custom" :placeholder="$t('Please enter account sid')"  autocomplete="off">
+                        <label for="account_sid">{{ ("Account SID") }}</label>
+                        <input type="text" name="account_sid" v-model="account_sid" v-validate="'required|max:150'" class="form-control form-control-custom" :placeholder="('Please enter account sid')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('account_sid') }">{{ errors.first('account_sid') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="auth_token">{{ $t("Auth Token") }}</label>
-                        <input type="text" name="auth_token" v-model="auth_token" v-validate="'required|max:150'" class="form-control form-control-custom" :placeholder="$t('Please enter auth token')"  autocomplete="off">
+                        <label for="auth_token">{{ ("Auth Token") }}</label>
+                        <input type="text" name="auth_token" v-model="auth_token" v-validate="'required|max:150'" class="form-control form-control-custom" :placeholder="('Please enter auth token')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('auth_token') }">{{ errors.first('auth_token') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="twilio_number">Twilio {{ $t("Number") }}</label>
-                        <input type="text" name="twilio_number" v-model="twilio_number" v-validate="'required|max:50'" class="form-control form-control-custom" :placeholder="$t('Please enter twilio number')"  autocomplete="off">
+                        <label for="twilio_number">Twilio {{ ("Number") }}</label>
+                        <input type="text" name="twilio_number" v-model="twilio_number" v-validate="'required|max:50'" class="form-control form-control-custom" :placeholder="('Please enter twilio number')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('twilio_number') }">{{ errors.first('twilio_number') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="status" v-validate="'required|numeric'" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in statuses" v-bind:value="status.value" v-bind:key="index">
@@ -45,17 +45,17 @@
 
                 <div class="form-row mb-2" v-else-if="gateway_type == 'MSG91'">
                     <div class="form-group col-md-3">
-                        <label for="auth_key">{{ $t("Auth Key") }}</label>
-                        <input type="text" name="auth_key" v-model="auth_key" v-validate="'required|max:100'" class="form-control form-control-custom" :placeholder="$t('Please enter Auth Key')"  autocomplete="off">
+                        <label for="auth_key">{{ ("Auth Key") }}</label>
+                        <input type="text" name="auth_key" v-model="auth_key" v-validate="'required|max:100'" class="form-control form-control-custom" :placeholder="('Please enter Auth Key')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('auth_key') }">{{ errors.first('auth_key') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="sender_id">{{ $t("Sender ID") }}</label>
-                        <input type="text" name="sender_id" v-model="sender_id" v-validate="'required|min:6|max:10'" class="form-control form-control-custom" :placeholder="$t('Please enter Sender ID')"  autocomplete="off">
+                        <label for="sender_id">{{ ("Sender ID") }}</label>
+                        <input type="text" name="sender_id" v-model="sender_id" v-validate="'required|min:6|max:10'" class="form-control form-control-custom" :placeholder="('Please enter Sender ID')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('sender_id') }">{{ errors.first('sender_id') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="status" v-validate="'required|numeric'" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in statuses" v-bind:value="status.value" v-bind:key="index">
@@ -69,17 +69,17 @@
 
                 <div class="form-row mb-2" v-else-if="gateway_type == 'TEXTLOCAL'">
                     <div class="form-group col-md-3">
-                        <label for="api_key">{{ $t("API Key") }}</label>
-                        <input type="text" name="api_key" v-model="api_key" v-validate="'required|max:100'" class="form-control form-control-custom" :placeholder="$t('Please enter API Key')"  autocomplete="off">
+                        <label for="api_key">{{ ("API Key") }}</label>
+                        <input type="text" name="api_key" v-model="api_key" v-validate="'required|max:100'" class="form-control form-control-custom" :placeholder="('Please enter API Key')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('api_key') }">{{ errors.first('api_key') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="sender_id">{{ $t("Sender ID") }}</label>
-                        <input type="text" name="sender_id" v-model="sender_id" v-validate="'required|min:6|max:6'" class="form-control form-control-custom" :placeholder="$t('Please enter Sender ID')"  autocomplete="off">
+                        <label for="sender_id">{{ ("Sender ID") }}</label>
+                        <input type="text" name="sender_id" v-model="sender_id" v-validate="'required|min:6|max:6'" class="form-control form-control-custom" :placeholder="('Please enter Sender ID')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('sender_id') }">{{ errors.first('sender_id') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="status" v-validate="'required|numeric'" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in statuses" v-bind:value="status.value" v-bind:key="index">

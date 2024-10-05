@@ -1,22 +1,22 @@
 <template>
     <div>
         <div class="mb-2">
-            <span class="text-subhead">{{ $t("Transactions") }}</span>
+            <span class="text-subhead">{{ ("Transactions") }}</span>
         </div>
         <div class="table-responsive mb-2" v-if="transactions.length>0">
             <table class="table table-striped display nowrap text-nowrap w-100">
                  <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">{{ $t("Transaction Code") }}</th>
-                        <th scope="col">{{ $t("Transaction Date") }}</th>
-                        <th scope="col">{{ $t("Transaction Type") }}</th>
-                        <th scope="col">{{ $t("Account") }}</th>
-                        <th scope="col">{{ $t("Payment Method") }}</th>
-                        <th scope="col" class="text-right">{{ $t("Amount") }}</th>
-                        <th scope="col">{{ $t("Created On") }}</th>
-                        <th scope="col">{{ $t("Created By") }}</th>
-                        <th scope="col">{{ $t("Action") }}</th>
+                        <th scope="col">{{ ("Transaction Code") }}</th>
+                        <th scope="col">{{ ("Transaction Date") }}</th>
+                        <th scope="col">{{ ("Transaction Type") }}</th>
+                        <th scope="col">{{ ("Account") }}</th>
+                        <th scope="col">{{ ("Payment Method") }}</th>
+                        <th scope="col" class="text-right">{{ ("Amount") }}</th>
+                        <th scope="col">{{ ("Created On") }}</th>
+                        <th scope="col">{{ ("Created By") }}</th>
+                        <th scope="col">{{ ("Action") }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,7 +36,7 @@
                                     <i class="fas fa-ellipsis-h actions-dropdown"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
-                                    <a v-bind:href="transaction.detail_link" class="dropdown-item">{{ $t("View") }}</a>
+                                    <a v-bind:href="transaction.detail_link" class="dropdown-item">{{ ("View") }}</a>
                                 </div>
                             </div>
                         </td>

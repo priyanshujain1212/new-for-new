@@ -68,7 +68,7 @@ class Category extends Controller
             })
 
             ->get();
-
+            dd($query);
             $categories = CategoryResource::collection($query);
            
             $total_count = CategoryModel::select("id")->get()->count();

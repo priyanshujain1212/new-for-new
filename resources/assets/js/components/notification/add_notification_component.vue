@@ -2,72 +2,90 @@
     <div class="row">
         <div class="col-md-12">
             
-            <form @submit.prevent="submit_form" class="mb-3">
+            <Form @submit.prevent="submit_form" class="mb-3">
+    <div class="d-flex flex-wrap mb-4">
+      <div class="mr-auto">
+        <span class="text-title" v-if="notification_slack === ''">{{ 'Add Notification' }}</span>
+        <span class="text-title" v-else>{{ 'Edit Notification' }}</span>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary" :disabled="processing">
+          <i class="fa fa-circle-notch fa-spin" v-if="processing"></i> {{ 'Save' }}
+        </button>
+      </div>
+    </div>
 
-                <div class="d-flex flex-wrap mb-4">
-                    <div class="mr-auto">
-                        <span class="text-title" v-if="notification_slack == ''">{{ $t("Add Notification") }}</span>
-                        <span class="text-title" v-else>{{ $t("Edit Notification") }}</span>
-                    </div>
-                    <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> {{ $t("Save") }}</button>
-                    </div>
-                </div>
-                    
-                <p v-html="server_errors" v-bind:class="[error_class]"></p>
+    <p v-html="server_errors" :class="[error_class]"></p>
 
-                <div class="form-row mb-2">
-                    <div class="form-group col-md-3">
-                        <label for="lastname">{{ $t("Role") }}</label>
-                        <select name="role" v-model="role" v-validate="''" class="form-control form-control-custom custom-select">
-                            <option value="">Choose Role..</option>
-                            <option v-for="(role, index) in roles" v-bind:value="role.slack" v-bind:key="index">
-                                {{ role.label }}
-                            </option>
-                        </select>
-                        <span v-bind:class="{ 'error' : errors.has('role') }">{{ errors.first('role') }}</span> 
-                    </div>
-                    <div class="form-group col-md-3">
-                        <label for="users">{{ $t("Choose Users") }}</label>
-                        <cool-select type="text" v-model="search_user"  autocomplete="off" inputForTextClass="form-control form-control-custom" :items="user_list" item-text="label" itemValue='label' :resetSearchOnBlur="false" disable-filtering-by-search @search='load_users' @select='add_user_to_list' :placeholder="$t('Choose users..')">
-                            <template #item="{ item }">
-                                <div class='d-flex justify-content-start'>
-                                <div>
-                                    {{ item.fullname }} - {{ item.email }}, {{ item.phone }}
-                                </div>
-                                </div>
-                            </template>
-                        </cool-select>
-                        <span v-bind:class="{ 'error' : errors.has('users') }">{{ errors.first('users') }}</span>
-                    </div>
-                </div>
+    <div class="form-row mb-2">
+      <div class="form-group col-md-3">
+        <label for="role">{{ 'Role' }}</label>
+        <Field name="role" as="select" v-model="role" class="form-control form-control-custom custom-select">
+          <option value="">Choose Role..</option>
+          <option v-for="(role, index) in roles" :value="role.slack" :key="index">
+            {{ role.label }}
+          </option>
+        </Field>
+        <ErrorMessage name="role" v-slot="{ message }">
+          <span class="error">{{ message }}</span>
+        </ErrorMessage>
+      </div>
 
-                <div class="form-row mb-2">
-                    <div class="d-flex flex-row flex-wrap p-1">
-                        <div class="text-center mr-2 mb-2" v-for="(user, index) in users" v-bind:value="role.slack" v-bind:key="index">
-                            <div>
-                                <img :src="user.profile_image" class="rounded-circle notification-profile">
-                            </div>
-                            <div class="ml-3 align-self-center">
-                                <span>{{ truncateText(user.fullname, 15) }}</span>
+      <div class="form-group col-md-3">
+    <label for="users">{{ 'Choose Users' }}</label>
+    <multiselect
+  v-model="search_user"
+  :options="user_list"
+  :multiple="false"
+  :searchable="true"
+  class="multiselect"
+  @select="add_user_to_list"
+  @search="load_users"
+  label="fullname"
+  track-by="slack"
+  style="height: 50px"
+>
+</multiselect>
+    <ErrorMessage name="users" v-slot="{ message }">
+      <span class="error">{{ message }}</span>
+    </ErrorMessage>
+  </div>
+    </div>
 
-                                <button type="button" class="close ml-2 mt-1" aria-label="Close" @click="remove_user(index)">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="form-row mb-2">
+      <div class="d-flex flex-row flex-wrap p-1">
+        <div class="text-center mr-2 mb-2" v-for="(user, index) in users" :key="index">
+          <div>
+            <img :src="user.profile_image" class="rounded-circle notification-profile" />
+          </div>
+          <div class="ml-3 align-self-center">
+            <span>{{ truncateText(user.fullname, 15) }}</span>
+            <button type="button" class="close ml-2 mt-1" aria-label="Close" @click="remove_user(index)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                <div class="form-row mb-2">
-                    <div class="form-group col-md-6">
-                        <label for="notification">{{ $t("Notification") }}</label>
-                        <textarea name="notification" v-model="notification" v-validate="'required|max:65535'" class="form-control form-control-custom" rows="5" :placeholder="$t('Enter Notification')"></textarea>
-                        <span v-bind:class="{ 'error' : errors.has('notification') }">{{ errors.first('notification') }}</span>
-                    </div>
-                </div>
-
-            </form>
+    <div class="form-row mb-2">
+      <div class="form-group col-md-6">
+        <label for="notification">{{ 'Notification' }}</label>
+        <Field
+          name="notification"
+          as="textarea"
+          v-model="notification"
+          class="form-control form-control-custom"
+          rows="5"
+          placeholder="Enter Notification"
+          v-validate="'required|max:65535'"
+        ></Field>
+        <ErrorMessage name="notification" v-slot="{ message }">
+          <span class="error">{{ message }}</span>
+        </ErrorMessage>
+      </div>
+    </div>
+  </Form>
                 
         </div>
 
@@ -88,15 +106,37 @@
     </div>
 </template>
 
+
+
+<style>
+/* Fix for the input shrinking issue */
+.multiselect__input {
+  width: 100% !important; /* Ensure it takes full width */
+  position: relative !important; /* Ensure it maintains normal positioning */
+  padding: 0 10px !important; /* Add padding to the input if necessary */
+}
+</style>
+
+
 <script>
+
+
     'use strict';
+    import ModalComponent from '@components/commons/modal_component.vue';
+    import { Field, Form, ErrorMessage } from 'vee-validate';
+import axios from 'axios';
+import Multiselect from 'vue-multiselect';
 
-import  DatePicker  from 'vue3-datepicker';
-import moment from "moment";
-import VueSelect from 'vue3-select';
+import { required, max } from '@vee-validate/rules'; // Import validation rules
 
-
-    export default {
+export default {
+  components: {
+    Field,
+    Form,
+    ErrorMessage,
+    ModalComponent,
+    Multiselect,
+  },
 
         data(){
             return{
@@ -106,14 +146,15 @@ import VueSelect from 'vue3-select';
                 modal           : false,
                 show_modal      : false,
                 api_link        : (this.notification_data == null)?'/api/add_notification':'/api/update_notification/'+this.notification_data.slack,
-                search_user     : '',
+                search_user: null, // Ensure it's null initially
+                user_list: [],
 
                 notification_slack  : (this.notification_data == null)?'':this.notification_data.slack,
                 role : '',
                 notification   : (this.notification_data == null)?'':this.notification_data.notification_text,
 
                 users : [],
-                user_list : []
+           
             }
         },
         props: {
@@ -134,6 +175,9 @@ import VueSelect from 'vue3-select';
             console.log('Add notification page loaded');
         },
         methods: {
+            customLabel(option) {
+    return `${option.fullname} - ${option.email}`;
+  },
             truncateText(value, limit) {
         if (!value) return '';
         if (value.length > limit) {
@@ -141,26 +185,30 @@ import VueSelect from 'vue3-select';
         }
         return value;
     },
-            load_users (keywords) {
-                if(typeof keywords != 'undefined'){
-                    if (keywords.length > 0 ) {
+    load_users(keywords) {
+  console.log("load_users called with keyword:", keywords); // Debugging
+  if (typeof keywords != 'undefined' && keywords.length > 0) {
+    const formData = new FormData();
+    formData.append("access_token", window.settings.access_token);
+    formData.append("keywords", keywords);
+    formData.append("role", this.role);
 
-                        var formData = new FormData();
-                        formData.append("access_token", window.settings.access_token);
-                        formData.append("keywords", keywords);
-                        formData.append("role", this.role);
-
-                        axios.post('/api/load_users', formData).then((response) => {
-                            if(response.data.status_code == 200) {
-                                this.user_list = response.data.data;
-                            }
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-                    }
-                }
-            },
+    axios.post('/api/load_users', formData)
+      .then((response) => {
+        if (response.data.status_code === 200) {
+          this.user_list = response.data.data;
+          console.log("User list loaded successfully:", this.user_list); // Debugging
+        } else {
+          console.error("Error loading users:", response.data.msg);
+          this.user_list = []; // Clear the list in case of error
+        }
+      })
+      .catch((error) => {
+        console.error("API request failed:", error);
+        this.user_list = []; // Clear the list in case of error
+      });
+  }
+},
 
             add_user_to_list(item) {
                 if( item.slack != '' ){
@@ -237,4 +285,6 @@ import VueSelect from 'vue3-select';
             }
         }
     }
+
+    
 </script>

@@ -6,25 +6,25 @@
 
                 <div class="d-flex flex-wrap mb-4">
                     <div class="mr-auto">
-                        <span class="text-title">{{ $t("Import Data") }}</span>
+                        <span class="text-title">{{ ("Import Data") }}</span>
                     </div>
                     <div class="d-flex">
                         
                         <button class="btn btn-outline-primary mr-1" type="button" v-on:click="download_reference_sheet()" v-bind:disabled="reference_processing == true"> 
                             <i class='fa fa-circle-notch fa-spin'  v-if="reference_processing == true"></i>
-                            {{ $t("Download Reference Sheet") }}
+                            {{ ("Download Reference Sheet") }}
                         </button>
 
                         <div class="dropdown mr-1" v-if="templates.length != 0">
                             <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ $t("Download Templates") }}
+                                {{ ("Download Templates") }}
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown">
                                 <a :href="template.template_link" class="dropdown-item" v-for="(template, index) in templates" :key="index" >{{ template.template_label }} Template</a>
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> {{ $t("Upload & Save") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> {{ ("Upload & Save") }}</button>
                     </div>
                 </div>
                     
@@ -32,7 +32,7 @@
 
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
-                        <label for="upload_type">{{ $t("Type of Upload") }}</label>
+                        <label for="upload_type">{{ ("Type of Upload") }}</label>
                          <select name="upload_type" v-model="upload_type" v-validate="'required'" class="form-control form-control-custom custom-select">
                             <option value="">Choose Type of Upload..</option>
                             <option v-for="(upload_option, index) in upload_options" v-bind:value="upload_option.key" v-bind:key="index">
@@ -42,7 +42,7 @@
                         <span v-bind:class="{ 'error' : errors.has('upload_type') }">{{ errors.first('upload_type') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="upload_file">{{ $t("Import File") }}</label>
+                        <label for="upload_file">{{ ("Import File") }}</label>
                         <input type="file" name="upload_file" ref="upload_file" v-on:change="on_file_select" class="form-control-file" v-validate="'required|ext:xls,xlsx'">
                         <span v-bind:class="{ 'error' : errors.has('upload_file') }">{{ errors.first('upload_file') }}</span> 
                     </div>

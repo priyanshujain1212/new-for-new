@@ -6,7 +6,7 @@
                 <div class="mr-auto">
                    <div class="d-flex">
                         <div>
-                            <span class="text-title"> <span class='text-muted'>{{ $t("Billing Counter") }}</span> {{ billing_counter.counter_name }} ({{ billing_counter.billing_counter_code }}) </span>
+                            <span class="text-title"> <span class='text-muted'>{{ ("Billing Counter") }}</span> {{ billing_counter.counter_name }} ({{ billing_counter.billing_counter_code }}) </span>
                         </div>
                     </div>
                 </div>
@@ -16,42 +16,42 @@
             </div>
 
             <div class="mb-2">
-                <span class="text-subhead">{{ $t("Basic Information") }}</span>
+                <span class="text-subhead">{{ ("Basic Information") }}</span>
             </div>
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="billing_counter_code">{{ $t("Billing Counter Code") }}</label>
+                    <label for="billing_counter_code">{{ ("Billing Counter Code") }}</label>
                     <p>{{ billing_counter.billing_counter_code  }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="counter_name">{{ $t("Counter Name") }}</label>
+                    <label for="counter_name">{{ ("Counter Name") }}</label>
                     <p>{{ billing_counter.counter_name }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="counter_name">{{ $t("Particular to") }}</label>
+                    <label for="counter_name">{{ ("Particular to") }}</label>
                     <p>{{ billing_counter.particular_to }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="created_by">{{ $t("Created By") }}</label>
+                    <label for="created_by">{{ ("Created By") }}</label>
                     <p>{{ (billing_counter.created_by == null)?'-':billing_counter.created_by['fullname']+' ('+billing_counter.created_by['user_code']+')' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_by">{{ $t("Updated By") }}</label>
+                    <label for="updated_by">{{ ("Updated By") }}</label>
                     <p>{{ (billing_counter.updated_by == null)?'-':billing_counter.updated_by['fullname']+' ('+billing_counter.updated_by['user_code']+')' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="created_on">{{ $t("Created On") }}</label>
+                    <label for="created_on">{{ ("Created On") }}</label>
                     <p>{{ billing_counter.created_at_label }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_on">{{ $t("Updated On") }}</label>
+                    <label for="updated_on">{{ ("Updated On") }}</label>
                     <p>{{ billing_counter.updated_at_label }}</p>
                 </div>
             </div>
 
             <div class="form-row mb-2">
                 <div class="form-group col-md-6">
-                    <label for="description">{{ $t("Description") }}</label>
+                    <label for="description">{{ ("Description") }}</label>
                     <p>{{ (billing_counter.description)?billing_counter.description:'-' }}</p>
                 </div>
             </div>

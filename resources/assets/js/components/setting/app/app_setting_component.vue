@@ -4,56 +4,56 @@
 
             <div class="d-flex flex-wrap mb-4">
                 <div class="mr-auto">
-                    <span class="text-title">{{ $t("App Settings") }}</span>
+                    <span class="text-title">{{ ("App Settings") }}</span>
                 </div>
                 <div class="">
-                    <a v-bind:href="edit_link" class="btn btn-primary"> {{ $t("Edit") }}</a>
+                    <a v-bind:href="edit_link" class="btn btn-primary"> {{ ("Edit") }}</a>
                 </div>
             </div>
 
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="company_name">{{ $t("Company Name") }}</label>
+                    <label for="company_name">{{ ("Company Name") }}</label>
                     <p>{{ company_name }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="app_title">{{ $t("App Title") }}</label>
+                    <label for="app_title">{{ ("App Title") }}</label>
                     <p>{{ app_title }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="app_title">{{ $t("App Timezone") }}</label>
+                    <label for="app_title">{{ ("App Timezone") }}</label>
                     <p>{{ app_timezone }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="app_date_format">{{ $t("App Date Time Format") }}</label>
+                    <label for="app_date_format">{{ ("App Date Time Format") }}</label>
                     <p>{{ app_date_time_format }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="app_date_format">{{ $t("App Date Format") }}</label>
+                    <label for="app_date_format">{{ ("App Date Format") }}</label>
                     <p>{{ app_date_format }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_by">{{ $t("Updated By") }}</label>
+                    <label for="updated_by">{{ ("Updated By") }}</label>
                     <p>{{ (updated_by == null)?'-':updated_by['fullname']+' ('+updated_by['user_code']+')' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_on">{{ $t("Updated On") }}</label>
+                    <label for="updated_on">{{ ("Updated On") }}</label>
                     <p>{{ updated_at_label }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_on">{{ $t("Company Logo") }}</label>
+                    <label for="updated_on">{{ ("Company Logo") }}</label>
                     <p><img :src="company_logo" class="company-logo-image"></p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_on">{{ $t("Invoice Print Logo") }}</label>
+                    <label for="updated_on">{{ ("Invoice Print Logo") }}</label>
                     <p><img :src="invoice_print_logo" class="company-logo-image"></p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_on">{{ $t("Top Navbar Logo") }}</label>
+                    <label for="updated_on">{{ ("Top Navbar Logo") }}</label>
                     <p><img :src="navbar_logo" class="company-logo-image"></p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_on">{{ $t("Favicon") }}</label>
+                    <label for="updated_on">{{ ("Favicon") }}</label>
                     <p><img :src="favicon" class="company-logo-image"></p>
                 </div>
             </div>

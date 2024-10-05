@@ -4,7 +4,7 @@
 
             <div class="d-flex flex-wrap mb-4">
                 <div class="mr-auto">
-                    <span class="text-title">{{ gateway_type }} {{ $t("SMS Settings") }}</span>
+                    <span class="text-title">{{ gateway_type }} {{ ("SMS Settings") }}</span>
                 </div>
                 <div class="">
                     
@@ -13,49 +13,49 @@
 
             <div class="form-row mb-2" v-if="gateway_type == 'TWILIO'">
                 <div class="form-group col-md-3">
-                    <label for="account_sid">{{ $t("Account SID") }}</label>
+                    <label for="account_sid">{{ ("Account SID") }}</label>
                     <p class="text-truncate">{{ account_sid }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="auth_token">{{ $t("Auth Token") }}</label>
+                    <label for="auth_token">{{ ("Auth Token") }}</label>
                     <p class="text-truncate">{{ auth_token | hide_sensitive_info(10) }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="twilio_number">Twilio {{ $t("Number") }}</label>
+                    <label for="twilio_number">Twilio {{ ("Number") }}</label>
                     <p>{{ twilio_number }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="status">{{ $t("Status") }}</label>
+                    <label for="status">{{ ("Status") }}</label>
                     <p><span v-bind:class="status_color">{{ status_label }}</span></p>
                 </div>
             </div>
 
             <div class="form-row mb-2" v-else-if="gateway_type == 'MSG91'">
                 <div class="form-group col-md-3">
-                    <label for="account_sid">{{ $t("Auth Key") }}</label>
+                    <label for="account_sid">{{ ("Auth Key") }}</label>
                     <p class="text-truncate">{{ auth_key | hide_sensitive_info(10) }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="auth_token">{{ $t("Sender ID") }}</label>
+                    <label for="auth_token">{{ ("Sender ID") }}</label>
                     <p class="text-truncate">{{ sender_id  }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="status">{{ $t("Status") }}</label>
+                    <label for="status">{{ ("Status") }}</label>
                     <p><span v-bind:class="status_color">{{ status_label }}</span></p>
                 </div>
             </div>
 
             <div class="form-row mb-2" v-else-if="gateway_type == 'TEXTLOCAL'">
                 <div class="form-group col-md-3">
-                    <label for="account_sid">{{ $t("API Key") }}</label>
+                    <label for="account_sid">{{ ("API Key") }}</label>
                     <p class="text-truncate">{{ api_key | hide_sensitive_info(10) }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="auth_token">{{ $t("Sender ID") }}</label>
+                    <label for="auth_token">{{ ("Sender ID") }}</label>
                     <p class="text-truncate">{{ sender_id  }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="status">{{ $t("Status") }}</label>
+                    <label for="status">{{ ("Status") }}</label>
                     <p><span v-bind:class="status_color">{{ status_label }}</span></p>
                 </div>
             </div>

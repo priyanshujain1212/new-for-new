@@ -5,17 +5,17 @@
 
                 <div class="d-flex flex-wrap mb-4">
                     <div class="mr-auto">
-                        <span class="text-title" v-if="purchase_order_slack == ''">{{ $t("Add New Rasid") }}</span>
-                        <span class="text-title" v-else>{{ $t("Edit Rasid ") }} </span>
+                        <span class="text-title" v-if="purchase_order_slack == ''">{{ ("Add New Rasid") }}</span>
+                        <span class="text-title" v-else>{{ ("Edit Rasid ") }} </span>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> {{ $t("Save") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> {{ ("Save") }}</button>
                     </div>
                 </div>
                 <p v-html="server_errors" v-bind:class="[error_class]"></p>
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
-                        <label for="po_number">{{ $t("Rasid Number") }}</label>
+                        <label for="po_number">{{ ("Rasid Number") }}</label>
                         <div v-if="purchase_order_slack == ''">
                             <input type="text" name="po_number" v-model="po_number" v-validate="'required|max:50'" class="form-control form-control-custom" placeholder="Please enter Rasid Number">
                             <span v-if="errors && errors.po_number" class="error">{{ errors.po_number[0] }}</span>
@@ -23,35 +23,35 @@
                         <span :class="{ 'error': errors.has('Customer') }">{{ errors.first('Customer') }}</span></div>
                         <div v-else>
                             <div class="ml-2" style="font-size: 1.5rem" value = "po_number">
-                                  <span for="po_number">{{ $t(po_number ) }}</span>
+                                  <span for="po_number">{{ (po_number ) }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="customer">{{ $t("Customer") }}</label>
+                        <label for="customer">{{ ("Customer") }}</label>
                         <div v-if="purchase_order_slack == ''">
-                        <select-vue  type="text" name="customer" v-validate="'required|max:250'" :placeholder="$t('Please choose customer')" autocomplete="off" v-model="selectedCustomerslack" :items="formattedCustomerList" item-text="displayText" item-value="customer_code" @search="load_customers" ref="customer"></select-vue>
+                        <select-vue  type="text" name="customer" v-validate="'required|max:250'" :placeholder="('Please choose customer')" autocomplete="off" v-model="selectedCustomerslack" :items="formattedCustomerList" item-text="displayText" item-value="customer_code" @search="load_customers" ref="customer"></select-vue>
                         <span :class="{ 'error': errors.has('Customer') }">{{ errors.first('Customer') }}</span></div>
                         <div v-else>
                             <div class="ml-2" style="font-size: 1.5rem" value = "customer_code">
-                                  <span for="customer">{{ $t(customer_code ) }}{{ $t(" - ") }}{{ $t(customer_name ) }}</span>
+                                  <span for="customer">{{ (customer_code ) }}{{ (" - ") }}{{ (customer_name ) }}</span>
                             </div>
 
                         </div>
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="po_reference">{{ $t("Reference Rasid Number (if any)") }}</label>
-                        <input type="text" name="po_reference" v-model="po_reference" v-validate="'max:30'" class="form-control form-control-custom" :placeholder="$t('Reference Rasid Number')"  autocomplete="off">
+                        <label for="po_reference">{{ ("Reference Rasid Number (if any)") }}</label>
+                        <input type="text" name="po_reference" v-model="po_reference" v-validate="'max:30'" class="form-control form-control-custom" :placeholder="('Reference Rasid Number')"  autocomplete="off">
                     </div>
                 </div>
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
-                        <label for="order_date">{{ $t(" Date") }}</label>
-                        <DatePicker :format="date.format" :lang='date.lang' v-model="order_date" v-validate="'date_format:yyyy-MM-dd'" input-class="form-control form-control-custom  bg-white" ref="order_date" name="order_date" :placeholder="$t('Please enter rasid Date')" autocomplete="off"></DatePicker>
+                        <label for="order_date">{{ (" Date") }}</label>
+                        <DatePicker :format="date.format" :lang='date.lang' v-model="order_date" v-validate="'date_format:yyyy-MM-dd'" input-class="form-control form-control-custom  bg-white" ref="order_date" name="order_date" :placeholder="('Please enter rasid Date')" autocomplete="off"></DatePicker>
                         <span v-bind:class="{ 'error' : errors.has('date') }">{{ errors.first('date') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="payment_type">{{ $t("Payment Type") }}</label>
+                        <label for="payment_type">{{ ("Payment Type") }}</label>
                         <div v-if="!purchase_order_slack">  <!-- Check if purchase_order_slack is empty -->
                             <select name="payment_type" v-model="payment_type" v-validate="'required|numeric'" class="form-control form-control-custom custom-select">
                                 <option value="">Choose Status..</option>
@@ -71,23 +71,23 @@
                 </div>
                 <div class="d-flex flex-wrap mb-1">
                     <div class="mr-auto">
-                        <span class="text-subhead">{{ $t("Particulars") }}</span>
+                        <span class="text-subhead">{{ ("Particulars") }}</span>
                     </div>
                     <div class="">  
                     </div>
                 </div>
                 <div class="form-row mb-2">
                 <div class="form-group col-md-4">
-                    <label for="search_particular">{{ $t("Search and Add Particulars") }}</label>
-                    <select-vue  type="text" v-model="search_particular" autocomplete="off" inputForTextClass="form-control form-control-custom" :items="filtered_particulars" item-text="value" item-value="value" :resetSearchOnBlur="false" disable-filtering-by-search @search="filter_particulars" @select="add_particular_to_list" :placeholder="$t('Start Typing..')" ></select-vue>
+                    <label for="search_particular">{{ ("Search and Add Particulars") }}</label>
+                    <select-vue  type="text" v-model="search_particular" autocomplete="off" inputForTextClass="form-control form-control-custom" :items="filtered_particulars" item-text="value" item-value="value" :resetSearchOnBlur="false" disable-filtering-by-search @search="filter_particulars" @select="add_particular_to_list" :placeholder="('Start Typing..')" ></select-vue>
                 </div>
                 </div>
                 <div class="form-row">
                 <div class="form-group col-md-6 mb-1">
-                    <label for="name">{{ $t("Particulars") }}</label>
+                    <label for="name">{{ ("Particulars") }}</label>
                 </div>
                 <div class="form-group col-md-2 mb-1">
-                    <label for="amount">{{ $t("Amount") }}</label>
+                    <label for="amount">{{ ("Amount") }}</label>
                 </div>
                 </div>
                 <div class="form-row mb-2" v-for="(particular, index) in selected_particulars" :key="index">
@@ -111,7 +111,7 @@
                 <div class="form-row mb-3">
                     <div class="form-group col-md-5"></div>
                     <div class="form-group col-md-1 text-right">
-                        <label for="grand_total" style="position: relative; top: 5px;">{{ $t("Grand Total") }}</label>
+                        <label for="grand_total" style="position: relative; top: 5px;">{{ ("Grand Total") }}</label>
                     </div>
                     <div class="mr">
                         <span class="text-subhead" style="font-size: 1.5rem;position: relative; top: 5px;">{{ currency_listString }}</span>
@@ -120,7 +120,7 @@
                         <input type="text" name="grand_total" v-model="grand_total" :class="{'bg-success': !update_stock, 'bg-danger': update_stock}" class="form-control form-control-custom" readonly />
                     </div>
                     <div class="form-group col-md-2" style="position: relative; top: -7px;">
-                        <label for="name">{{ $t("Payment Status") }}</label>
+                        <label for="name">{{ ("Payment Status") }}</label>
                         <div class="d-flex align-items-center">
                             <div class="custom-control custom-switch" style="position: relative; top: -17px;">
                                 <input type="checkbox" class="custom-control-input" id="update_stock_switch" v-model="update_stock" @change="toggleSwitch" style="transform: scale(1.3);">
@@ -134,8 +134,8 @@
                 </div>
                 <div class="form-row mb-2">
                     <div class="form-group col-md-6">
-                        <label for="terms">{{ $t("Terms") }}</label>
-                        <textarea name="terms" v-model="terms" v-validate="'max:65535'" class="form-control form-control-custom" rows="5" :placeholder="$t('Enter Terms')"></textarea>
+                        <label for="terms">{{ ("Terms") }}</label>
+                        <textarea name="terms" v-model="terms" v-validate="'max:65535'" class="form-control form-control-custom" rows="5" :placeholder="('Enter Terms')"></textarea>
                         <span v-bind:class="{ 'error' : errors.has('terms') }">{{ errors.first('terms') }}</span>
                     </div>
                 </div>

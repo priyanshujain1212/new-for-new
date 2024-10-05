@@ -133,6 +133,7 @@ Route::group(['middleware' => ['app_indicator', 'token_auth', 'user_menu']], fun
     Route::get('/challans', "Challan@index")->name('challans');
     Route::get('/addchallan', "Challan@addchallan")->name('addchallan');
     Route::get('/challan_detail/{slack}', "Challan@detail")->name('challan_detail');
+    Route::get('/editchallan/{slack?}', "Challan@addchallan")->name('editchallan');
     
     //purchase order
     Route::get('/rasids', "PurchaseOrder@index")->name('rasids');

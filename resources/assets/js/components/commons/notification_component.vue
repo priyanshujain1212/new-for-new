@@ -19,17 +19,17 @@
             <div class="d-flex justify-content-between pl-4 pr-4">
                 <span class="text-centered btn-label mt-2" v-if="has_more_items" v-on:click="load_notification(next_page)">
                     <span v-if="processing"><i class='fa fa-circle-notch fa-spin'></i></span>
-                    {{ $t("Load More") }}
+                    {{ ("Load More") }}
                 </span>
                 <span class="text-centered btn-label mt-2" v-on:click="mark_as_read()" v-if="notifications_list.length > 0">
                     <span v-if="mark_as_read_processing"><i class='fa fa-circle-notch fa-spin'></i></span>
-                    {{ $t("Mark All as Read") }}
+                    {{ ("Mark All as Read") }}
                 </span>
                 <span class="text-centered btn-label mt-2" v-on:click="remove_all_notifications()" v-if="notifications_list.length > 0">
                     <span v-if="remove_all_notifications_processing"><i class='fa fa-circle-notch fa-spin'></i></span>
-                    {{ $t("Remove All") }}
+                    {{ ("Remove All") }}
                 </span>
-                <a :href="all_notifications_link" class="text-centered btn-label mt-2" v-if="notifications_list.length > 0">{{ $t("View All") }}</a>
+                <a :href="all_notifications_link" class="text-centered btn-label mt-2" v-if="notifications_list.length > 0">{{ ("View All") }}</a>
             </div>
         </div>
     </div>

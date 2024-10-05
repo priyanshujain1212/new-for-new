@@ -6,7 +6,7 @@
                 <div class="mr-auto">
                    <div class="d-flex">
                         <div>
-                            <span class="text-title"> <span class='text-muted'>{{ $t("Customer") }}</span> {{ customer.name }} </span>
+                            <span class="text-title"> <span class='text-muted'>{{ ("Customer") }}</span> {{ customer.name }} </span>
                         </div>
                     </div>
                 </div>
@@ -16,43 +16,43 @@
             </div>
 
             <div class="mb-2">
-                <span class="text-subhead">{{ $t("Basic Information") }}</span>
+                <span class="text-subhead">{{ ("Basic Information") }}</span>
             </div>
             <div class="form-row mb-2">
                 <div class="form-group col-md-3">
-                    <label for="fullname">{{ $t("Fullname") }}</label>
+                    <label for="fullname">{{ ("Fullname") }}</label>
                     <p>{{ (customer.name == '' || customer.name == null)?'-':customer.name }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="email">{{ $t("Email") }}</label>
+                    <label for="email">{{ ("Email") }}</label>
                     <p>{{ (customer.email == '' || customer.email == null)?'-':customer.email }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="phone">{{ $t("Phone") }}</label>
+                    <label for="phone">{{ ("Phone") }}</label>
                     <p>{{ (customer.phone == '' || customer.phone == null)?'-':customer.phone }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="dob">{{ $t("Date of Birth") }}</label>
+                    <label for="dob">{{ ("Date of Birth") }}</label>
                     <p>{{ (customer.dob == '' || customer.dob == null)?'-':customer.dob }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="role">{{ $t("Address") }}</label>
+                    <label for="role">{{ ("Address") }}</label>
                     <p>{{ (customer.address == '' || customer.address == null)?'-':customer.address }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="created_by">{{ $t("Created By") }}</label>
+                    <label for="created_by">{{ ("Created By") }}</label>
                     <p>{{ (customer.created_by == null)?'-':customer.created_by['fullname']+' ('+customer.created_by['customer_code']+')' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_by">{{ $t("Updated By") }}</label>
+                    <label for="updated_by">{{ ("Updated By") }}</label>
                     <p>{{ (customer.updated_by == null)?'-':customer.updated_by['fullname']+' ('+customer.updated_by['customer_code']+')' }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="created_on">{{ $t("Created On") }}</label>
+                    <label for="created_on">{{ ("Created On") }}</label>
                     <p>{{ customer.created_at_label }}</p>
                 </div>
                 <div class="form-group col-md-3">
-                    <label for="updated_on">{{ $t("Updated On") }}</label>
+                    <label for="updated_on">{{ ("Updated On") }}</label>
                     <p>{{ customer.updated_at_label }}</p>
                 </div>
             </div>

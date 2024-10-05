@@ -6,11 +6,11 @@
 
                 <div class="d-flex flex-wrap mb-4">
                     <div class="mr-auto">
-                        <span class="text-title" v-if="setting_slack == ''">{{ $t("Add Email Setting") }}</span>
-                        <span class="text-title" v-else>{{ $t("Edit Email Setting") }}</span>
+                        <span class="text-title" v-if="setting_slack == ''">{{ ("Add Email Setting") }}</span>
+                        <span class="text-title" v-else>{{ ("Edit Email Setting") }}</span>
                     </div>
                     <div class="">
-                        <button type="submit" class="btn btn-primary" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> {{ $t("Save") }}</button>
+                        <button type="submit" class="btn btn-primary" v-bind:disabled="processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="processing == true"></i> {{ ("Save") }}</button>
                     </div>
                 </div>
                     
@@ -18,51 +18,51 @@
 
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
-                        <label for="driver">{{ $t("Driver") }}</label>
-                        <input type="text" name="driver" v-model="driver" v-validate="'required|max:50'" class="form-control form-control-custom" :placeholder="$t('Please enter Driver')"  autocomplete="off">
+                        <label for="driver">{{ ("Driver") }}</label>
+                        <input type="text" name="driver" v-model="driver" v-validate="'required|max:50'" class="form-control form-control-custom" :placeholder="('Please enter Driver')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('driver') }">{{ errors.first('driver') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="encryption">{{ $t("Encryption") }}</label>
-                        <input type="text" name="encryption" v-model="encryption" v-validate="'required|max:50'" class="form-control form-control-custom" :placeholder="$t('Please enter Encryption')" autocomplete="off">
+                        <label for="encryption">{{ ("Encryption") }}</label>
+                        <input type="text" name="encryption" v-model="encryption" v-validate="'required|max:50'" class="form-control form-control-custom" :placeholder="('Please enter Encryption')" autocomplete="off">
                         <small class="form-text text-muted">TLS, SSL etc.</small>
                         <span v-bind:class="{ 'error' : errors.has('encryption') }">{{ errors.first('encryption') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="host">{{ $t("Host") }}</label>
-                        <input type="text" name="host" v-model="host" v-validate="'required|max:250'" class="form-control form-control-custom" :placeholder="$t('Please enter Host')"  autocomplete="off">
+                        <label for="host">{{ ("Host") }}</label>
+                        <input type="text" name="host" v-model="host" v-validate="'required|max:250'" class="form-control form-control-custom" :placeholder="('Please enter Host')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('host') }">{{ errors.first('host') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="port">{{ $t("Port") }}</label>
-                        <input type="text" name="port" v-model="port" v-validate="'required|max:50'" class="form-control form-control-custom" :placeholder="$t('Please enter Port')"  autocomplete="off">
+                        <label for="port">{{ ("Port") }}</label>
+                        <input type="text" name="port" v-model="port" v-validate="'required|max:50'" class="form-control form-control-custom" :placeholder="('Please enter Port')"  autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('port') }">{{ errors.first('port') }}</span> 
                     </div>
                 </div>
 
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
-                        <label for="username">{{ $t("Username") }}</label>
-                        <input type="text" name="username" v-model="username" v-validate="'required|max:250'" class="form-control form-control-custom" :placeholder="$t('Please enter Username')" autocomplete="off">
+                        <label for="username">{{ ("Username") }}</label>
+                        <input type="text" name="username" v-model="username" v-validate="'required|max:250'" class="form-control form-control-custom" :placeholder="('Please enter Username')" autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('username') }">{{ errors.first('username') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="password">{{ $t("Password") }}</label>
-                        <input type="text" name="password" v-model="password" v-validate="'required|max:250'" class="form-control form-control-custom" :placeholder="$t('Please enter Password')" autocomplete="off">
+                        <label for="password">{{ ("Password") }}</label>
+                        <input type="text" name="password" v-model="password" v-validate="'required|max:250'" class="form-control form-control-custom" :placeholder="('Please enter Password')" autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('password') }">{{ errors.first('password') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="from_email">{{ $t("From Email") }}</label>
-                        <input type="text" name="from_email" v-model="from_email" v-validate="'required|max:250|email'" class="form-control form-control-custom" :placeholder="$t('Please enter From email')" autocomplete="off">
+                        <label for="from_email">{{ ("From Email") }}</label>
+                        <input type="text" name="from_email" v-model="from_email" v-validate="'required|max:250|email'" class="form-control form-control-custom" :placeholder="('Please enter From email')" autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('from_email') }">{{ errors.first('from_email') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="from_email_name">{{ $t("From Email Name") }}</label>
-                        <input type="text" name="from_email_name" v-model="from_email_name" v-validate="'required|max:250'" class="form-control form-control-custom" :placeholder="$t('Please enter From email name')" autocomplete="off">
+                        <label for="from_email_name">{{ ("From Email Name") }}</label>
+                        <input type="text" name="from_email_name" v-model="from_email_name" v-validate="'required|max:250'" class="form-control form-control-custom" :placeholder="('Please enter From email name')" autocomplete="off">
                         <span v-bind:class="{ 'error' : errors.has('from_email_name') }">{{ errors.first('from_email_name') }}</span> 
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="status">{{ $t("Status") }}</label>
+                        <label for="status">{{ ("Status") }}</label>
                         <select name="status" v-model="status" v-validate="'required|numeric'" class="form-control form-control-custom custom-select">
                             <option value="">Choose Status..</option>
                             <option v-for="(status, index) in statuses" v-bind:value="status.value" v-bind:key="index">
@@ -80,18 +80,18 @@
             <form data-vv-scope="test_email_form" v-show="setting_slack != ''">
                 <div class="mb-2">
                     <div class="mb-2">
-                        <label for="test_email">{{ $t("Send Test Email") }}</label>
+                        <label for="test_email">{{ ("Send Test Email") }}</label>
                     </div>
                     <div class="form-row mb-2">
                         <div class="form-group col-md-3">
-                            <input type="text" name="email" v-model="email" v-validate="'required|max:250|email'" class="form-control form-control-custom" :placeholder="$t('Please enter email')" autocomplete="off">
+                            <input type="text" name="email" v-model="email" v-validate="'required|max:250|email'" class="form-control form-control-custom" :placeholder="('Please enter email')" autocomplete="off">
                             <span v-bind:class="{ 'error' : errors.has('test_email_form.email') }">{{ errors.first('test_email_form.email') }}</span>
                         </div>
                         <div class="form-group col-md-3">
-                            <button type="button" class="btn btn-outline-primary" v-bind:disabled="test_email_processing == true" v-on:click="send_test_email"> <i class='fa fa-circle-notch fa-spin'  v-if="test_email_processing == true"></i> {{ $t("Send Test Email") }}</button>
+                            <button type="button" class="btn btn-outline-primary" v-bind:disabled="test_email_processing == true" v-on:click="send_test_email"> <i class='fa fa-circle-notch fa-spin'  v-if="test_email_processing == true"></i> {{ ("Send Test Email") }}</button>
                         </div>
                     </div>
-                    <small class="form-text text-muted">{{ $t("Test email will be send to given mail address") }}</small>
+                    <small class="form-text text-muted">{{ ("Test email will be send to given mail address") }}</small>
                     <p v-html="test_email_server_errors" v-bind:class="[test_email_error_class]"></p>
                 </div> 
             </form>
