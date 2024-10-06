@@ -45,7 +45,7 @@
                             </ErrorMessage>
                         </div>
                         <div v-else>
-                            <div class="ml-2" style="font-size: 1.5rem">
+                            <div class="ml-2" style="font-size: 1.2rem">
                                 <span for="po_number">{{ po_number }}</span>
                             </div>
                         </div>
@@ -62,19 +62,31 @@
                             </ul>
                         </div>
                         <div v-else>
-                            <div class="ml-2" style="font-size: 1.5rem">
+                            <div class="ml-2" style="font-size: 1.2rem">
                                 <span>{{ supplier_name }}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="order_date">{{ "Challan Date" }}</label>
+                        <label for="po_number">{{ "Challan Number" }}</label>
+                        <div v-if="!challan_order_slack">
+                            <label for="order_date">{{ "Challan Date" }}</label>
                         <Field  name="order_date"  v-model="order_date" as="input"  type="date" rules="required"  class="form-control form-control-custom" placeholder="Pick a date or type a date"  style="width: 275px;" />
                         <ErrorMessage name="order_date" v-slot="{ message }">
                             <span class="error">{{ message }}</span>
                         </ErrorMessage>
-                     </div>
+                        </div>
+                        <div v-else>
+                            <div class="ml-2" style="font-size: 1.2rem">
+                                <span for="po_number">{{ order_date }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                    
+                    </div>
 
                     <div class="form-group col-md-3">
                         <label for="po_reference">{{ "Reference Challan Number (if any)" }}</label>
@@ -164,8 +176,10 @@
         <label for="grand_total" style="position: relative; top: 5px;">{{ "Grand Total" }}</label>
     </div>
     <div class="mr">
-        <span class="text-subhead" style="font-size: 1.5rem; position: relative; top: 5px;">{{ currency_listString }}</span>
-    </div>
+    <span class="text-subhead" style="font-size: 1.5rem; position: relative; top: 5px;">{{ currency_list[0] }}</span>
+</div>
+
+
     <div class="form-group col-md-2">
         <Field 
             name="grand_total" 
@@ -210,6 +224,7 @@ import { required, max, numeric } from '@vee-validate/rules';
 import { defineRule } from 'vee-validate'; 
 import axios from 'axios';
 import moment from 'moment';
+import { toRaw } from '@vue/reactivity';
 
 export default {
     components: {
@@ -228,16 +243,20 @@ export default {
             filteredSuppliers: [],
             selectedSupplier: null, // To hold selected supplier data
             grandTotal: 0,
-            update_stock: (this.challan_order_data == null) ? false : (this.challan_order_data.update_stock != null) ? ((this.challan_order_data.update_stock == 1) ? true : false) : true,
-     
+            update_stock: (this.challan_order_data == null) ? '' : (this.challan_order_data.update_stock != null) ? ((this.challan_order_data.update_stock == 1) ? false : true) : true,
+            products: [],
+            api_link: (this.challan_order_data == null)?'/api/addchallan':'/api/update_challan_order/'+this.challan_order_data.slack,
+
+            // selectedPaymentType: (this.challan_order_data == null)?'':(this.challan_order_data.payment_type != null)?this.challan_order_data.payment_type:'',
             // update_stock : (this.challan_order_data == null)?false:(this.challan_order_data.update_stock != null)?((this.challan_order_data.update_stock == 1)?true:false):false,
             supplier_name: (this.challan_order_data == null) ? '' : (this.challan_order_data.supplier_name)?this.challan_order_data.supplier_name:'',
             supplier_code:(this.challan_order_data ==null)? '' : (this.challan_order_data.supplier_code)?this.challan_order_data.supplier_code:'',
             po_number : (this.challan_order_data == null)?'':(this.challan_order_data.po_number)?this.challan_order_data.po_number:'',
             po_reference : (this.challan_order_data == null)?'':(this.challan_order_data.po_reference != null)?this.challan_order_data.po_reference:'',
-            order_date : (this.challan_order_data == null)?'':(this.challan_order_data.order_date != null)?new Date(this.challan_order_data.order_date):'',
-            payment_date: (this.challan_order_data == null)?'':(this.challan_order_data.payment_date != null)?new Date(this.challan_order_data.payment_date):'',
-            challan_order_slack: this.challan_order_data ? this.challan_order_data.slack : '',
+            order_date: this.challan_order_data?.order_date_raw || '',
+            selectedPaymentType: this.challan_order_data?.payment_type || '',
+          payment_date: (this.challan_order_data == null)?'':(this.challan_order_data.payment_date != null)?new Date(this.challan_order_data.payment_date):'',
+            challan_order_slack: (this.challan_order_data == null)?'':this.challan_order_data.slack,
             payment_type: (this.challan_order_data == null)?'':(this.challan_order_data.payment_type != null)?this.challan_order_data.payment_type:'',
             particularSearchQuery: '',
             filteredParticulars: [],
@@ -251,6 +270,7 @@ export default {
 
     props: {
         challan_order_data: [Array, Object],
+        currency_list: [Array],
         payment_types: {
             type: Array,
             default: () => [],
@@ -272,6 +292,7 @@ export default {
             this.selected_particulars = [];
             this.grandTotal = 0;
         }
+        console.log('Challan Order Data:', this.challan_order_data);
     },
     computed: {
         formData() {
@@ -320,10 +341,10 @@ export default {
 
             toggleSwitch() {
                 if (!this.update_stock) {
-                    this.update_stock = 1; // Keep it closed
+                    // this.update_stock = 1; // Keep it closed
                     this.selectedPaymentType = ''; // Reset selected payment type when switch is turned off
                 } else {
-                    this.update_stock = 0; // Allow it to become open
+                    // this.update_stock = 0; // Allow it to become open
                 }
             },
          onSupplierSearch() {
@@ -363,39 +384,61 @@ export default {
 
 
         submit_form() {
-            this.processing = true;
-            this.show_modal = true;
-            // Prepare data to be sent to the server
-            const dataToSubmit = {
-                po_number: this.po_number,
-                po_reference: this.po_reference,
-                order_date: this.convert_date_format(this.order_date),
-                supplier_code: this.selectedSupplier ? this.selectedSupplier.supplier_code : this.supplier, // Use selected supplier code or existing
-                supplier_name: this.selectedSupplier ? this.selectedSupplier.name : this.supplier_name, // Use selected supplier name or existing
-                payment_type: this.selectedPaymentType ? this.selectedPaymentType : "Due payment",
-                particulars:  JSON.stringify(this.selected_particulars),
-                update_stock: (this.update_stock ? 1 : 0),
-                grand_total : this.grand_total,
-                
-                terms: this.terms, // Adjust based on your needs
-                
-                // Add other form fields as necessary
-            };
+    this.processing = true;
+    this.show_modal = true;
 
-            console.log('Submitting form with data:', dataToSubmit); // Debug log
+    // Prepare data to be sent to the server
+    const dataToSubmit = {
+        access_token: window.settings.access_token,
+        po_number: this.po_number,
+        po_reference: this.po_reference,
+        order_date: this.convert_date_format(this.order_date),
+        supplier_code: this.selectedSupplier ? this.selectedSupplier.supplier_code : this.supplier_code,
+        supplier_name: this.selectedSupplier ? this.selectedSupplier.name : this.supplier_name,
+        payment_type: this.selectedPaymentType ? this.selectedPaymentType : "Due payment",
+        particulars: toRaw(this.selected_particulars), // Convert to raw to avoid reactive issues
+        update_stock: (this.update_stock ? 0 : 1),
+        grand_total: this.grandTotal,
+        terms: this.terms,
+    };
 
-            // Make the API call for submission (replace with your actual endpoint)
-            // axios.post('/api/submit_challan', dataToSubmit)
-            //     .then(response => {
-            //         // Handle successful submission response
-            //         this.processing = false;
-            //         console.log('Form submitted successfully:', response.data);
-            //     })
-            //     .catch(error => {
-            //         this.processing = false;
-            //         console.log('Error submitting form:', error);
-            //     });
+    console.log('Submitting form with data:', dataToSubmit); // Debug log
+
+
+    axios.post(this.api_link, dataToSubmit, {
+        headers: {
+            'Content-Type': 'application/json',
+            'access_token': `Bearer ${window.settings.access_token}`, // Optional: if you need to pass a token
         }
+    }).then((response) => {
+        if (response.data.status_code == 200) {
+            this.show_response_message( 'SUCCESS');
+
+            setTimeout(() => {
+              window.location.href = '/challans'; // Update the URL as per your route path
+            }, 1000);
+        } else {
+            this.show_modal = false;
+            this.processing = false;
+            try {
+                var error_json = JSON.parse(response.data.msg);
+                this.loop_api_errors(error_json);
+            } catch (err) {
+                this.server_errors = response.data.msg;
+            }
+            this.error_class = 'error';
+        }
+    }).catch((error) => {
+        console.error('Error submitting form:', error);
+        this.processing = false;
+        this.show_modal = false;
+    });
+},
+
+show_response_message(message) {
+        
+    },
+
     },
 };
 </script>

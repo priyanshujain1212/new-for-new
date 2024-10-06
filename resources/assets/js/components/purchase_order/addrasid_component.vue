@@ -5,7 +5,7 @@
                 <div class="d-flex flex-wrap mb-4 p-3 align-items-center" :style="{'background-color': update_stock ? '#c8e6c9' : '#ffcdd2', 'border-radius': '8px'}">
                     <!-- Title on the left side -->
                     <div class="mr-auto">
-                        <span class="text-title">{{ !purchase_order_slack ? "Add New Rasid" : "Edit Rasid" }}</span>
+                        <span class="text-title">{{ !purchase_order_slack ? "Add New Raisd" : "Edit Raisd" }}</span>
                     </div>
 
                     <!-- Right side: Payment Status Switch and Save Button grouped together -->
@@ -37,15 +37,15 @@
 
                 <div class="form-row mb-2">
                     <div class="form-group col-md-3">
-                        <label for="po_number">{{ "Rasid Number" }}</label>
+                        <label for="po_number">{{ "Raisd Number" }}</label>
                         <div v-if="!purchase_order_slack">
-                            <Field name="po_number" v-model="po_number" as="input" type="text" class="form-control form-control-custom" placeholder="Please enter Rasid Number"  rules="required|max:50"  />
+                            <Field name="po_number" v-model="po_number" as="input" type="text" class="form-control form-control-custom" placeholder="Please enter Raisd Number"  rules="required|max:50"  />
                             <ErrorMessage name="po_number" v-slot="{ message }">
                                 <span class="error">{{ message }}</span>
                             </ErrorMessage>
                         </div>
                         <div v-else>
-                            <div class="ml-2" style="font-size: 1.5rem">
+                            <div class="ml-2" style="font-size: 1.2rem">
                                 <span for="po_number">{{ po_number }}</span>
                             </div>
                         </div>
@@ -62,23 +62,35 @@
                             </ul>
                         </div>
                         <div v-else>
-                            <div class="ml-2" style="font-size: 1.5rem">
+                            <div class="ml-2" style="font-size: 1.2rem">
                                 <span>{{ customer_name }}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="order_date">{{ "Rasid Date" }}</label>
+                       
+                        <div v-if="!purchase_order_slack">
+                            <label for="order_date">{{ "Raisd Date" }}</label>
                         <Field  name="order_date"  v-model="order_date" as="input"  type="date" rules="required"  class="form-control form-control-custom" placeholder="Pick a date or type a date"  style="width: 275px;" />
                         <ErrorMessage name="order_date" v-slot="{ message }">
                             <span class="error">{{ message }}</span>
                         </ErrorMessage>
-                     </div>
+                        </div>
+                        <div v-else>
+                            <div class="ml-2" style="font-size: 1.2rem">
+                                <span for="po_number">{{ order_date }}</span>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-group col-md-3">
-                        <label for="po_reference">{{ "Reference Rasid Number (if any)" }}</label>
-                        <Field name="po_reference" v-model="po_reference"  as="input"  type="text"  class="form-control form-control-custom"  placeholder="Reference Rasid Number"  rules="max:30" />
+                    
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="po_reference">{{ "Reference Raisd Number (if any)" }}</label>
+                        <Field name="po_reference" v-model="po_reference"  as="input"  type="text"  class="form-control form-control-custom"  placeholder="Reference Raisd Number"  rules="max:30" />
                         <ErrorMessage name="po_reference" v-slot="{ message }">
                             <span class="error">{{ message }}</span>
                         </ErrorMessage>
@@ -164,8 +176,10 @@
         <label for="grand_total" style="position: relative; top: 5px;">{{ "Grand Total" }}</label>
     </div>
     <div class="mr">
-        <span class="text-subhead" style="font-size: 1.5rem; position: relative; top: 5px;">{{ currency_listString }}</span>
-    </div>
+    <span class="text-subhead" style="font-size: 1.5rem; position: relative; top: 5px;">{{ currency_list[0] }}</span>
+</div>
+
+
     <div class="form-group col-md-2">
         <Field 
             name="grand_total" 
@@ -210,6 +224,7 @@ import { required, max, numeric } from '@vee-validate/rules';
 import { defineRule } from 'vee-validate'; 
 import axios from 'axios';
 import moment from 'moment';
+import { toRaw } from '@vue/reactivity';
 
 export default {
     components: {
@@ -228,16 +243,20 @@ export default {
             filteredCustomers: [],
             selectedCustomer: null, // To hold selected customer data
             grandTotal: 0,
-            update_stock: (this.purchase_order_data == null) ? false : (this.purchase_order_data.update_stock != null) ? ((this.purchase_order_data.update_stock == 1) ? true : false) : true,
-     
+            update_stock: (this.purchase_order_data == null) ? '' : (this.purchase_order_data.update_stock != null) ? ((this.purchase_order_data.update_stock == 1) ? false : true) : true,
+            products: [],
+            api_link: (this.purchase_order_data == null)?'/api/addrasid':'/api/update_purchase_order/'+this.purchase_order_data.slack,
+
+            // selectedPaymentType: (this.purchase_order_data == null)?'':(this.purchase_order_data.payment_type != null)?this.purchase_order_data.payment_type:'',
             // update_stock : (this.purchase_order_data == null)?false:(this.purchase_order_data.update_stock != null)?((this.purchase_order_data.update_stock == 1)?true:false):false,
             customer_name: (this.purchase_order_data == null) ? '' : (this.purchase_order_data.customer_name)?this.purchase_order_data.customer_name:'',
             customer_code:(this.purchase_order_data ==null)? '' : (this.purchase_order_data.customer_code)?this.purchase_order_data.customer_code:'',
             po_number : (this.purchase_order_data == null)?'':(this.purchase_order_data.po_number)?this.purchase_order_data.po_number:'',
             po_reference : (this.purchase_order_data == null)?'':(this.purchase_order_data.po_reference != null)?this.purchase_order_data.po_reference:'',
-            order_date : (this.purchase_order_data == null)?'':(this.purchase_order_data.order_date != null)?new Date(this.purchase_order_data.order_date):'',
-            payment_date: (this.purchase_order_data == null)?'':(this.purchase_order_data.payment_date != null)?new Date(this.purchase_order_data.payment_date):'',
-            purchase_order_slack: this.purchase_order_data ? this.purchase_order_data.slack : '',
+            order_date: this.purchase_order_data?.order_date_raw || '',
+            selectedPaymentType: this.purchase_order_data?.payment_type || '',
+          payment_date: (this.purchase_order_data == null)?'':(this.purchase_order_data.payment_date != null)?new Date(this.purchase_order_data.payment_date):'',
+            purchase_order_slack: (this.purchase_order_data == null)?'':this.purchase_order_data.slack,
             payment_type: (this.purchase_order_data == null)?'':(this.purchase_order_data.payment_type != null)?this.purchase_order_data.payment_type:'',
             particularSearchQuery: '',
             filteredParticulars: [],
@@ -251,6 +270,7 @@ export default {
 
     props: {
         purchase_order_data: [Array, Object],
+        currency_list: [Array],
         payment_types: {
             type: Array,
             default: () => [],
@@ -272,6 +292,7 @@ export default {
             this.selected_particulars = [];
             this.grandTotal = 0;
         }
+        console.log('Raisd Order Data:', this.purchase_order_data);
     },
     computed: {
         formData() {
@@ -320,10 +341,10 @@ export default {
 
             toggleSwitch() {
                 if (!this.update_stock) {
-                    this.update_stock = 1; // Keep it closed
+                    // this.update_stock = 1; // Keep it closed
                     this.selectedPaymentType = ''; // Reset selected payment type when switch is turned off
                 } else {
-                    this.update_stock = 0; // Allow it to become open
+                    // this.update_stock = 0; // Allow it to become open
                 }
             },
          onCustomerSearch() {
@@ -363,39 +384,61 @@ export default {
 
 
         submit_form() {
-            this.processing = true;
-            this.show_modal = true;
-            // Prepare data to be sent to the server
-            const dataToSubmit = {
-                po_number: this.po_number,
-                po_reference: this.po_reference,
-                order_date: this.convert_date_format(this.order_date),
-                customer_code: this.selectedCustomer ? this.selectedCustomer.customer_code : this.customer, // Use selected customer code or existing
-                customer_name: this.selectedCustomer ? this.selectedCustomer.name : this.customer_name, // Use selected customer name or existing
-                payment_type: this.selectedPaymentType ? this.selectedPaymentType : "Due payment",
-                particulars:  JSON.stringify(this.selected_particulars),
-                update_stock: (this.update_stock ? 1 : 0),
-                grand_total : this.grand_total,
-                
-                terms: this.terms, // Adjust based on your needs
-                
-                // Add other form fields as necessary
-            };
+    this.processing = true;
+    this.show_modal = true;
 
-            console.log('Submitting form with data:', dataToSubmit); // Debug log
+    // Prepare data to be sent to the server
+    const dataToSubmit = {
+        access_token: window.settings.access_token,
+        po_number: this.po_number,
+        po_reference: this.po_reference,
+        order_date: this.convert_date_format(this.order_date),
+        customer_code: this.selectedCustomer ? this.selectedCustomer.customer_code : this.customer_code,
+        customer_name: this.selectedCustomer ? this.selectedCustomer.name : this.customer_name,
+        payment_type: this.selectedPaymentType ? this.selectedPaymentType : "Due payment",
+        particulars: toRaw(this.selected_particulars), // Convert to raw to avoid reactive issues
+        update_stock: (this.update_stock ? 0 : 1),
+        grand_total: this.grandTotal,
+        terms: this.terms,
+    };
 
-            // Make the API call for submission (replace with your actual endpoint)
-            // axios.post('/api/submit_rasid', dataToSubmit)
-            //     .then(response => {
-            //         // Handle successful submission response
-            //         this.processing = false;
-            //         console.log('Form submitted successfully:', response.data);
-            //     })
-            //     .catch(error => {
-            //         this.processing = false;
-            //         console.log('Error submitting form:', error);
-            //     });
+    console.log('Submitting form with data:', dataToSubmit); // Debug log
+
+
+    axios.post(this.api_link, dataToSubmit, {
+        headers: {
+            'Content-Type': 'application/json',
+            'access_token': `Bearer ${window.settings.access_token}`, // Optional: if you need to pass a token
         }
+    }).then((response) => {
+        if (response.data.status_code == 200) {
+            this.show_response_message( 'SUCCESS');
+
+            setTimeout(() => {
+              window.location.href = '/rasids'; // Update the URL as per your route path
+            }, 1000);
+        } else {
+            this.show_modal = false;
+            this.processing = false;
+            try {
+                var error_json = JSON.parse(response.data.msg);
+                this.loop_api_errors(error_json);
+            } catch (err) {
+                this.server_errors = response.data.msg;
+            }
+            this.error_class = 'error';
+        }
+    }).catch((error) => {
+        console.error('Error submitting form:', error);
+        this.processing = false;
+        this.show_modal = false;
+    });
+},
+
+show_response_message(message) {
+        
+    },
+
     },
 };
 </script>
