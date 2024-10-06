@@ -29,6 +29,7 @@ use App\Models\MasterStatus as MasterStatusModel;
 use App\Models\MasterTaxOption as MasterTaxOptionModel;
 
 use App\Http\Resources\Collections\ChallanOrderCollection;
+use Illuminate\Support\Facades\Log;
 
 use App\Http\Controllers\API\Invoice as InvoiceAPI;
 
@@ -242,6 +243,7 @@ $response = [
      */
     public function store(Request $request)
     {
+        Log::info('Incoming Request:', $request->all());
         try {
 
             if(!check_access(['A_ADD_RASID'], true)){
@@ -257,7 +259,7 @@ $response = [
             if(!empty($po_data['po_data'])){
                 
                 $po = $po_data['po_data'];
-                
+               
                 $po['slack'] = $this->generate_slack("challan_orders");
                 $po['created_at'] = now();
                 $po['created_by'] = $request->logged_user_id;
@@ -278,7 +280,7 @@ $response = [
                     $item['created_by'] = $request->logged_user_id;
 
                     ChallanOrderProductModel::insert($item);
-
+                  
                 });
             }
             
@@ -562,17 +564,17 @@ $response = [
     }
 
     public function form_po_array($request){
-        
+      
         $po_slack = $request->po_slack;
 
-        $products = $request->products;
+        $products = $request->particulars;
 
         if( empty((array) $products) ){
             throw new Exception("Product list cannot be empty");
         }
 
         $supplier_data = SupplierModel::select('id', 'name', 'supplier_code',  'address',)
-        ->where('supplier_code', '=', trim($request->supplier))
+        ->where('supplier_code', '=',$request->supplier_code)
         ->active()
         ->first();
         if (empty($supplier_data)) {
@@ -610,7 +612,8 @@ $response = [
             throw new Exception("Invalid currency selected", 400);
         }
 
-        $selected_particulars = json_decode($request->input('selected_particulars'), true);
+        $selected_particulars = $request->particulars;
+       
        
 
         foreach ($selected_particulars as $selected_particular) {
@@ -649,8 +652,9 @@ $response = [
             'supplier_address' => $supplier_data->address,
             "currency_name" => $currency_data->currency_name,
             "currency_code" => $currency_data->currency_code,
-            "update_stock" => ($request->update_stock == true)?1:0,
+            "update_stock" => $request->update_stock,
             "terms" => $request->terms,
+            "status" => $request->update_stock,
             "total_order_amount" => $total_order_amount,
             "payment_type" => $request->payment_type,
             ];

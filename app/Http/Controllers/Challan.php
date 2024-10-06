@@ -68,11 +68,10 @@ class Challan extends Controller
             if (empty($purchase_order)) {
                 abort(404);
             }
-            
+           
             $challan_order_data = new ChallanOrderResource($purchase_order);
             $data['challan_order_data'] = $challan_order_data;
         }
-        // dd($data['challan_order_data']);
         return view('challan.addchallan', $data);
     }
 
@@ -83,7 +82,7 @@ class Challan extends Controller
         check_access([$data['action_key']]);
 
         $purchase_order = ChallanOrderModel::where('slack', '=', $slack)->first();
-       
+    
         if (empty($purchase_order)) {
             abort(404);
         }

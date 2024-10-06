@@ -37,6 +37,7 @@ class ChallanOrderResource extends JsonResource
             'subtotal_excluding_tax' => $this->subtotal_excluding_tax,
             'total_discount_amount' => $this->total_discount_amount,
             'total_after_discount' => $this->total_after_discount,
+            'payment_type' => $this->payment_type,
             'total_tax_amount' => $this->total_tax_amount,
             'shipping_charge' => $this->shipping_charge,
             'packing_charge' => $this->packing_charge,

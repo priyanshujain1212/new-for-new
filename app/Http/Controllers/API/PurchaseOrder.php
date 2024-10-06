@@ -565,14 +565,14 @@ $response = [
         
         $po_slack = $request->po_slack;
 
-        $products = $request->products;
-
+        $products = $request->particulars;
+        
         if( empty((array) $products) ){
             throw new Exception("Product list cannot be empty");
         }
 
         $customer_data = CustomerModel::select('id', 'name', 'customer_code',  'address',)
-        ->where('customer_code', '=', trim($request->customer))
+        ->where('customer_code', '=', $request->customer_code)
         ->active()
         ->first();
         if (empty($customer_data)) {
@@ -610,7 +610,7 @@ $response = [
             throw new Exception("Invalid currency selected", 400);
         }
 
-        $selected_particulars = json_decode($request->input('selected_particulars'), true);
+        $selected_particulars = $request->particulars;
        
 
         foreach ($selected_particulars as $selected_particular) {
