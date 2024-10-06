@@ -26,6 +26,8 @@ class PurchaseOrderResource extends JsonResource
             'po_reference' => $this->po_reference,
             'order_date' => $this->parseDateOnly($this->order_date),
             'order_date_raw' => $this->order_date,
+            'payment_date' => $this->parseDateOnly($this->payment_date),
+            'payment_date_raw' => $this->payment_date,
             'customer_id' => $this->customer_id,
             'customer_code'=> $this->customer_code,
             'customer_name' => $this->customer_name,

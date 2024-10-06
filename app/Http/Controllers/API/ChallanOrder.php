@@ -646,6 +646,7 @@ $response = [
             "po_number" => $request->po_number,
             "po_reference" => $request->po_reference,
             "order_date" => $request->order_date,
+            "payment_date" => $request->payment_date,
             'supplier_id' => $supplier_data->id,
             'supplier_code' => $supplier_data->supplier_code,
             'supplier_name' => $supplier_data->name,

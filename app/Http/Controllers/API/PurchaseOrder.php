@@ -643,6 +643,7 @@ $response = [
             "po_number" => $request->po_number,
             "po_reference" => $request->po_reference,
             "order_date" => $request->order_date,
+            "payment_date" => $request->payment_date,
             'customer_id' => $customer_data->id,
             'customer_code' => $customer_data->customer_code,
             'customer_name' => $customer_data->name,

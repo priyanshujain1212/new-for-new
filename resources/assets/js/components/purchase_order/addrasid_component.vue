@@ -393,6 +393,7 @@ export default {
         po_number: this.po_number,
         po_reference: this.po_reference,
         order_date: this.convert_date_format(this.order_date),
+        payment_data: this.convert_date_format(this.payment_date),
         customer_code: this.selectedCustomer ? this.selectedCustomer.customer_code : this.customer_code,
         customer_name: this.selectedCustomer ? this.selectedCustomer.name : this.customer_name,
         payment_type: this.selectedPaymentType ? this.selectedPaymentType : "Due payment",
