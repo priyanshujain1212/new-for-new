@@ -72,11 +72,11 @@ app.component('addsuppliercomponent',addsuppliercomponent);
 app.component('supplierdetailcomponent',supplierdetailcomponent);
 app.component('addusercomponent',addusercomponent);
 app.component('userdetailcomponent',userdetailcomponent);
-Vue.component('forgotpasswordcomponent', forgotpasswordcomponent);
-Vue.component('resetpasswordcomponent', resetpasswordcomponent);
-Vue.component('profilecomponent', profilecomponent);
-Vue.component('editprofilecomponent', editprofilecomponent);
-Vue.component('importcomponent', importcomponent);
-Vue.component('updatedatacomponent', updatedatacomponent);
+app.component('forgotpasswordcomponent', forgotpasswordcomponent);
+app.component('resetpasswordcomponent', resetpasswordcomponent);
+app.component('profilecomponent', profilecomponent);
+app.component('editprofilecomponent', editprofilecomponent);
+app.component('importcomponent', importcomponent);
+app.component('updatedatacomponent', updatedatacomponent);
 // Mount the app
 app.mount('#app');
