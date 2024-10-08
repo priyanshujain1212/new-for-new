@@ -37,9 +37,6 @@ class AuthenticateUser
             if (!isset($token) || is_null($token)) {
                 throw new Exception("Token missing");
             }
-
-           
-
             $token_decode = (new Controller())->jwt_decode($token, env('JWT_KEY', config('aconfig.jwt_key')), ['HS256']);
             $decoded_data = $token_decode->sub;      
            
@@ -152,8 +149,7 @@ class AuthenticateUser
                     // Handle the case where no stores are found
                     dd('No stores found for this customer.');
                 }
-
-
+             
                  $languages = $this->get_languages();
                 // $unread_notifications = $this->unread_notification($request->logged_user_id);
                
@@ -164,7 +160,6 @@ class AuthenticateUser
                     "profile_image"     => get_profile_photo($customer_exists->profile_image),
                     "customer_stores"       => $customer_stores,
                     "selected_store"    => $customer_stores,
-                    
                     "languages"         => $languages,
                     // "selected_language" => $language_array['language_label'],
                     // "selected_language_code" => $language_array['language_code'],
@@ -180,7 +175,7 @@ class AuthenticateUser
 
                    
                 ]);
-                return $next($request);
+                return $next($request); 
             }else{
                 throw new Exception("Invalid token");
             }

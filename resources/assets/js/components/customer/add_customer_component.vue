@@ -78,7 +78,49 @@
             </form>
         </div>
 
-        <!-- Modal Components here -->
+        <modalcomponent v-if="show_modal" @close="show_modal = false">
+    <template v-slot:modal-header>
+        Confirm
+    </template>
+    <template v-slot:modal-body>
+        <p v-if="status == 0">You are making the user inactive.</p>
+        Are you sure you want to proceed?
+    </template>
+    <template v-slot:modal-footer>
+        <button type="button" class="btn btn-light" @click="show_modal = false">Cancel</button>
+        <button type="button" class="btn btn-primary" @click="confirm_submit" v-bind:disabled="processing">
+            <i class='fa fa-circle-notch fa-spin' v-if="processing"></i> Continue
+        </button>
+    </template>
+</modalcomponent>
+
+<modalcomponent v-if="show_password_reset_confirm" @close="show_password_reset_confirm = false">
+    <template v-slot:modal-header>
+        Confirm
+    </template>
+    <template v-slot:modal-body>
+        Are you sure you want to reset the password?
+    </template>
+    <template v-slot:modal-footer>
+        <button type="button" class="btn btn-light" @click="show_password_reset_confirm = false">Cancel</button>
+        <button type="button" class="btn btn-primary" @click="confirm_password_reset" v-bind:disabled="reset_password_form.processing">
+            <i class='fa fa-circle-notch fa-spin' v-if="reset_password_form.processing"></i> Continue
+        </button>
+    </template>
+</modalcomponent>
+
+
+        <modalcomponent v-if="show_new_password" v-on:close="show_new_password = false">
+            <template v-slot:modal-header>
+                New Password
+            </template>
+            <template v-slot:modal-body>
+                New password for the user: <code>{{ new_password }}</code>
+            </template>
+            <template v-slot:modal-footer>
+                <button type="button" class="btn btn-primary" @click="$emit('close')">Ok</button>
+            </template>
+        </modalcomponent>
     </div>
 </template>
 
@@ -101,6 +143,7 @@ export default {
         error_class: '',
         processing: false,
         errors: {},  // Initialized errors object
+        modal: false,
         show_modal: false,
         reset_password_form: {
             processing: false,
@@ -181,20 +224,41 @@ export default {
                 });
         },
         reset_password() {
-            this.reset_password_form.processing = true;
+        this.show_password_reset_confirm = true; // Show reset confirmation modal
+    },
+    confirm_password_reset() {
+        this.reset_password_form.processing = true; // Start processing
 
-            axios.post(this.password_reset_api_link)
-                .then(response => {
-                    this.reset_password_form.processing = false;
-                    this.new_password = response.data.password;
-                    this.show_new_password = true;
-                })
-                .catch(error => {
-                    this.reset_password_form.processing = false;
-                    this.server_errors = error.response.data.message || 'An error occurred.';
-                    this.error_class = 'text-danger';
-                });
-        }
+        const formData = new FormData();
+        formData.append("access_token", window.settings.access_token);
+
+        axios.post(this.password_reset_api_link, formData)
+            .then((response) => {
+                this.reset_password_form.processing = false; // Stop processing
+                this.show_password_reset_confirm = false; // Close the modal
+
+                if (response.data.status_code == 200) {
+                    this.show_response_message(response.data.msg, 'SUCCESS');
+                    this.new_password = response.data.data['secret'];
+                    this.show_new_password = true; // Show new password modal
+                } else {
+                    try {
+                        const error_json = JSON.parse(response.data.msg);
+                        this.loop_api_errors(error_json);
+                    } catch (err) {
+                        this.server_errors = response.data.msg;
+                    }
+                    this.error_class = 'error';
+                }
+            })
+            .catch((error) => {
+                this.reset_password_form.processing = false; // Stop processing on error
+                console.log(error);
+            });
+    },
+    show_response_message(message, type) {
+        console.log(type + ': ' + message); // You can replace this with a UI toast notification
+    },
     }
 }
 </script>

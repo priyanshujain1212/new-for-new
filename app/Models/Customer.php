@@ -9,7 +9,7 @@ class Customer extends Model
 {
     protected $table = 'customers';
     protected $hidden = ['id', 'password', 'role_id'];
-    protected $fillable = ['slack', 'customer_type','store_id','customer_code', 'name', 'email', 'phone', 'address', 'profile_image','dob', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'];
+    protected $fillable = ['slack', 'customer_type','store_id','customer_code', 'name', 'email', 'fresh_login' ,'phone', 'address', 'profile_image','dob', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at'];
 
     public function scopeActive($query){
         return $query->where('status', 1);

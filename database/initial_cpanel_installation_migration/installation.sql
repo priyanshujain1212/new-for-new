@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 06, 2024 at 01:25 PM
+-- Generation Time: Oct 08, 2024 at 02:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -227,6 +227,77 @@ CREATE TABLE `category` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `challan_orders`
+--
+
+CREATE TABLE `challan_orders` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `slack` varchar(30) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `po_number` varchar(50) NOT NULL,
+  `po_reference` varchar(30) DEFAULT NULL,
+  `order_date` date DEFAULT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `supplier_code` varchar(30) NOT NULL,
+  `supplier_name` varchar(250) NOT NULL,
+  `supplier_address` text DEFAULT NULL,
+  `currency_name` varchar(50) DEFAULT NULL,
+  `currency_code` varchar(30) DEFAULT NULL,
+  `total_order_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
+  `terms` text DEFAULT NULL,
+  `update_stock` tinyint(4) NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `payment_type` varchar(30) DEFAULT NULL,
+  `payment_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `challan_orders`
+--
+
+INSERT INTO `challan_orders` (`id`, `slack`, `store_id`, `po_number`, `po_reference`, `order_date`, `supplier_id`, `supplier_code`, `supplier_name`, `supplier_address`, `currency_name`, `currency_code`, `total_order_amount`, `terms`, `update_stock`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `payment_type`, `payment_date`) VALUES
+(2, 'k6FhAtCGRLrOtJMDyG67Vk6Ab', 24, '1111', NULL, '2024-09-30', 2, 'SUP102', 'Supplier 1', 'main', 'Indian rupee', 'INR', 10000.00, NULL, 0, 0, 1, 1, '2024-10-06 03:45:06', '2024-10-06 05:45:43', 'cash', NULL),
+(3, 'hYuUCwWizlLq18dO0PPGPyTUS', 24, '2222', NULL, '2024-09-30', 2, 'SUP102', 'Supplier 1', 'main', 'Indian rupee', 'INR', 1030.00, NULL, 0, 0, 1, 1, '2024-10-06 03:55:12', '2024-10-06 05:54:35', 'cash', '2024-09-30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `challan_order_products`
+--
+
+CREATE TABLE `challan_order_products` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `slack` varchar(30) NOT NULL,
+  `challan_order_id` int(11) NOT NULL,
+  `product_slack` varchar(30) DEFAULT NULL,
+  `product_code` varchar(30) DEFAULT NULL,
+  `name` varchar(250) NOT NULL,
+  `total_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
+  `stock_update` tinyint(4) NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `challan_order_products`
+--
+
+INSERT INTO `challan_order_products` (`id`, `slack`, `challan_order_id`, `product_slack`, `product_code`, `name`, `total_amount`, `stock_update`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(23, '3dJbR62DBBJnfvSSUYi4nh5fn', 2, '5ZO5XxwDSFa6RxFT3l3W1Qv3p', NULL, 'Sup1', 5000.00, 0, 1, NULL, 1, '2024-10-06 11:15:43', '2024-10-06 05:45:43'),
+(24, 'DRAD0kysSKB4dcwf7gPn056eM', 2, 'XvmZMYUE4XVxL055elPmHDCGP', NULL, 'SUB2', 5000.00, 0, 1, NULL, 1, '2024-10-06 11:15:43', '2024-10-06 05:45:43'),
+(27, 'NaEw7mj5NQGObSVsABduKl8i0', 3, '5ZO5XxwDSFa6RxFT3l3W1Qv3p', NULL, 'Sup1', 30.00, 0, 1, NULL, 1, '2024-10-06 11:24:35', '2024-10-06 05:54:35'),
+(28, '1dm42U2hpNK1O2MB40kySBONi', 3, 'XvmZMYUE4XVxL055elPmHDCGP', NULL, 'SUB2', 1000.00, 0, 1, NULL, 1, '2024-10-06 11:24:35', '2024-10-06 05:54:35');
 
 -- --------------------------------------------------------
 
@@ -505,7 +576,7 @@ CREATE TABLE `customers` (
   `slack` varchar(30) NOT NULL,
   `customer_type` enum('DEFAULT','CUSTOM','WALKIN') NOT NULL,
   `password` varchar(100) NOT NULL,
-  `init_password` varchar(10) NOT NULL,
+  `fresh_login` tinyint(1) NOT NULL DEFAULT 1,
   `name` varchar(250) NOT NULL,
   `customer_code` varchar(30) NOT NULL,
   `role_id` int(11) DEFAULT NULL,
@@ -526,8 +597,45 @@ CREATE TABLE `customers` (
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `slack`, `customer_type`, `password`, `init_password`, `name`, `customer_code`, `role_id`, `email`, `phone`, `address`, `profile_image`, `dob`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `store_id`) VALUES
-(11, 'RT4ZOpbTEpib3DihE3L2KhIR9', 'CUSTOM', '$2y$10$MGVWmKK/FFdIP9JGNMV1I.h22yPfG3hDuFV6p.CwGhdGekuXCQWz2', '', 'first trust', '415', 5, 'first@trust.com', '1234567890', '1234567890', NULL, '2024-09-01', 1, 4, 4, '2024-09-21 14:49:03', '2024-09-23 03:38:36', 24);
+INSERT INTO `customers` (`id`, `slack`, `customer_type`, `password`, `fresh_login`, `name`, `customer_code`, `role_id`, `email`, `phone`, `address`, `profile_image`, `dob`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `store_id`) VALUES
+(11, 'RT4ZOpbTEpib3DihE3L2KhIR9', 'CUSTOM', '$2y$10$obmoyO9VlOYSPi2MD1xBxembVzH.qp5E64QC4.AH6Cclp2rlXmoKa', 1, 'first trust', '415', 5, 'first@trust.com', '1234567890', '1234567890', NULL, '2024-09-01', 1, 4, 4, '2024-09-21 14:49:03', '2024-10-07 12:58:44', 24);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_menus`
+--
+
+CREATE TABLE `customer_menus` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer_menus`
+--
+
+INSERT INTO `customer_menus` (`id`, `customer_id`, `menu_id`, `created_by`, `created_at`, `updated_at`) VALUES
+(12, 11, 0, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(13, 11, 10, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(14, 11, 19, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(15, 11, 56, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(16, 11, 72, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(17, 11, 120, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(18, 11, 136, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(19, 11, 144, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(20, 11, 145, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(21, 11, 147, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(22, 11, 149, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(23, 11, 173, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(24, 11, 190, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(25, 11, 191, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(26, 11, 194, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(27, 11, 196, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45');
 
 -- --------------------------------------------------------
 
@@ -1075,23 +1183,22 @@ CREATE TABLE `menus` (
 --
 
 INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort_order`, `icon`, `is_restaurant_menu`, `status`, `created_at`, `updated_at`) VALUES
-(2, 'MAIN_MENU', 'MM_ORDERS', 'Sales & Orders', '', 0, 8, 'fas fa-shopping-cart', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
-(4, 'MAIN_MENU', 'MM_SUPPLIER', 'Supplier', '', 0, 5, 'fas fa-truck', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
-(5, 'MAIN_MENU', 'MM_TAX_AND_DISCOUNT', 'Tax & Discount Codes', '', 0, 6, 'fas fa-percentage', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
-(6, 'MAIN_MENU', 'MM_STOCK', 'Stock', '', 0, 7, 'fas fa-cubes', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
+(2, 'MAIN_MENU', 'MM_ORDERS', 'Sales & Orders', '', 0, 12, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
+(4, 'MAIN_MENU', 'MM_SUPPLIER', 'Supplier', 'suppliers', 0, 5, 'fas fa-truck', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
+(5, 'MAIN_MENU', 'MM_TAX_AND_DISCOUNT', '', '', 0, 19, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
+(6, 'MAIN_MENU', 'MM_STOCK', 'Stock', '', 0, 11, 'fas fa-cubes', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
 (7, 'MAIN_MENU', 'MM_REPORT', 'Reports', '', 0, 9, 'fas fa-chart-pie', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
-(8, 'MAIN_MENU', 'MM_SETTINGS', 'Settings', '', 0, 13, 'fas fa-cog', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
+(8, 'MAIN_MENU', 'MM_SETTINGS', 'Settings', '', 0, 9, 'fas fa-cog', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
 (9, 'SUB_MENU', 'SM_POS_ORDERS', 'Orders', 'orders', 2, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
-(10, 'MAIN_MENU', 'MM_RASIDS_ORDERS', 'Rasids', 'rasids', 0, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
-(11, 'MAIN_MENU', 'MM_USERS', 'Users', 'users', 0, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(12, 'MAIN_MENU', 'MM_CUSTOMERS', 'Customers', 'customers', 0, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(13, 'MAIN_MENU', 'MM_ROLES', 'Roles', 'roles', 0, 4, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(14, 'SUB_MENU', 'SM_SUPPLIERS', 'Suppliers', 'suppliers', 4, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(15, 'SUB_MENU', 'SM_TAXCODES', 'Tax Codes', 'tax_codes', 5, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(10, 'MAIN_MENU', 'MM_RASIDS_ORDERS', 'Rasids', 'rasids', 0, 2, 'fas fa-percentage', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
+(11, 'MAIN_MENU', 'MM_USERS', 'Users', 'users', 0, 6, 'fas fa-money-check-alt', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(12, 'MAIN_MENU', 'MM_CUSTOMERS', 'Customers', 'customers', 0, 5, 'fas fa-money-check-alt', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(13, 'MAIN_MENU', 'MM_ROLES', 'Roles', 'roles', 0, 7, 'fas fa-money-check-alt', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(15, 'SUB_MENU', 'SM_TAXCODES', '', '', 5, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (16, 'SUB_MENU', 'SM_DISCOUNTCODES', 'Discount Codes', 'discount_codes', 5, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (17, 'SUB_MENU', 'SM_PRODUCTS', 'Products', 'products', 6, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (18, 'SUB_MENU', 'SM_CATEGORY', 'Categories', 'categories', 6, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(19, 'MAIN_MENU', 'MM_STORE', 'Stores', 'trusts', 0, 4, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(19, 'MAIN_MENU', 'MM_STORE', 'Stores', 'trusts', 0, 8, 'fas fa-money-check-alt', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (20, 'SUB_MENU', 'SM_PAYMENT_METHOD', 'Payment Methods', 'payment_methods', 8, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (21, 'SUB_MENU', 'SM_IMPORT_DATA', 'Import Data', 'import_data', 160, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:30'),
 (22, 'SUB_MENU', 'SM_UPDATE_DATA', 'Upload & Update Data', 'update_data', 160, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:30'),
@@ -1123,9 +1230,9 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 (48, 'ACTIONS', 'A_ADD_DISCOUNTCODE', 'Add Discount Code', '', 16, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (49, 'ACTIONS', 'A_EDIT_DISCOUNTCODE', 'Edit Discount Code', '', 16, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (50, 'ACTIONS', 'A_DETAIL_DISCOUNTCODE', 'View Discount Code Detail', '', 16, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(51, 'ACTIONS', 'A_ADD_SUPPLIER', 'Add Supplier', '', 14, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(52, 'ACTIONS', 'A_EDIT_SUPPLIER', 'Edit Supplier', '', 14, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(53, 'ACTIONS', 'A_DETAIL_SUPPLIER', 'View Supplier Detail', '', 14, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(51, 'ACTIONS', 'A_ADD_SUPPLIER', 'Add Supplier', '', 4, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(52, 'ACTIONS', 'A_EDIT_SUPPLIER', 'Edit Supplier', '', 4, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(53, 'ACTIONS', 'A_DETAIL_SUPPLIER', 'View Supplier Detail', '', 4, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (54, 'ACTIONS', 'A_ADD_STORE', 'Add Store', '', 19, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (55, 'ACTIONS', 'A_EDIT_STORE', 'Edit Store', '', 19, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (56, 'ACTIONS', 'A_DETAIL_STORE', 'View Store Detail', '', 19, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
@@ -1134,12 +1241,12 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 (59, 'ACTIONS', 'A_DETAIL_PAYMENT_METHOD', 'View Payment Method Detail', '', 20, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (60, 'ACTIONS', 'A_UPLOAD_USER', 'Upload Users', '', 21, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (61, 'ACTIONS', 'A_UPLOAD_STORE', 'Upload Store', '', 19, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(62, 'ACTIONS', 'A_UPLOAD_SUPPLIER', 'Upload Supplier', '', 21, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(62, 'ACTIONS', 'A_UPLOAD_SUPPLIER', 'Upload Supplier', '', 4, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (63, 'ACTIONS', 'A_UPLOAD_CATEGORY', 'Upload Category', '', 21, 4, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (64, 'ACTIONS', 'A_UPLOAD_PRODUCT', 'Upload Product', '', 21, 5, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (65, 'ACTIONS', 'A_UPDATE_USER', 'Update Users', '', 22, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (66, 'ACTIONS', 'A_UPDATE_STORE', 'Update Store', '', 19, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(67, 'ACTIONS', 'A_UPDATE_SUPPLIER', 'Update Supplier', '', 22, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(67, 'ACTIONS', 'A_UPDATE_SUPPLIER', 'Update Supplier', '', 4, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (68, 'ACTIONS', 'A_UPDATE_CATEGORY', 'Update Category', '', 22, 4, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (69, 'ACTIONS', 'A_UPDATE_PRODUCT', 'Update Product', '', 22, 5, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (70, 'ACTIONS', 'A_ADD_RASID', 'Add Rasid', '', 10, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
@@ -1161,7 +1268,7 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 (86, 'ACTIONS', 'A_DETAIL_QUOTATION', 'View Quotation Details', '', 83, 3, NULL, 0, 1, '2021-11-26 08:57:27', '2021-11-26 08:57:27'),
 (87, 'ACTIONS', 'A_DELETE_QUOTATION', 'Delete Quotation', '', 83, 4, NULL, 0, 1, '2021-11-26 08:57:27', '2021-11-26 08:57:27'),
 (88, 'ACTIONS', 'A_EDIT_STATUS_QUOTATION', 'Change Quotation Status', '', 83, 5, NULL, 0, 1, '2021-11-26 08:57:27', '2021-11-26 08:57:27'),
-(89, 'MAIN_MENU', 'MM_ACCOUNT', 'Business Account', '', 0, 5, 'fas fa-money-check-alt', 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:29'),
+(89, 'MAIN_MENU', 'MM_ACCOUNT', 'Business Account', '', 0, 10, 'fas fa-money-check-alt', 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:29'),
 (90, 'SUB_MENU', 'SM_ACCOUNTS', 'Accounts', 'accounts', 89, 1, NULL, 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:28'),
 (91, 'SUB_MENU', 'SM_TRANSACTIONS', 'Transactions', 'transactions', 2, 6, NULL, 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:32'),
 (92, 'ACTIONS', 'A_ADD_ACCOUNT', 'Add Account', '', 90, 1, NULL, 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:28'),
@@ -1200,7 +1307,7 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 (125, 'ACTIONS', 'A_VIEW_USER_LISTING', 'View User Listing', '', 11, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (126, 'ACTIONS', 'A_VIEW_CUSTOMER_LISTING', 'View Customer Listing', '', 12, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (127, 'ACTIONS', 'A_VIEW_ROLE_LISTING', 'View Role Listing', '', 13, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
-(128, 'ACTIONS', 'A_VIEW_SUPPLIER_LISTING', 'View Supplier Listing', '', 14, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
+(128, 'ACTIONS', 'A_VIEW_SUPPLIER_LISTING', 'View Supplier Listing', '', 4, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (129, 'ACTIONS', 'A_VIEW_TAXCODE_LISTING', 'View Tax Code Listing', '', 15, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (130, 'ACTIONS', 'A_VIEW_DISCOUNTCODE_LISTING', 'View Discount Code Listing', '', 16, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (131, 'ACTIONS', 'A_VIEW_PRODUCT_LISTING', 'View Product Listing', '', 17, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:31'),
@@ -1244,8 +1351,8 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 (170, 'ACTIONS', 'A_EDIT_PARTICULAR', 'Edit Particular', '', 213, 2, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
 (171, 'ACTIONS', 'A_DETAIL_PARTICULAR', 'View Particular Detail', '', 213, 3, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
 (172, 'ACTIONS', 'A_VIEW_PARTICULAR_LISTING', 'View Particular Listing', '', 213, 4, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
-(173, 'MAIN_MENU', 'MM_MASTER_DASHBOARD', 'Master Dashboard', 'dashboard', 1, 1, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
-(174, 'SUB_MENU', 'SM_BILLING_COUNTER_DASHBOARD', 'Billing Counter Dashboard', 'billing_counter_dashboard', 1, 2, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
+(173, 'MAIN_MENU', 'MM_MASTER_DASHBOARD', 'Master Dashboard', 'dashboard', 0, 1, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
+(174, 'SUB_MENU', 'SM_BILLING_COUNTER_DASHBOARD', 'Billing Counter Dashboard', '', 1, 2, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
 (175, 'ACTIONS', 'A_CREATE_INVOICE_FROM_PO', 'Create Invoice from Purchase Order', '', 10, 7, NULL, 0, 1, '2021-11-26 08:57:31', '2021-11-26 08:57:31'),
 (176, 'ACTIONS', 'A_UPLOAD_INGREDIENT', 'Upload Ingredient', '', 21, 6, NULL, 0, 1, '2021-11-26 08:57:31', '2021-11-26 08:57:31'),
 (177, 'ACTIONS', 'A_UPDATE_INGREDIENT', 'Update Ingredient', '', 22, 6, NULL, 0, 1, '2021-11-26 08:57:31', '2021-11-26 08:57:31'),
@@ -1284,8 +1391,8 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 (210, 'ACTIONS', 'A_DETAIL_VARIANT_OPTION', 'View Variant Option Detail', '', 207, 3, NULL, 0, 1, '2021-11-26 08:57:33', '2021-11-26 08:57:33'),
 (211, 'ACTIONS', 'A_VIEW_VARIANT_OPTION_LISTING', 'View Variant Option Listing', '', 207, 4, NULL, 0, 1, '2021-11-26 08:57:33', '2021-11-26 08:57:33'),
 (212, 'ACTIONS', 'A_UPDATE_PRODUCT_VARIANT', 'Update Product Variants', '', 22, 8, NULL, 0, 1, '2021-11-26 08:57:33', '2021-11-26 08:57:33'),
-(213, 'MAIN_MENU', 'MM_PARTICULARS', 'Particulars', 'particulars', 8, 2, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:32'),
-(215, 'MAIN_MENU', 'MM_CHALLANS', 'Challan', 'challans', 0, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
+(213, 'MAIN_MENU', 'MM_PARTICULARS', 'Particulars', 'particulars', 0, 4, 'fas fa-cubes', 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:32'),
+(215, 'MAIN_MENU', 'MM_CHALLANS', 'Challan', 'challans', 0, 3, 'fas fa-percentage', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
 (216, 'ACTIONS', 'A_ADD_CHALLAN', 'Add Challan', '', 215, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (217, 'ACTIONS', 'A_EDIT_CHALLAN', 'Edit Challan', '', 215, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (218, 'ACTIONS', 'A_DETAIL_CHALLAN', 'View Challan Detail', '', 215, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
@@ -1980,7 +2087,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('iK4jdKIwOsEkzkC07JqqI73L1sFSKVWYABdexo9k', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YToxMTp7czo2OiJfdG9rZW4iO3M6NDA6InFNSGVjVklKT0dzS09RamkxVWZwT2s4RmZxNTFRY1F6R0w3SFlhZUsiO3M6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvY2hhbGxhbnMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjg6ImZ1bGxuYW1lIjtzOjE1OiJBcHBzdGhpbmcgQWRtaW4iO3M6OToiZmlyc3RuYW1lIjtOO3M6MTM6InByb2ZpbGVfaW1hZ2UiO047czo1OiJzbGFjayI7czoyNToiWEowNjk5WlNXYWp5eHZZUk50NkNCWnlHYSI7czo3OiJ1c2VyX2lkIjtpOjE7czo0OiJyb2xlIjtpOjE7czoxMjoiaW5pdGlhbF9saW5rIjtzOjMxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkIjtzOjEyOiJhY2Nlc3NfdG9rZW4iO3M6MjMzOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuZXlKcGMzTWlPaUpxZDNSZmRHOXJaVzRpTENKemRXSWlPbnNpZFhObGNsOXBaQ0k2TVN3aWRYTmxjbDl6YkdGamF5STZJbGhLTURZNU9WcFRWMkZxZVhoMldWSk9kRFpEUWxwNVIyRWlmU3dpYVdGMElqb3hOekk0TVRrMk1ERXlMQ0psZUhBaU9qRTNNamd5T0RJME1USjkuaDk2QUhpRUtfVl8zV1hFaHJhWmRHaVU2dGw3MVJIcVEtRVRBN0JHY2ppcyI7fQ==', 1728213877);
+('8sH2xXE7wrL0l3yPYIYBnUMa1Yg5softLuo1wGQh', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YToxMjp7czo2OiJfdG9rZW4iO3M6NDA6Imd4N1pnczFFbUh4Tmp4Q09vdjRMaWRqZGVHM1VGRkdZQ1laTlVsUVEiO3M6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvY2hhbGxhbnMiO31zOjY6Im91dHB1dCI7czoyNDoiMzQ2YTY4NzEzMzQ0MzEzMTMyMzkzODMwIjtzOjg6ImZ1bGxuYW1lIjtzOjE1OiJBcHBzdGhpbmcgQWRtaW4iO3M6OToiZmlyc3RuYW1lIjtOO3M6MTM6InByb2ZpbGVfaW1hZ2UiO047czo1OiJzbGFjayI7czoyNToiWEowNjk5WlNXYWp5eHZZUk50NkNCWnlHYSI7czo3OiJ1c2VyX2lkIjtpOjE7czo0OiJyb2xlIjtpOjE7czoxMjoiaW5pdGlhbF9saW5rIjtzOjMxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkIjtzOjEyOiJhY2Nlc3NfdG9rZW4iO3M6MjMzOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuZXlKcGMzTWlPaUpxZDNSZmRHOXJaVzRpTENKemRXSWlPbnNpZFhObGNsOXBaQ0k2TVN3aWRYTmxjbDl6YkdGamF5STZJbGhLTURZNU9WcFRWMkZxZVhoMldWSk9kRFpEUWxwNVIyRWlmU3dpYVdGMElqb3hOekk0TXprd016Z3dMQ0psZUhBaU9qRTNNamcwTnpZM09EQjkuQWtrbU0xMDFIMVhZNEdCTGxrMHAyQTRnUWhFQWtsMWJ0REVqV1RjNWlrVSI7fQ==', 1728392275);
 
 -- --------------------------------------------------------
 
@@ -2422,7 +2529,7 @@ CREATE TABLE `users` (
   `fullname` varchar(250) NOT NULL,
   `email` varchar(150) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `init_password` varchar(10) DEFAULT NULL,
+  `fresh_login` tinyint(1) NOT NULL DEFAULT 1,
   `password_reset_token` text DEFAULT NULL,
   `password_reset_max_tries` int(11) NOT NULL DEFAULT 0,
   `password_reset_last_tried_on` datetime DEFAULT NULL,
@@ -2442,9 +2549,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `slack`, `user_code`, `fullname`, `email`, `password`, `init_password`, `password_reset_token`, `password_reset_max_tries`, `password_reset_last_tried_on`, `phone`, `profile_image`, `role_id`, `store_id`, `language_id`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'XJ0699ZSWajyxvYRNt6CBZyGa', 'SA', 'Appsthing Admin', 'admin@appsthing.com', '$2y$10$YCeRIaNFfikriDJ/ALyMneUt3TPlf1u9TW3mwVvQZz5jEnveZrUwK', NULL, NULL, 0, NULL, '0000000000', NULL, 1, 24, NULL, 1, NULL, NULL, '2021-11-26 08:57:25', '2024-09-21 14:33:10'),
-(4, 'sKMArEMSbUkkkTEggsQJWPwJH', '104', 'Admin Trust', 'admin@trust.com', '$2y$10$2MjAl.9t5aQdKymLs3K16O5A97J4thS7HM7CjSDnIGVxPt88QGEs2', NULL, NULL, 0, NULL, '1234567890', NULL, 4, 24, NULL, 1, 1, 1, '2024-09-21 14:44:01', '2024-09-29 03:41:22');
+INSERT INTO `users` (`id`, `slack`, `user_code`, `fullname`, `email`, `password`, `fresh_login`, `password_reset_token`, `password_reset_max_tries`, `password_reset_last_tried_on`, `phone`, `profile_image`, `role_id`, `store_id`, `language_id`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'XJ0699ZSWajyxvYRNt6CBZyGa', 'SA', 'Appsthing Admin', 'admin@appsthing.com', '$2y$10$3wMSDstnC/IDE7Kwv6FfUOqygz0vongvG0mxbtF1HAJAd3cyx6ozm', 0, NULL, 0, NULL, '8889400010', NULL, 1, 24, NULL, 1, NULL, NULL, '2021-11-26 08:57:25', '2024-10-08 06:56:08'),
+(4, 'sKMArEMSbUkkkTEggsQJWPwJH', '104', 'Admin Trust', 'admin@trust.com', '$2y$10$2MjAl.9t5aQdKymLs3K16O5A97J4thS7HM7CjSDnIGVxPt88QGEs2', 1, NULL, 0, NULL, '1234567890', NULL, 4, 24, NULL, 1, 1, 1, '2024-09-21 14:44:01', '2024-09-29 03:41:22');
 
 -- --------------------------------------------------------
 
@@ -2473,7 +2580,8 @@ INSERT INTO `user_access_tokens` (`id`, `customer_id`, `user_id`, `session_id`, 
 (148, 0, 1, 'j18CjzM0uAp3HgM6QMn1bUVFRXHfJCAxPJ9M0ftP', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MTIwNTM2LCJleHAiOjE3MjgyMDY5MzZ9.nAK9EG3x9L4yqbupTwXxNXTZy-8MpgMyw9umyqcqgEM', '2024-10-05 03:58:56', '2024-10-05 03:58:56'),
 (149, 0, 1, 'ibvatARxILal2CdUhMUdR9M3FlIKiYyfrzBbtEwp', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MTMzNzYzLCJleHAiOjE3MjgyMjAxNjN9.1Wp063Q43uHrsQlU5aCiaoCnZYQcswBjVWEgwVy904M', '2024-10-05 07:39:23', '2024-10-05 07:39:23'),
 (150, 0, 1, 'acBHkm1lj09J48KAJwHGynZk0XjhZMgw9Q7F2HWH', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MTU1MDUyLCJleHAiOjE3MjgyNDE0NTJ9.vfIzc-VAAgf215QYsXxPP-rGXV1hyuk96EwJ9zzlP6A', '2024-10-05 13:34:12', '2024-10-05 13:34:12'),
-(151, 0, 1, 'iK4jdKIwOsEkzkC07JqqI73L1sFSKVWYABdexo9k', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MTk2MDEyLCJleHAiOjE3MjgyODI0MTJ9.h96AHiEK_V_3WXEhraZdGiU6tl71RHqQ-ETA7BGcjis', '2024-10-06 00:56:52', '2024-10-06 00:56:52');
+(153, 0, 1, 'c9FvndNBpl8l4hQioR03FVXtwVon2arHXk1XPcrE', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MjIwNjk5LCJleHAiOjE3MjgzMDcwOTl9.N85bMK9x-7ID5sl9WqtqpdcgSq0XgOoSLc57WRiKqpo', '2024-10-06 07:48:19', '2024-10-06 07:48:19'),
+(172, 0, 1, '8sH2xXE7wrL0l3yPYIYBnUMa1Yg5softLuo1wGQh', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MzkwMzgwLCJleHAiOjE3Mjg0NzY3ODB9.AkkmM101H1XY4GBLlk0p2A4gQhEAkl1btDEjWTc5ikU', '2024-10-08 06:56:20', '2024-10-08 06:56:20');
 
 -- --------------------------------------------------------
 
@@ -2799,6 +2907,18 @@ ALTER TABLE `category`
   ADD KEY `category_status_store_id_category_code_index` (`status`,`store_id`,`category_code`);
 
 --
+-- Indexes for table `challan_orders`
+--
+ALTER TABLE `challan_orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `challan_order_products`
+--
+ALTER TABLE `challan_order_products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `country`
 --
 ALTER TABLE `country`
@@ -2812,6 +2932,12 @@ ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `customers_slack_unique` (`slack`),
   ADD KEY `customers_email_phone_status_index` (`email`,`phone`,`status`);
+
+--
+-- Indexes for table `customer_menus`
+--
+ALTER TABLE `customer_menus`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `discount_codes`
@@ -3300,6 +3426,18 @@ ALTER TABLE `category`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `challan_orders`
+--
+ALTER TABLE `challan_orders`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `challan_order_products`
+--
+ALTER TABLE `challan_order_products`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
 -- AUTO_INCREMENT for table `country`
 --
 ALTER TABLE `country`
@@ -3310,6 +3448,12 @@ ALTER TABLE `country`
 --
 ALTER TABLE `customers`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `customer_menus`
+--
+ALTER TABLE `customer_menus`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `discount_codes`
@@ -3603,7 +3747,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_access_tokens`
 --
 ALTER TABLE `user_access_tokens`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
 
 --
 -- AUTO_INCREMENT for table `user_menus`

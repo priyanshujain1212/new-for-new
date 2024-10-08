@@ -9,7 +9,7 @@ class User extends Model
 {
     protected $table = 'users';
     protected $hidden = ['id', 'password', 'role_id'];
-    protected $fillable = ['slack', 'user_code', 'fullname', 'email', 'password', 'init_password', 'phone', 'profile_image', 'role_id', 'status', 'created_by', 'updated_by'];
+    protected $fillable = ['slack', 'user_code', 'fullname', 'email', 'password', 'fresh_login', 'phone', 'profile_image', 'role_id', 'status', 'created_by', 'updated_by'];
 
     public function scopeActive($query){
         return $query->where('users.status', 1);
