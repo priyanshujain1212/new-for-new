@@ -7,8 +7,10 @@ use Validator;
 
 use Firebase\JWT\JWT;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -44,94 +46,260 @@ class User extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function authenticate(Request $request)
-    {
-        try {
-            // Validate the email and password input
-            $validator = Validator::make($request->all(), [
-                'email' => $this->get_validation_rules("email", true),
-                'password' => $this->get_validation_rules("password", true)
-            ]);
-    
-          
-    
-            if ($validator->fails()) {
-                throw new Exception($validator->errors()->first());
-            }
-    
-            // Try to authenticate the user first
-            $user_data = UserModel::select('users.*')
-                ->roleJoin()
-                ->where([
-                    ['roles.status', '=', 1],
-                    ['users.email', '=', $request->email],
-                    ['users.status', '=', 1]
-                ])
-                ->first();
-    
-            if ($user_data && Hash::check($request->password, $user_data->password)) {
-                // Generate the user's first link and token
-                $first_link = $this->get_user_default_link($user_data, 'user');
-                $user_data->initial_link = $first_link ? route($first_link->route) : "/";
-    
-                if ($user_data->initial_link == "/") {
-                    throw new Exception("You don't have access to the system. Please contact the system administrator for assistance user.", 401);
-                }
 
-                $access_token = $this->generate_access_token($user_data, 'user');
-                $user_detail = UserModel::find($user_data->id);
-                $user = collect(new UserResource($user_detail));
-                $user['access_token'] = $access_token;
+     public function checkFirstLogin(Request $request)
+     {
+         $request->validate([
+             'contact' => 'required|string',
+         ]);
+         $contact = $request->input('contact');
+         $user = UserModel::where('email', $contact)->orWhere('phone', $contact)->first();
+         if ($user) {
+             $isFirstLogin = $user->fresh_login; 
+          
+             return response()->json(['isFirstLogin' => $isFirstLogin, 'name' => $user->fullname]);
+           
+         }
+         $customer = CustomerModel::where('email', $contact)->orWhere('phone', $contact)->first();
+         if ($customer) {
+             $isFirstLogin = $customer->fresh_login;
+             return response()->json(['isFirstLogin' => $isFirstLogin, 'name' => $customer->fullname]);
+         }
+
+         
+         return response()->json(['isFirstLogin' => false], 404);
+     }
+
+         /**
+     * Authenticate API
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+     public function authenticate(Request $request)
+     {
+         try {
+             // Validate the input for email/phone and password
+             $validator = Validator::make($request->all(), [
+                 'contact' => 'required|string|max:255', // Validate either email or phone
+                 'password' => $this->get_validation_rules("password", true)
+             ]);
+     
+             if ($validator->fails()) {
+                 return response()->json($this->generate_response([
+                     "message" => $validator->errors()->first(),
+                     "status_code" => 400
+                 ]));
+             }
+     
+             // Attempt to authenticate the user using contact (email or phone)
+             $user = $this->authenticateUser($request->contact, $request->password, 'user');
+             if ($user) {
+                 return response()->json($this->generate_response($user, 'SUCCESS'));
+             }
+     
+             $customer = $this->authenticateUser($request->contact, $request->password, 'customer');
+             if ($customer) {
+                 return response()->json($this->generate_response($customer, 'SUCCESS'));
+             }
+     
+             throw new Exception("Invalid contact or password", 401);
+     
+         } catch (Exception $e) {
+             return response()->json($this->generate_response([
+                 "message" => $e->getMessage(),
+                 "status_code" => $e->getCode() ?: 400
+             ]));
+         }
+     }
+     
+         /**
+     * Authenticate API
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+     private function authenticateUser($contact, $password, $type)
+     {
+         $model = $type === 'user' ? UserModel::class : CustomerModel::class;
+         $modelInstance = new $model;
+     
+         // Attempt to find user by email or phone
+         $data = $model::select($modelInstance->getTable() . '.*')
+             ->roleJoin()
+             ->where(function($query) use ($contact) {
+                 // Check for both email and phone
+                 $query->where('email', '=', $contact)
+                       ->orWhere('phone', '=', $contact);
+             })
+             ->first();
+     
+         if ($data && Hash::check($password, $data->password)) {
+             $first_link = $this->get_user_default_link($data, $type);
+             $data->initial_link = $first_link ? route($first_link->route) : "/";
+             if ($data->initial_link == "/") {
+                 throw new Exception("You don't have access to the system. Please contact the system administrator.", 401);
+             }
+     
+             $access_token = $this->generate_access_token($data, $type);
+             $detail = $model::find($data->id);
+             $resource = $type === 'user' ? new UserResource($detail) : new CustomerResource($detail);
+             $resource = collect($resource);
+             $resource['access_token'] = $access_token;
+     
+             return [
+                 "message" => "Authenticated successfully",
+                 "data" => $resource,
+                 "link" => $data->initial_link
+             ];
+         }
+     
+         return null; // Return null if authentication fails
+     }
+     
     
-                return response()->json($this->generate_response([
-                    "message" => "Authenticated successfully",
-                    "data" => $user,
-                    "link" => $user_data->initial_link
-                ], 'SUCCESS'));
-            }
+         /**
+     * Authenticate API
+     *
+     * @return \Illuminate\Http\Response
+     */
     
-            // If user is not found or password is invalid, try to authenticate the customer
-            $customer_data = CustomerModel::select('customers.*')
-                ->roleJoin()
-                ->where([
-                    // ['roles.status', '=', 1],
-                    ['customers.email', '=', $request->email],
-                    // ['customers.status', '=', 1]
-                ])
-                ->first();
+     public function sendOtp(Request $request)
+     {
+         // Validate the request
+         $request->validate([
+             'contact' => 'required|string|max:255',
+             'name' => 'required|string|max:255', // Validate the name
+         ]);
+         
+         $contact = $request->input('contact');
+         $name = $request->input('name'); // Retrieve the name from the request
+       
+        // Add country code
+        $mobileNumber = '91' . $contact;
+
+         // Generate the OTP
+         $otp = str_pad(rand(0, pow(10, 6) - 1), 6, '0', STR_PAD_LEFT); // Generates a 6-digit OTP
+     
+         // Prepare the message
+         $message = "Hello {$name}, your one-time password is: {$otp}. Thank you!";
+         
+         // Send the OTP via MSG91
+         $authKey = "431994A46TGRRVsfMG6703dd85P1";  // Replace with your actual Auth Key
+         $route = "4";  // Use '4' for transactional SMS without sender ID
+     
+         $postData = array(
+             'authkey' => $authKey,
+             'mobiles' => $mobileNumber,
+             'message' => urlencode($message),
+             'route' => $route,
+              'sender' => 'ECHO'
+         );
+     
+         // API URL
+         $url = "http://api.msg91.com/api/sendhttp.php";
+     
+         // Initialize cURL
+         $ch = curl_init();
+         curl_setopt_array($ch, array(
+             CURLOPT_URL => $url,
+             CURLOPT_RETURNTRANSFER => true,
+             CURLOPT_POST => true,
+             CURLOPT_POSTFIELDS => $postData,
+             CURLOPT_SSL_VERIFYHOST => 0,
+             CURLOPT_SSL_VERIFYPEER => 0
+         ));
+     
+         // Execute cURL
+         $output = curl_exec($ch);
+         
+         // Check for cURL errors
+         if (curl_errno($ch)) {
+             Log::error('cURL error: ' . curl_error($ch));
+             return response()->json(['success' => false, 'message' => 'Error sending OTP.'], 500);
+         }
+         
+         // Close cURL
+         curl_close($ch);
    
-            if ($customer_data && Hash::check($request->password, $customer_data->password)) {
-                // Generate the customer's first link and token
-                $first_link = $this->get_user_default_link($customer_data, 'customer'); 
-                $customer_data->initial_link = $first_link ? route($first_link->route) : "/";
+         // Check response
+         if ($output != NULL) {
+             // Store the OTP in the session for later verification
+             session(['otp' => $otp,
+                      'output' => $output]);
+             return response()->json(['success' => true, 'message' => 'OTP sent successfully.']);
+         } else {
+             Log::error('Failed to send message. Response: ' . $output);
+             return response()->json(['success' => false, 'message' => 'Failed to send message.'], 400);
+         }
+     }
+         /**
+     * Authenticate API
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+     
     
-                if ($customer_data->initial_link == "/") {
-                    throw new Exception("You don't have access to the system. Please contact the system administrator for assistance customer.", 401);
-                }
+    public function verifyOtp(Request $request)
+    {
+        $request->validate([
+            'contact' => 'required|string|max:255',
+            'otp' => 'required|string|max:6',
+            'newPassword' => 'required|string|min:8', // You can set your own password rules
+        ]);
     
-                $access_token = $this->generate_access_token($customer_data, 'customer');
-                $customer_detail = CustomerModel::find($customer_data->id);
-                $customer = collect(new CustomerResource($customer_detail));
-                $customer['access_token'] = $access_token;
-                // dd($customer, $customer_data);
-                return response()->json($this->generate_response([
-                    "message" => "Authenticated successfully",
-                    "data" => $customer,
-                    "link" => $customer_data->initial_link
-                ], 'SUCCESS'));
-            }
-    dd($user , $customer);
-            // If neither user nor customer is found, throw an invalid credentials error
-            throw new Exception("Invalid email or password", 401);
+        $contact = $request->input('contact');
+        $otp = $request->input('otp');
+        $newPassword = $request->input('newPassword');
     
-        } catch (Exception $e) {
-            return response()->json($this->generate_response([
-                "message" => $e->getMessage(),
-                "status_code" => $e->getCode() ?: 400
-            ]));
+        // Check if the OTP matches
+        if (session('otp') !== $otp) {
+            return response()->json(['success' => false, 'message' => 'Invalid OTP.'], 400);
+        }
+    
+        // Attempt to find the user in UserModel or CustomerModel
+        $user = UserModel::where('email', $contact)->orWhere('phone', $contact)->first();
+    
+        // If not found, check in CustomerModel
+        if (!$user) {
+            $user = CustomerModel::where('email', $contact)->orWhere('phone', $contact)->first();
+        }
+    
+        // If the user or customer is not found
+        if (!$user) {
+            return response()->json(['success' => false, 'message' => 'User not found.'], 404);
+        }
+    
+        // Start the transaction
+        DB::beginTransaction();
+        try {
+            // Hash the new password
+            $hashed_password = Hash::make($newPassword);
+    
+            // Update the user's password and reset fresh_login status
+            $user->password = $hashed_password; 
+            $user->fresh_login = 0; // Reset fresh_login status
+            $user->save(); // Save changes to the database
+    
+            // Clear the OTP from the session
+            session()->forget('otp');
+    
+            // Commit the transaction
+            DB::commit();
+            $isFirstLogin = $user->fresh_login; 
+            
+            // return response()->json(['isFirstLogin' => $isFirstLogin,
+    
+            return response()->json(['success' => true, 'isFirstLogin' => $isFirstLogin, 'message' => 'Password updated successfully.']);
+        } catch (\Exception $e) {
+            // Rollback the transaction on error
+            DB::rollBack();
+            return response()->json(['success' => false, 'message' => 'Failed to update password.'], 500);
         }
     }
     
+
 
     /**
      * Display a listing of the resource.
@@ -271,7 +439,6 @@ class User extends Controller
                 "user_code" => Str::random(6),
                 "email" => $request->email,
                 "password" => $hashed_password,
-                "init_password" => $password,
                 "fullname" => $request->fullname,
                 "phone" => $request->phone,
                 "role_id" => $role_data->id,
@@ -1263,16 +1430,10 @@ class User extends Controller
                 "user_id" => $data->id,  // Use $data instead of $user_data
                 "user_slack" => $data->slack  // Use $data instead of $user_data
             );
-    
-            // Encode JWT
             $access_token = $this->jwt_encode($encode_array);
-            
-            // Remove expired session and set new session for user
             $this->remove_expired_session($data->slack, 'user');
             $this->set_user_session($data, $access_token);
             $session_id = request()->session()->getId();
-    
-            // Update access token in user_access_tokens table
             $user_token_array = [
                 'user_id' => $data->id,  // Use $data instead of $user_data
                 'access_token' => $access_token,
@@ -1286,23 +1447,16 @@ class User extends Controller
                 "customer_id" => $data->id,  // Use $data instead of $customer_data
                 "customer_slack" => $data->slack  // Use $data instead of $customer_data
             );
-    
-            // Encode JWT
             $access_token = $this->jwt_encode($encode_array);
-    
-            // Remove expired session and set new session for customer
             $this->remove_expired_session($data->slack, 'customer');
             $this->set_customer_session($data, $access_token);
             $session_id = request()->session()->getId();
-    
-            // Update access token in user_access_tokens table
             $user_token_array = [
                 'customer_id' => $data->id,  // Use $data instead of $customer_data
                 'access_token' => $access_token,
                 'session_id' => $session_id
             ];
             UserTokenModel::create($user_token_array)->id;
-           
             return $access_token;
         }
     }

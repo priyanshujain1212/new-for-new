@@ -11,7 +11,7 @@ class ChallanOrder extends Model
 {
     protected $table = 'challan_orders';
     protected $hidden = ['id', 'store_id', 'supplier_id'];
-    protected $fillable = ['slack', 'store_id', 'po_number', 'po_reference', 'order_date', 'supplier_id', 'supplier_code', 'supplier_name', 'supplier_address', 'currency_name', 'currency_code', 'total_order_amount', 'terms', 'update_stock', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at','payment_type'];
+    protected $fillable = ['slack', 'store_id', 'po_number', 'po_reference', 'order_date', 'payment_date', 'supplier_id', 'supplier_code', 'supplier_name', 'supplier_address', 'currency_name', 'currency_code', 'total_order_amount', 'terms', 'update_stock', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at','payment_type'];
 
     protected static function boot()
     {

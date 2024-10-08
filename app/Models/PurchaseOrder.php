@@ -11,7 +11,7 @@ class PurchaseOrder extends Model
 {
     protected $table = 'purchase_orders';
     protected $hidden = ['id', 'store_id', 'customer_id'];
-    protected $fillable = ['slack', 'store_id', 'po_number', 'transaction_id','transaction_date', 'po_reference', 'order_date', 'customer_id', 'customer_code', 'customer_name', 'customer_address', 'currency_name', 'currency_code', 'total_order_amount', 'terms', 'update_stock', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at','payment_type'];
+    protected $fillable = ['slack', 'store_id', 'po_number', 'transaction_id','transaction_date', 'po_reference', 'payment_date' , 'order_date', 'customer_id', 'customer_code', 'customer_name', 'customer_address', 'currency_name', 'currency_code', 'total_order_amount', 'terms', 'update_stock', 'status', 'created_by', 'updated_by', 'created_at', 'updated_at','payment_type'];
 
     protected static function boot()
     {

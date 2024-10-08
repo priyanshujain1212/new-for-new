@@ -14,6 +14,9 @@ use Illuminate\Http\Request;
 */
 
 Route::post('/user/authenticate', 'API\User@authenticate');
+Route::post('/user/checkFirstLogin','API\User@checkFirstLogin');
+Route::post('/user/sendOtp','API\User@sendOtp');
+Route::post('/user/verifyOtp','API\User@verifyOtp');
 Route::post('/user/forgot_password', 'API\User@forgot_password');
 Route::post('/user/reset_password', 'API\User@reset_password');
 

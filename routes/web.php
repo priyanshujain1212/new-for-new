@@ -33,7 +33,7 @@ Route::group(['middleware' => ['app_indicator', 'token_auth', 'user_menu']], fun
 
     //dashboard
     Route::get('/dashboard', "Dashboard@index")->name('dashboard');
-    Route::get('/billing_counter_dashboard', "Dashboard@billing_counter_dashboard")->name('billing_counter_dashboard');
+   
 
     //user
     Route::get('/users', "User@index")->name('users');
@@ -75,12 +75,6 @@ Route::group(['middleware' => ['app_indicator', 'token_auth', 'user_menu']], fun
     Route::get('/supplier/{slack}', "Supplier@detail")->name('supplier');
     Route::get('/add_supplier', "Supplier@add_supplier")->name('add_supplier');
     Route::get('/edit_supplier/{slack?}', "Supplier@add_supplier")->name('edit_supplier');
-
-    //tax code
-    Route::get('/tax_codes', "Taxcode@index")->name('tax_codes');
-    Route::get('/tax_code/{slack}', "Taxcode@detail")->name('tax_code');
-    Route::get('/add_tax_code', "Taxcode@add_tax_code")->name('add_tax_code');
-    Route::get('/edit_tax_code/{slack?}', "Taxcode@add_tax_code")->name('edit_tax_code');
 
     //order
     Route::get('/orders', "Order@index")->name('orders');

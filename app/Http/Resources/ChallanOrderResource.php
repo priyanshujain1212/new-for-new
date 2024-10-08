@@ -27,6 +27,8 @@ class ChallanOrderResource extends JsonResource
             'order_date' => $this->parseDateOnly($this->order_date),
             'order_due_date' => $this->parseDateOnly($this->order_due_date),
             'order_date_raw' => $this->order_date,
+            'payment_date' => $this->parseDateOnly($this->payment_date),
+            'payment_date_raw' => $this->payment_date,
             'order_due_date_raw' => $this->order_due_date,
             'supplier_code' => $this->supplier_code,
             'supplier_name' => $this->supplier_name,

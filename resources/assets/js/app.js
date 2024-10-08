@@ -31,6 +31,12 @@ import addsuppliercomponent from './components/supplier/add_supplier_component.v
 import supplierdetailcomponent from './components/supplier/supplier_detail_component.vue';
 import addusercomponent from './components/user/add_user_component.vue';
 import userdetailcomponent from './components/user/user_detail_component.vue';
+import forgotpasswordcomponent from'./components/entry/forgot_password_component.vue';
+import resetpasswordcomponent from './components/entry/reset_password_component.vue';
+import profilecomponent from './components/user/profile_component.vue';
+import editprofilecomponent from './components/user/edit_profile_component.vue';
+import importcomponent from './components/import/import_component.vue';
+import updatedatacomponent from './components/import/update_data_component.vue';
 
 // Create the Vue app
 const app = createApp({});
@@ -66,6 +72,11 @@ app.component('addsuppliercomponent',addsuppliercomponent);
 app.component('supplierdetailcomponent',supplierdetailcomponent);
 app.component('addusercomponent',addusercomponent);
 app.component('userdetailcomponent',userdetailcomponent);
-
+app.component('forgotpasswordcomponent', forgotpasswordcomponent);
+app.component('resetpasswordcomponent', resetpasswordcomponent);
+app.component('profilecomponent', profilecomponent);
+app.component('editprofilecomponent', editprofilecomponent);
+app.component('importcomponent', importcomponent);
+app.component('updatedatacomponent', updatedatacomponent);
 // Mount the app
 app.mount('#app');

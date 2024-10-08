@@ -1,13 +1,11 @@
--- Please only use during installation
-
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 28, 2021 at 00:00 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.14
+-- Generation Time: Oct 08, 2024 at 02:59 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `appsthing_pos`
+-- Database: `new`
 --
 
 -- --------------------------------------------------------
@@ -31,13 +29,13 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `accounts` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `account_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `account_code` varchar(30) NOT NULL,
   `account_type` int(11) NOT NULL,
-  `label` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `label` varchar(250) NOT NULL,
   `initial_balance` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `pos_default` tinyint(4) NOT NULL DEFAULT 0,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
@@ -45,6 +43,34 @@ CREATE TABLE `accounts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `slack`, `store_id`, `account_code`, `account_type`, `label`, `initial_balance`, `description`, `pos_default`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'oAAGEETm5AlEucviRTwbuCh0z', 1, '101', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-13 07:45:43', '2024-09-13 07:45:43'),
+(4, 'YJg1uasBBwJReYum1Q6tAt502', 4, '104', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-14 16:09:58', '2024-09-14 16:09:58'),
+(5, 'QoxXd3yYC66m7r2aGqTkindqQ', 5, '105', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-14 16:12:45', '2024-09-14 16:12:45'),
+(6, 'aPVfkhen0oNzEjptLSxZe3ZiM', 6, '106', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-14 16:13:33', '2024-09-14 16:13:33'),
+(7, 'zUu3H3hB6EePkoAjoJhzhnFIS', 7, '107', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-14 16:16:35', '2024-09-14 16:16:35'),
+(8, '6S7xAazGHaGnen63OBvJ7gaeO', 8, '108', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-14 16:20:24', '2024-09-14 16:20:24'),
+(9, 'FTU4glwd6A5SpQHePwnJa1hjO', 9, '109', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-15 04:54:56', '2024-09-15 04:54:56'),
+(10, 'DfmQSNvOV46ckA6JtfUFN9aK1', 10, '110', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-15 04:56:08', '2024-09-15 04:56:08'),
+(11, 'J31tKNUiVswdC5XhMadK4hTO6', 11, '111', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-15 04:59:19', '2024-09-15 04:59:19'),
+(12, 'mKuWfrQzXxQEaCSoUkESbLwXo', 12, '112', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-15 05:00:58', '2024-09-15 05:00:58'),
+(13, 'ocMfVrIeMUld28QvHkXNd0A0S', 13, '113', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-15 05:02:01', '2024-09-15 05:02:01'),
+(14, 'rXCI5lDhGjZjJTUBfaX4CXvyY', 14, '114', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-15 05:03:55', '2024-09-15 05:03:55'),
+(15, 'kztSRipZFXXlz8JX7FLx7A1CG', 15, '115', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-15 05:10:30', '2024-09-15 05:10:30'),
+(16, 'ag2nWfQxJgJh4oR3i3Rl6nTHD', 16, '116', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-15 05:13:31', '2024-09-15 05:13:31'),
+(17, '6bHfRBy60QLBPTDBUFFWEJWoa', 17, '117', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-15 13:08:43', '2024-09-15 13:08:43'),
+(18, 'AxHz9Bf6rttux54AoIujKWJDc', 18, '118', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-15 13:24:24', '2024-09-15 13:24:24'),
+(19, 'Bp2iRL5wW86ZFRnDKgBt1G61x', 19, '119', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-16 13:26:23', '2024-09-16 13:26:23'),
+(20, 'kQqUjPPprPwSXzD2uAkQnbnzT', 20, '120', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-16 13:34:31', '2024-09-16 13:34:31'),
+(21, 'Jq9jqWvwYIZRKcP7S0tLa6kMn', 21, '121', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-16 13:46:00', '2024-09-16 13:46:00'),
+(22, 'xqrYpm4IU0syoZTV2FITvd1LY', 22, '122', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-17 10:26:30', '2024-09-17 10:26:30'),
+(23, 'L3vZ5yeYNw02bpYxeSGp5jugn', 23, '123', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-18 13:05:01', '2024-09-18 13:05:01'),
+(24, 'VErQ8PxCM7jLzZtiWgdD6Cn0L', 24, '124', 1, 'Default Sales Account', 0.00, 'Default Sales Account', 1, 1, 1, NULL, '2024-09-21 14:33:07', '2024-09-21 14:33:07');
 
 -- --------------------------------------------------------
 
@@ -54,10 +80,10 @@ CREATE TABLE `accounts` (
 
 CREATE TABLE `addon_groups` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `addon_group_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `addon_group_code` varchar(30) NOT NULL,
+  `label` varchar(250) NOT NULL,
   `multiple_selection` tinyint(4) NOT NULL DEFAULT 0,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
@@ -89,7 +115,7 @@ CREATE TABLE `addon_group_products` (
 --
 
 CREATE TABLE `app_activation` (
-  `activation_code` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `activation_code` text NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -97,22 +123,38 @@ CREATE TABLE `app_activation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `particulars`
+-- Table structure for table `billing_counters`
 --
 
-CREATE TABLE `particulars` (
+CREATE TABLE `billing_counters` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `billing_counter_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `counter_name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `store_slack` varchar(30) NOT NULL,
+  `billing_counter_code` varchar(30) NOT NULL,
+  `counter_name` varchar(150) NOT NULL,
+  `particular_to` varchar(30) NOT NULL,
+  `description` text DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `billing_counters`
+--
+
+INSERT INTO `billing_counters` (`id`, `slack`, `store_id`, `store_slack`, `billing_counter_code`, `counter_name`, `particular_to`, `description`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(6, 'eO1DZNbqCRuL8rZhEJa7kErAl', 21, 'b7l6rPsCAkpZQ6GZ8HeMx3h6r', '936', 'A12', '', NULL, 1, 1, 1, '2024-09-16 14:04:11', '2024-09-16 15:47:55'),
+(7, 'B4cXD3uWt9avmhFnxB2GBWG7P', 21, 'b7l6rPsCAkpZQ6GZ8HeMx3h6r', '293', 'aaa', '', NULL, 1, 1, NULL, '2024-09-16 14:12:35', '2024-09-16 14:12:35'),
+(8, 'LaNzVBxSBVyAjmiaGyi0eAmZ0', 21, 'b7l6rPsCAkpZQ6GZ8HeMx3h6r', '930', 'shanti dhara', '', NULL, 1, 1, NULL, '2024-09-18 13:07:01', '2024-09-18 13:07:01'),
+(9, 'E9OwrbraOUVFQPXdFzk64SQAH', 23, 'KqbdZEhsr2U2ZOIw2knCftqOH', '386', 'shanti dhara', '', NULL, 1, 3, NULL, '2024-09-18 14:50:57', '2024-09-18 14:50:57'),
+(10, 'CzyZQ8BMz8vgAZDgvzLwSt0ZJ', 24, 'vkHmYyghIlYxAs64Mx17HcHq7', '514', 'Trust daan -1', 'RASID', NULL, 1, 4, 1, '2024-09-21 14:59:43', '2024-09-24 04:28:10'),
+(11, '5ZO5XxwDSFa6RxFT3l3W1Qv3p', 24, 'vkHmYyghIlYxAs64Mx17HcHq7', '484', 'Sup1', 'CHALLAN', NULL, 1, 1, 1, '2024-09-24 02:40:33', '2024-09-24 04:28:23'),
+(12, 'XvmZMYUE4XVxL055elPmHDCGP', 24, 'vkHmYyghIlYxAs64Mx17HcHq7', '548', 'SUB2', 'CHALLAN', '1', 1, 1, 1, '2024-09-24 03:21:45', '2024-09-24 04:28:35'),
+(13, '293MqN06KjpOuJhRe1mgIbcVq', 24, 'vkHmYyghIlYxAs64Mx17HcHq7', '796', '123', 'CHALLAN', '123', 1, 1, 1, '2024-09-29 03:15:01', '2024-09-29 03:21:02');
 
 -- --------------------------------------------------------
 
@@ -122,16 +164,16 @@ CREATE TABLE `particulars` (
 
 CREATE TABLE `bookings` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `event_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `event_type` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'BOOKING',
+  `event_code` varchar(30) NOT NULL,
+  `event_type` varchar(15) NOT NULL DEFAULT 'BOOKING',
   `start_date` datetime NOT NULL,
   `end_date` datetime NOT NULL,
-  `name` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(250) DEFAULT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `no_of_persons` int(11) DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -147,7 +189,7 @@ CREATE TABLE `bookings` (
 
 CREATE TABLE `business_registers` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `billing_counter_id` int(11) DEFAULT NULL,
@@ -172,11 +214,11 @@ CREATE TABLE `business_registers` (
 
 CREATE TABLE `category` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `category_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category_code` varchar(30) NOT NULL,
+  `label` varchar(250) NOT NULL,
+  `description` text DEFAULT NULL,
   `display_on_pos_screen` tinyint(4) NOT NULL DEFAULT 1,
   `display_on_qr_menu` tinyint(4) NOT NULL DEFAULT 1,
   `status` tinyint(4) NOT NULL DEFAULT 1,
@@ -189,17 +231,88 @@ CREATE TABLE `category` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `challan_orders`
+--
+
+CREATE TABLE `challan_orders` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `slack` varchar(30) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `po_number` varchar(50) NOT NULL,
+  `po_reference` varchar(30) DEFAULT NULL,
+  `order_date` date DEFAULT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `supplier_code` varchar(30) NOT NULL,
+  `supplier_name` varchar(250) NOT NULL,
+  `supplier_address` text DEFAULT NULL,
+  `currency_name` varchar(50) DEFAULT NULL,
+  `currency_code` varchar(30) DEFAULT NULL,
+  `total_order_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
+  `terms` text DEFAULT NULL,
+  `update_stock` tinyint(4) NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `payment_type` varchar(30) DEFAULT NULL,
+  `payment_date` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `challan_orders`
+--
+
+INSERT INTO `challan_orders` (`id`, `slack`, `store_id`, `po_number`, `po_reference`, `order_date`, `supplier_id`, `supplier_code`, `supplier_name`, `supplier_address`, `currency_name`, `currency_code`, `total_order_amount`, `terms`, `update_stock`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `payment_type`, `payment_date`) VALUES
+(2, 'k6FhAtCGRLrOtJMDyG67Vk6Ab', 24, '1111', NULL, '2024-09-30', 2, 'SUP102', 'Supplier 1', 'main', 'Indian rupee', 'INR', 10000.00, NULL, 0, 0, 1, 1, '2024-10-06 03:45:06', '2024-10-06 05:45:43', 'cash', NULL),
+(3, 'hYuUCwWizlLq18dO0PPGPyTUS', 24, '2222', NULL, '2024-09-30', 2, 'SUP102', 'Supplier 1', 'main', 'Indian rupee', 'INR', 1030.00, NULL, 0, 0, 1, 1, '2024-10-06 03:55:12', '2024-10-06 05:54:35', 'cash', '2024-09-30');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `challan_order_products`
+--
+
+CREATE TABLE `challan_order_products` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `slack` varchar(30) NOT NULL,
+  `challan_order_id` int(11) NOT NULL,
+  `product_slack` varchar(30) DEFAULT NULL,
+  `product_code` varchar(30) DEFAULT NULL,
+  `name` varchar(250) NOT NULL,
+  `total_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
+  `stock_update` tinyint(4) NOT NULL DEFAULT 0,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `created_by` int(11) DEFAULT NULL,
+  `updated_by` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `challan_order_products`
+--
+
+INSERT INTO `challan_order_products` (`id`, `slack`, `challan_order_id`, `product_slack`, `product_code`, `name`, `total_amount`, `stock_update`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(23, '3dJbR62DBBJnfvSSUYi4nh5fn', 2, '5ZO5XxwDSFa6RxFT3l3W1Qv3p', NULL, 'Sup1', 5000.00, 0, 1, NULL, 1, '2024-10-06 11:15:43', '2024-10-06 05:45:43'),
+(24, 'DRAD0kysSKB4dcwf7gPn056eM', 2, 'XvmZMYUE4XVxL055elPmHDCGP', NULL, 'SUB2', 5000.00, 0, 1, NULL, 1, '2024-10-06 11:15:43', '2024-10-06 05:45:43'),
+(27, 'NaEw7mj5NQGObSVsABduKl8i0', 3, '5ZO5XxwDSFa6RxFT3l3W1Qv3p', NULL, 'Sup1', 30.00, 0, 1, NULL, 1, '2024-10-06 11:24:35', '2024-10-06 05:54:35'),
+(28, '1dm42U2hpNK1O2MB40kySBONi', 3, 'XvmZMYUE4XVxL055elPmHDCGP', NULL, 'SUB2', 1000.00, 0, 1, NULL, 1, '2024-10-06 11:24:35', '2024-10-06 05:54:35');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `country`
 --
 
 CREATE TABLE `country` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dial_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `currency_name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `currency_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `currency_symbol` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `code` varchar(30) NOT NULL,
+  `dial_code` varchar(30) NOT NULL,
+  `currency_name` varchar(30) NOT NULL,
+  `currency_code` varchar(30) NOT NULL,
+  `currency_symbol` varchar(30) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -460,26 +573,69 @@ INSERT INTO `country` (`id`, `name`, `code`, `dial_code`, `currency_name`, `curr
 
 CREATE TABLE `customers` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `customer_type` enum('DEFAULT','CUSTOM','WALKIN') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slack` varchar(30) NOT NULL,
+  `customer_type` enum('DEFAULT','CUSTOM','WALKIN') NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `fresh_login` tinyint(1) NOT NULL DEFAULT 1,
+  `name` varchar(250) NOT NULL,
+  `customer_code` varchar(30) NOT NULL,
+  `role_id` int(11) DEFAULT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `profile_image` text DEFAULT NULL,
   `dob` date DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `store_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `slack`, `customer_type`, `name`, `email`, `phone`, `address`, `dob`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, '50qTKGfI3QOdXLn8JSMR30Ug4', 'DEFAULT', 'Walkin Customer', 'walkincustomer@appsthing.com', '0000000000', NULL, NULL, 1, NULL, NULL, '2021-11-26 08:57:26', '2021-11-26 08:57:28');
+INSERT INTO `customers` (`id`, `slack`, `customer_type`, `password`, `fresh_login`, `name`, `customer_code`, `role_id`, `email`, `phone`, `address`, `profile_image`, `dob`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `store_id`) VALUES
+(11, 'RT4ZOpbTEpib3DihE3L2KhIR9', 'CUSTOM', '$2y$10$obmoyO9VlOYSPi2MD1xBxembVzH.qp5E64QC4.AH6Cclp2rlXmoKa', 1, 'first trust', '415', 5, 'first@trust.com', '1234567890', '1234567890', NULL, '2024-09-01', 1, 4, 4, '2024-09-21 14:49:03', '2024-10-07 12:58:44', 24);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_menus`
+--
+
+CREATE TABLE `customer_menus` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer_menus`
+--
+
+INSERT INTO `customer_menus` (`id`, `customer_id`, `menu_id`, `created_by`, `created_at`, `updated_at`) VALUES
+(12, 11, 0, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(13, 11, 10, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(14, 11, 19, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(15, 11, 56, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(16, 11, 72, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(17, 11, 120, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(18, 11, 136, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(19, 11, 144, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(20, 11, 145, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(21, 11, 147, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(22, 11, 149, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(23, 11, 173, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(24, 11, 190, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(25, 11, 191, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(26, 11, 194, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(27, 11, 196, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45');
 
 -- --------------------------------------------------------
 
@@ -489,12 +645,12 @@ INSERT INTO `customers` (`id`, `slack`, `customer_type`, `name`, `email`, `phone
 
 CREATE TABLE `discount_codes` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `label` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `discount_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `label` varchar(250) NOT NULL,
+  `discount_code` varchar(30) NOT NULL,
   `discount_percentage` decimal(8,2) NOT NULL DEFAULT 0.00,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -510,22 +666,22 @@ CREATE TABLE `discount_codes` (
 
 CREATE TABLE `invoices` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `invoice_number` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `invoice_reference` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `invoice_number` varchar(50) NOT NULL,
+  `invoice_reference` varchar(30) DEFAULT NULL,
   `invoice_date` date DEFAULT NULL,
   `invoice_due_date` date DEFAULT NULL,
   `parent_po_id` int(11) DEFAULT NULL,
-  `bill_to` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bill_to` varchar(30) NOT NULL,
   `bill_to_id` int(11) NOT NULL,
-  `bill_to_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bill_to_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bill_to_email` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bill_to_contact` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bill_to_address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bill_to_code` varchar(30) DEFAULT NULL,
+  `bill_to_name` varchar(250) NOT NULL,
+  `bill_to_email` varchar(150) DEFAULT NULL,
+  `bill_to_contact` varchar(15) DEFAULT NULL,
+  `bill_to_address` text DEFAULT NULL,
+  `currency_name` varchar(50) DEFAULT NULL,
+  `currency_code` varchar(30) DEFAULT NULL,
   `tax_option_id` int(11) DEFAULT NULL,
   `subtotal_excluding_tax` decimal(13,2) NOT NULL DEFAULT 0.00,
   `total_discount_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
@@ -534,8 +690,8 @@ CREATE TABLE `invoices` (
   `shipping_charge` decimal(13,2) NOT NULL DEFAULT 0.00,
   `packing_charge` decimal(13,2) NOT NULL DEFAULT 0.00,
   `total_order_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `terms` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `terms` text DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -551,12 +707,12 @@ CREATE TABLE `invoices` (
 
 CREATE TABLE `invoice_products` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `invoice_id` int(11) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
-  `product_slack` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `product_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_slack` varchar(30) DEFAULT NULL,
+  `product_code` varchar(30) DEFAULT NULL,
+  `name` varchar(250) NOT NULL,
   `quantity` decimal(8,2) NOT NULL DEFAULT 0.00,
   `amount_excluding_tax` decimal(13,2) NOT NULL DEFAULT 0.00,
   `subtotal_amount_excluding_tax` decimal(13,2) NOT NULL DEFAULT 0.00,
@@ -565,7 +721,7 @@ CREATE TABLE `invoice_products` (
   `discount_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `total_after_discount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `tax_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `tax_components` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tax_components` text DEFAULT NULL,
   `total_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
@@ -582,10 +738,10 @@ CREATE TABLE `invoice_products` (
 
 CREATE TABLE `keyboard_shortcuts` (
   `id` int(10) UNSIGNED NOT NULL,
-  `keyboard_constant` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `keyboard_shortcut` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `keyboard_shortcut_label` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `keyboard_constant` varchar(50) NOT NULL,
+  `keyboard_shortcut` varchar(15) NOT NULL,
+  `keyboard_shortcut_label` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
   `sort_order` int(11) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
@@ -626,9 +782,9 @@ INSERT INTO `keyboard_shortcuts` (`id`, `keyboard_constant`, `keyboard_shortcut`
 
 CREATE TABLE `languages` (
   `id` int(10) UNSIGNED NOT NULL,
-  `language_constant` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `language_code` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `language` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `language_constant` varchar(15) NOT NULL,
+  `language_code` varchar(10) NOT NULL,
+  `language` varchar(250) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -663,9 +819,9 @@ INSERT INTO `languages` (`id`, `language_constant`, `language_code`, `language`,
 
 CREATE TABLE `master_account_type` (
   `id` int(10) UNSIGNED NOT NULL,
-  `account_type_constant` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `account_type_constant` varchar(50) NOT NULL,
+  `label` varchar(250) NOT NULL,
+  `description` text DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -693,9 +849,9 @@ INSERT INTO `master_account_type` (`id`, `account_type_constant`, `label`, `desc
 
 CREATE TABLE `master_billing_type` (
   `id` int(10) UNSIGNED NOT NULL,
-  `billing_type_constant` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billing_type_constant` varchar(50) NOT NULL,
+  `label` varchar(150) NOT NULL,
+  `description` text DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -719,9 +875,9 @@ INSERT INTO `master_billing_type` (`id`, `billing_type_constant`, `label`, `desc
 
 CREATE TABLE `master_date_format` (
   `id` int(10) UNSIGNED NOT NULL,
-  `key` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_format_value` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_format_label` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(50) NOT NULL,
+  `date_format_value` varchar(50) NOT NULL,
+  `date_format_label` varchar(250) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -748,8 +904,8 @@ INSERT INTO `master_date_format` (`id`, `key`, `date_format_value`, `date_format
 
 CREATE TABLE `master_invoice_print_type` (
   `id` int(10) UNSIGNED NOT NULL,
-  `print_type_value` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `print_type_label` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `print_type_value` varchar(50) NOT NULL,
+  `print_type_label` varchar(250) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -773,11 +929,11 @@ INSERT INTO `master_invoice_print_type` (`id`, `print_type_value`, `print_type_l
 
 CREATE TABLE `master_order_type` (
   `id` int(10) UNSIGNED NOT NULL,
-  `order_type_constant` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_type_constant` varchar(50) NOT NULL,
+  `label` varchar(250) NOT NULL,
+  `description` text DEFAULT NULL,
   `restaurant` tinyint(4) NOT NULL DEFAULT 0,
-  `icon` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon` varchar(200) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -802,11 +958,11 @@ INSERT INTO `master_order_type` (`id`, `order_type_constant`, `label`, `descript
 
 CREATE TABLE `master_status` (
   `id` int(10) UNSIGNED NOT NULL,
-  `key` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value_constant` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `label` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `color` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(50) NOT NULL,
+  `value` varchar(15) NOT NULL,
+  `value_constant` varchar(50) DEFAULT NULL,
+  `label` varchar(100) NOT NULL,
+  `color` varchar(100) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -842,11 +998,8 @@ INSERT INTO `master_status` (`id`, `key`, `value`, `value_constant`, `label`, `c
 (23, 'DISCOUNTCODE_STATUS', '0', 'INACTIVE', 'Inactive', 'label red-label', 1, '2021-11-26 08:57:26', '2021-11-26 08:57:26'),
 (24, 'PAYMENT_METHOD_STATUS', '1', 'ACTIVE', 'Active', 'label green-label', 1, '2021-11-26 08:57:26', '2021-11-26 08:57:26'),
 (25, 'PAYMENT_METHOD_STATUS', '0', 'INACTIVE', 'Inactive', 'label red-label', 1, '2021-11-26 08:57:26', '2021-11-26 08:57:26'),
-(26, 'PURCHASE_ORDER_STATUS', '1', 'CREATED', 'Created', 'label green-label', 1, '2021-11-26 08:57:26', '2021-11-26 08:57:26'),
-(27, 'PURCHASE_ORDER_STATUS', '2', 'APPROVED', 'Approved', 'label blue-label', 1, '2021-11-26 08:57:26', '2021-11-26 08:57:26'),
-(28, 'PURCHASE_ORDER_STATUS', '3', 'RELEASED_TO_SUPPLIER', 'Released To Supplier', 'label orange-label', 1, '2021-11-26 08:57:26', '2021-11-26 08:57:26'),
-(29, 'PURCHASE_ORDER_STATUS', '4', 'CLOSED', 'Closed', 'label grey-label', 1, '2021-11-26 08:57:26', '2021-11-26 08:57:26'),
-(30, 'PURCHASE_ORDER_STATUS', '0', 'CANCELLED', 'Cancelled', 'label red-label', 1, '2021-11-26 08:57:26', '2021-11-26 08:57:26'),
+(26, 'PURCHASE_ORDER_STATUS', '0', 'PAID', 'Paid', 'label green-label', 1, '2021-11-26 08:57:26', '2021-11-26 08:57:26'),
+(30, 'PURCHASE_ORDER_STATUS', '1', 'DUE', 'Due', 'label red-label', 1, '2021-11-26 08:57:26', '2021-11-26 08:57:26'),
 (31, 'PURCHASE_ORDER_PRODUCT_ST', '1', 'ACTIVE', 'Active', 'label green-label', 1, '2021-11-26 08:57:26', '2021-11-26 08:57:26'),
 (32, 'PURCHASE_ORDER_PRODUCT_ST', '0', 'INACTIVE', 'Inactive', 'label red-label', 1, '2021-11-26 08:57:26', '2021-11-26 08:57:26'),
 (33, 'MAIL_SETTING_STATUS', '1', 'ACTIVE', 'Active', 'label green-label', 1, '2021-11-26 08:57:26', '2021-11-26 08:57:26'),
@@ -924,7 +1077,9 @@ INSERT INTO `master_status` (`id`, `key`, `value`, `value_constant`, `label`, `c
 (105, 'ORDER_PAYMENT_STATUS', '2', 'PAYMENT_FAILED', 'Payment Failed', 'label red-label', 1, '2021-11-26 08:57:33', '2021-11-26 08:57:33'),
 (106, 'ORDER_STATUS', '4', 'MERGED', 'Merged', 'label grey-label', 1, '2021-11-26 08:57:33', '2021-11-26 08:57:33'),
 (107, 'VARIANT_OPTION_STATUS', '1', 'ACTIVE', 'Active', 'label green-label', 1, '2021-11-26 08:57:33', '2021-11-26 08:57:33'),
-(108, 'VARIANT_OPTION_STATUS', '0', 'INACTIVE', 'Inactive', 'label red-label', 1, '2021-11-26 08:57:33', '2021-11-26 08:57:33');
+(108, 'VARIANT_OPTION_STATUS', '0', 'INACTIVE', 'Inactive', 'label red-label', 1, '2021-11-26 08:57:33', '2021-11-26 08:57:33'),
+(109, 'ONLINE_PAYMENT_METHOD_STATUS', '0', 'INACTIVE', 'Inactive', 'label red-label', 1, '2021-11-26 08:57:26', '2021-11-26 08:57:26'),
+(110, 'ONLINE_PAYMENT_METHOD_STATUS', '1', 'ACTIVE', 'Active', 'label green-label', 1, '2021-11-26 08:57:33', '2021-11-26 08:57:33');
 
 -- --------------------------------------------------------
 
@@ -934,13 +1089,13 @@ INSERT INTO `master_status` (`id`, `key`, `value`, `value_constant`, `label`, `c
 
 CREATE TABLE `master_tax_option` (
   `id` int(10) UNSIGNED NOT NULL,
-  `tax_option_constant` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tax_option_constant` varchar(50) NOT NULL,
+  `label` varchar(250) NOT NULL,
   `component_count` int(11) NOT NULL DEFAULT 1,
-  `component_1` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `component_2` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `component_3` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `component_1` varchar(150) DEFAULT NULL,
+  `component_2` varchar(150) DEFAULT NULL,
+  `component_3` varchar(150) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -966,9 +1121,9 @@ INSERT INTO `master_tax_option` (`id`, `tax_option_constant`, `label`, `componen
 
 CREATE TABLE `master_transaction_type` (
   `id` int(10) UNSIGNED NOT NULL,
-  `transaction_type_constant` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `transaction_type_constant` varchar(50) NOT NULL,
+  `label` varchar(250) NOT NULL,
+  `description` text DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -992,9 +1147,9 @@ INSERT INTO `master_transaction_type` (`id`, `transaction_type_constant`, `label
 
 CREATE TABLE `measurement_units` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `unit_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
+  `unit_code` varchar(30) NOT NULL,
+  `label` varchar(150) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -1010,13 +1165,13 @@ CREATE TABLE `measurement_units` (
 
 CREATE TABLE `menus` (
   `id` int(10) UNSIGNED NOT NULL,
-  `type` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `menu_key` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `route` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` varchar(30) NOT NULL,
+  `menu_key` varchar(50) NOT NULL,
+  `label` varchar(100) NOT NULL,
+  `route` varchar(200) DEFAULT NULL,
   `parent` int(11) NOT NULL DEFAULT 0,
   `sort_order` int(11) DEFAULT NULL,
-  `icon` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon` varchar(200) DEFAULT NULL,
   `is_restaurant_menu` tinyint(4) NOT NULL DEFAULT 0,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1028,25 +1183,22 @@ CREATE TABLE `menus` (
 --
 
 INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort_order`, `icon`, `is_restaurant_menu`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'MAIN_MENU', 'MM_DASHBOARD', 'Dashboard', '', 0, 1, 'fas fa-chart-line', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:30'),
-(2, 'MAIN_MENU', 'MM_ORDERS', 'Sales & Orders', '', 0, 2, 'fas fa-shopping-cart', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
-(3, 'MAIN_MENU', 'MM_USER', 'User & Customer', '', 0, 4, 'fas fa-user-astronaut', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
-(4, 'MAIN_MENU', 'MM_SUPPLIER', 'Supplier', '', 0, 5, 'fas fa-truck', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
-(5, 'MAIN_MENU', 'MM_TAX_AND_DISCOUNT', 'Tax & Discount Codes', '', 0, 6, 'fas fa-percentage', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
-(6, 'MAIN_MENU', 'MM_STOCK', 'Stock', '', 0, 7, 'fas fa-cubes', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
+(2, 'MAIN_MENU', 'MM_ORDERS', 'Sales & Orders', '', 0, 12, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
+(4, 'MAIN_MENU', 'MM_SUPPLIER', 'Supplier', 'suppliers', 0, 5, 'fas fa-truck', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
+(5, 'MAIN_MENU', 'MM_TAX_AND_DISCOUNT', '', '', 0, 19, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
+(6, 'MAIN_MENU', 'MM_STOCK', 'Stock', '', 0, 11, 'fas fa-cubes', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:29'),
 (7, 'MAIN_MENU', 'MM_REPORT', 'Reports', '', 0, 9, 'fas fa-chart-pie', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
-(8, 'MAIN_MENU', 'MM_SETTINGS', 'Settings', '', 0, 13, 'fas fa-cog', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
+(8, 'MAIN_MENU', 'MM_SETTINGS', 'Settings', '', 0, 9, 'fas fa-cog', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
 (9, 'SUB_MENU', 'SM_POS_ORDERS', 'Orders', 'orders', 2, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
-(10, 'SUB_MENU', 'SM_PURCHASE_ORDERS', 'Purchase Orders', 'purchase_orders', 2, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
-(11, 'SUB_MENU', 'SM_USERS', 'Users', 'users', 3, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(12, 'SUB_MENU', 'SM_CUSTOMERS', 'Customers', 'customers', 3, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(13, 'SUB_MENU', 'SM_ROLES', 'Roles', 'roles', 3, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(14, 'SUB_MENU', 'SM_SUPPLIERS', 'Suppliers', 'suppliers', 4, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(15, 'SUB_MENU', 'SM_TAXCODES', 'Tax Codes', 'tax_codes', 5, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(10, 'MAIN_MENU', 'MM_RASIDS_ORDERS', 'Rasids', 'rasids', 0, 2, 'fas fa-percentage', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
+(11, 'MAIN_MENU', 'MM_USERS', 'Users', 'users', 0, 6, 'fas fa-money-check-alt', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(12, 'MAIN_MENU', 'MM_CUSTOMERS', 'Customers', 'customers', 0, 5, 'fas fa-money-check-alt', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(13, 'MAIN_MENU', 'MM_ROLES', 'Roles', 'roles', 0, 7, 'fas fa-money-check-alt', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(15, 'SUB_MENU', 'SM_TAXCODES', '', '', 5, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (16, 'SUB_MENU', 'SM_DISCOUNTCODES', 'Discount Codes', 'discount_codes', 5, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (17, 'SUB_MENU', 'SM_PRODUCTS', 'Products', 'products', 6, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (18, 'SUB_MENU', 'SM_CATEGORY', 'Categories', 'categories', 6, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(19, 'SUB_MENU', 'SM_STORE', 'Stores', 'stores', 8, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(19, 'MAIN_MENU', 'MM_STORE', 'Stores', 'trusts', 0, 8, 'fas fa-money-check-alt', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (20, 'SUB_MENU', 'SM_PAYMENT_METHOD', 'Payment Methods', 'payment_methods', 8, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (21, 'SUB_MENU', 'SM_IMPORT_DATA', 'Import Data', 'import_data', 160, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:30'),
 (22, 'SUB_MENU', 'SM_UPDATE_DATA', 'Upload & Update Data', 'update_data', 160, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:30'),
@@ -1078,9 +1230,9 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 (48, 'ACTIONS', 'A_ADD_DISCOUNTCODE', 'Add Discount Code', '', 16, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (49, 'ACTIONS', 'A_EDIT_DISCOUNTCODE', 'Edit Discount Code', '', 16, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (50, 'ACTIONS', 'A_DETAIL_DISCOUNTCODE', 'View Discount Code Detail', '', 16, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(51, 'ACTIONS', 'A_ADD_SUPPLIER', 'Add Supplier', '', 14, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(52, 'ACTIONS', 'A_EDIT_SUPPLIER', 'Edit Supplier', '', 14, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(53, 'ACTIONS', 'A_DETAIL_SUPPLIER', 'View Supplier Detail', '', 14, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(51, 'ACTIONS', 'A_ADD_SUPPLIER', 'Add Supplier', '', 4, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(52, 'ACTIONS', 'A_EDIT_SUPPLIER', 'Edit Supplier', '', 4, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(53, 'ACTIONS', 'A_DETAIL_SUPPLIER', 'View Supplier Detail', '', 4, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (54, 'ACTIONS', 'A_ADD_STORE', 'Add Store', '', 19, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (55, 'ACTIONS', 'A_EDIT_STORE', 'Edit Store', '', 19, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (56, 'ACTIONS', 'A_DETAIL_STORE', 'View Store Detail', '', 19, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
@@ -1088,22 +1240,22 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 (58, 'ACTIONS', 'A_EDIT_PAYMENT_METHOD', 'Edit Payment Method', '', 20, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (59, 'ACTIONS', 'A_DETAIL_PAYMENT_METHOD', 'View Payment Method Detail', '', 20, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (60, 'ACTIONS', 'A_UPLOAD_USER', 'Upload Users', '', 21, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(61, 'ACTIONS', 'A_UPLOAD_STORE', 'Upload Store', '', 21, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(62, 'ACTIONS', 'A_UPLOAD_SUPPLIER', 'Upload Supplier', '', 21, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(61, 'ACTIONS', 'A_UPLOAD_STORE', 'Upload Store', '', 19, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(62, 'ACTIONS', 'A_UPLOAD_SUPPLIER', 'Upload Supplier', '', 4, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (63, 'ACTIONS', 'A_UPLOAD_CATEGORY', 'Upload Category', '', 21, 4, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (64, 'ACTIONS', 'A_UPLOAD_PRODUCT', 'Upload Product', '', 21, 5, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (65, 'ACTIONS', 'A_UPDATE_USER', 'Update Users', '', 22, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(66, 'ACTIONS', 'A_UPDATE_STORE', 'Update Store', '', 22, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(67, 'ACTIONS', 'A_UPDATE_SUPPLIER', 'Update Supplier', '', 22, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(66, 'ACTIONS', 'A_UPDATE_STORE', 'Update Store', '', 19, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(67, 'ACTIONS', 'A_UPDATE_SUPPLIER', 'Update Supplier', '', 4, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (68, 'ACTIONS', 'A_UPDATE_CATEGORY', 'Update Category', '', 22, 4, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (69, 'ACTIONS', 'A_UPDATE_PRODUCT', 'Update Product', '', 22, 5, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(70, 'ACTIONS', 'A_ADD_RASID', 'Add Purchase Order', '', 10, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(71, 'ACTIONS', 'A_EDIT_RASID', 'Edit Purchase Order', '', 10, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(72, 'ACTIONS', 'A_DETAIL_RASID', 'View Purchase Order Detail', '', 10, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(73, 'ACTIONS', 'A_EDIT_STATUS_RASID', 'Change Purchase Order Status', '', 10, 4, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:28'),
+(70, 'ACTIONS', 'A_ADD_RASID', 'Add Rasid', '', 10, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(71, 'ACTIONS', 'A_EDIT_RASID', 'Edit Rasid', '', 10, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(72, 'ACTIONS', 'A_DETAIL_RASID', 'View Rasid Detail', '', 10, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(73, 'ACTIONS', 'A_EDIT_STATUS_RASID', 'Change Rasid Status', '', 10, 4, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:28'),
 (74, 'ACTIONS', 'A_EDIT_EMAIL_SETTING', 'Edit Email Setting', '', 23, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (75, 'ACTIONS', 'A_EDIT_APP_SETTING', 'Edit App Setting', '', 24, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(76, 'SUB_MENU', 'SM_INVOICES', 'Invoices', 'invoices', 2, 2, NULL, 0, 1, '2021-11-26 08:57:27', '2021-11-26 08:57:32'),
+(76, 'MAIN_MENU', 'MM_INVOICES', 'Invoices', 'invoices', 0, 10, NULL, 0, 1, '2021-11-26 08:57:27', '2021-11-26 08:57:32'),
 (77, 'ACTIONS', 'A_ADD_INVOICE', 'Add Invoice', '', 76, 1, NULL, 0, 1, '2021-11-26 08:57:27', '2021-11-26 08:57:27'),
 (78, 'ACTIONS', 'A_EDIT_INVOICE', 'Edit Invoice', '', 76, 2, NULL, 0, 1, '2021-11-26 08:57:27', '2021-11-26 08:57:27'),
 (79, 'ACTIONS', 'A_DETAIL_INVOICE', 'View Invoice Details', '', 76, 3, NULL, 0, 1, '2021-11-26 08:57:27', '2021-11-26 08:57:27'),
@@ -1116,7 +1268,7 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 (86, 'ACTIONS', 'A_DETAIL_QUOTATION', 'View Quotation Details', '', 83, 3, NULL, 0, 1, '2021-11-26 08:57:27', '2021-11-26 08:57:27'),
 (87, 'ACTIONS', 'A_DELETE_QUOTATION', 'Delete Quotation', '', 83, 4, NULL, 0, 1, '2021-11-26 08:57:27', '2021-11-26 08:57:27'),
 (88, 'ACTIONS', 'A_EDIT_STATUS_QUOTATION', 'Change Quotation Status', '', 83, 5, NULL, 0, 1, '2021-11-26 08:57:27', '2021-11-26 08:57:27'),
-(89, 'MAIN_MENU', 'MM_ACCOUNT', 'Business Account', '', 0, 3, 'fas fa-money-check-alt', 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:29'),
+(89, 'MAIN_MENU', 'MM_ACCOUNT', 'Business Account', '', 0, 10, 'fas fa-money-check-alt', 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:29'),
 (90, 'SUB_MENU', 'SM_ACCOUNTS', 'Accounts', 'accounts', 89, 1, NULL, 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:28'),
 (91, 'SUB_MENU', 'SM_TRANSACTIONS', 'Transactions', 'transactions', 2, 6, NULL, 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:32'),
 (92, 'ACTIONS', 'A_ADD_ACCOUNT', 'Add Account', '', 90, 1, NULL, 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:28'),
@@ -1126,7 +1278,7 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 (96, 'ACTIONS', 'A_EDIT_TRANSACTION', 'Edit Transaction', '', 91, 2, NULL, 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:28'),
 (97, 'ACTIONS', 'A_DETAIL_TRANSACTION', 'View Transaction Detail', '', 91, 3, NULL, 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:28'),
 (98, 'ACTIONS', 'A_DELETE_TRANSACTION', 'Delete Transaction', '', 91, 4, NULL, 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:28'),
-(99, 'ACTIONS', 'A_DELETE_RASID', 'Delete Purchase Order', '', 10, 5, NULL, 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:28'),
+(99, 'ACTIONS', 'A_DELETE_RASID', 'Delete Rasid', '', 10, 5, NULL, 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:28'),
 (100, 'MAIN_MENU', 'MM_RESTAURANT', 'Restaurant', '', 0, 10, 'fas fa-utensils', 1, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:32'),
 (101, 'SUB_MENU', 'SM_RESTAURANT_KITCHEN', 'Kitchen View', 'kitchen', 100, 1, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (102, 'SUB_MENU', 'SM_RESTAURANT_TABLES', 'Tables', 'tables', 100, 3, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:31'),
@@ -1147,7 +1299,7 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 (117, 'ACTIONS', 'A_VERIFY_STOCK_TRANSFER', 'Verify Stock Transfer Request', '', 112, 5, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (118, 'ACTIONS', 'A_VIEW_ORDER_LISTING', 'View Order Listing', '', 9, 5, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (119, 'ACTIONS', 'A_VIEW_INVOICE_LISTING', 'View Invoice Listing', '', 76, 7, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
-(120, 'ACTIONS', 'A_VIEW_RASID_LISTING', 'View Purchase Order Listing', '', 10, 6, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
+(120, 'ACTIONS', 'A_VIEW_RASID_LISTING', 'View Rasid Listing', '', 10, 6, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (121, 'ACTIONS', 'A_VIEW_QUOTATION_LISTING', 'View Quotation Listing', '', 83, 6, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (122, 'ACTIONS', 'A_VIEW_ACCOUNT_LISTING', 'View Account Listing', '', 90, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (123, 'ACTIONS', 'A_VIEW_TRANSACTION_LISTING', 'View Transaction Listing', '', 91, 5, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
@@ -1155,7 +1307,7 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 (125, 'ACTIONS', 'A_VIEW_USER_LISTING', 'View User Listing', '', 11, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (126, 'ACTIONS', 'A_VIEW_CUSTOMER_LISTING', 'View Customer Listing', '', 12, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (127, 'ACTIONS', 'A_VIEW_ROLE_LISTING', 'View Role Listing', '', 13, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
-(128, 'ACTIONS', 'A_VIEW_SUPPLIER_LISTING', 'View Supplier Listing', '', 14, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
+(128, 'ACTIONS', 'A_VIEW_SUPPLIER_LISTING', 'View Supplier Listing', '', 4, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (129, 'ACTIONS', 'A_VIEW_TAXCODE_LISTING', 'View Tax Code Listing', '', 15, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (130, 'ACTIONS', 'A_VIEW_DISCOUNTCODE_LISTING', 'View Discount Code Listing', '', 16, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
 (131, 'ACTIONS', 'A_VIEW_PRODUCT_LISTING', 'View Product Listing', '', 17, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:31'),
@@ -1195,13 +1347,12 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 (165, 'ACTIONS', 'A_EDIT_SMS_TEMPLATE', 'Edit SMS Template', '', 163, 2, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
 (166, 'ACTIONS', 'A_DETAIL_SMS_TEMPLATE', 'View SMS Template', '', 163, 3, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
 (167, 'ACTIONS', 'A_SHARE_INVOICE_SMS', 'Send Invoice SMS from Order Detail Page', '', 9, 6, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
-(168, 'SUB_MENU', 'SM_BILLING_COUNTERS', 'Billing Counters', 'particulars', 8, 3, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:32'),
-(169, 'ACTIONS', 'A_ADD_PARTICULAR', 'Add Billing Counter', '', 168, 1, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
-(170, 'ACTIONS', 'A_EDIT_PARTICULAR', 'Edit Billing Counter', '', 168, 2, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
-(171, 'ACTIONS', 'A_DETAIL_PARTICULAR', 'View Billing Counter Detail', '', 168, 3, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
-(172, 'ACTIONS', 'A_VIEW_PARTICULAR_LISTING', 'View Billing Counter Listing', '', 168, 4, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
-(173, 'SUB_MENU', 'SM_MASTER_DASHBOARD', 'Master Dashboard', 'dashboard', 1, 1, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
-(174, 'SUB_MENU', 'SM_BILLING_COUNTER_DASHBOARD', 'Billing Counter Dashboard', 'billing_counter_dashboard', 1, 2, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
+(169, 'ACTIONS', 'A_ADD_PARTICULAR', 'Add Particular', '', 213, 1, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
+(170, 'ACTIONS', 'A_EDIT_PARTICULAR', 'Edit Particular', '', 213, 2, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
+(171, 'ACTIONS', 'A_DETAIL_PARTICULAR', 'View Particular Detail', '', 213, 3, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
+(172, 'ACTIONS', 'A_VIEW_PARTICULAR_LISTING', 'View Particular Listing', '', 213, 4, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
+(173, 'MAIN_MENU', 'MM_MASTER_DASHBOARD', 'Master Dashboard', 'dashboard', 0, 1, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
+(174, 'SUB_MENU', 'SM_BILLING_COUNTER_DASHBOARD', 'Billing Counter Dashboard', '', 1, 2, NULL, 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:30'),
 (175, 'ACTIONS', 'A_CREATE_INVOICE_FROM_PO', 'Create Invoice from Purchase Order', '', 10, 7, NULL, 0, 1, '2021-11-26 08:57:31', '2021-11-26 08:57:31'),
 (176, 'ACTIONS', 'A_UPLOAD_INGREDIENT', 'Upload Ingredient', '', 21, 6, NULL, 0, 1, '2021-11-26 08:57:31', '2021-11-26 08:57:31'),
 (177, 'ACTIONS', 'A_UPDATE_INGREDIENT', 'Update Ingredient', '', 22, 6, NULL, 0, 1, '2021-11-26 08:57:31', '2021-11-26 08:57:31'),
@@ -1239,7 +1390,16 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 (209, 'ACTIONS', 'A_EDIT_VARIANT_OPTION', 'Edit Variant Option', '', 207, 2, NULL, 0, 1, '2021-11-26 08:57:33', '2021-11-26 08:57:33'),
 (210, 'ACTIONS', 'A_DETAIL_VARIANT_OPTION', 'View Variant Option Detail', '', 207, 3, NULL, 0, 1, '2021-11-26 08:57:33', '2021-11-26 08:57:33'),
 (211, 'ACTIONS', 'A_VIEW_VARIANT_OPTION_LISTING', 'View Variant Option Listing', '', 207, 4, NULL, 0, 1, '2021-11-26 08:57:33', '2021-11-26 08:57:33'),
-(212, 'ACTIONS', 'A_UPDATE_PRODUCT_VARIANT', 'Update Product Variants', '', 22, 8, NULL, 0, 1, '2021-11-26 08:57:33', '2021-11-26 08:57:33');
+(212, 'ACTIONS', 'A_UPDATE_PRODUCT_VARIANT', 'Update Product Variants', '', 22, 8, NULL, 0, 1, '2021-11-26 08:57:33', '2021-11-26 08:57:33'),
+(213, 'MAIN_MENU', 'MM_PARTICULARS', 'Particulars', 'particulars', 0, 4, 'fas fa-cubes', 0, 1, '2021-11-26 08:57:30', '2021-11-26 08:57:32'),
+(215, 'MAIN_MENU', 'MM_CHALLANS', 'Challan', 'challans', 0, 3, 'fas fa-percentage', 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:32'),
+(216, 'ACTIONS', 'A_ADD_CHALLAN', 'Add Challan', '', 215, 1, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(217, 'ACTIONS', 'A_EDIT_CHALLAN', 'Edit Challan', '', 215, 2, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(218, 'ACTIONS', 'A_DETAIL_CHALLAN', 'View Challan Detail', '', 215, 3, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(219, 'ACTIONS', 'A_EDIT_STATUS_CHALLAN', 'Change Challan Status', '', 215, 4, NULL, 0, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:28'),
+(220, 'ACTIONS', 'A_DELETE_CHALLAN', 'Delete Challan', '', 215, 5, NULL, 0, 1, '2021-11-26 08:57:28', '2021-11-26 08:57:28'),
+(221, 'ACTIONS', 'A_VIEW_CHALLAN_LISTING', 'View Challan Listing', '', 215, 6, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29'),
+(223, 'ACTIONS', 'A_UPLOAD_CUSTOMER', 'Upload Customer', '', 12, 4, NULL, 0, 1, '2021-11-26 08:57:29', '2021-11-26 08:57:29');
 
 -- --------------------------------------------------------
 
@@ -1249,7 +1409,7 @@ INSERT INTO `menus` (`id`, `type`, `menu_key`, `label`, `route`, `parent`, `sort
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(191) NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -1345,10 +1505,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `notifications` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `user_id` int(11) NOT NULL,
   `store_id` int(11) DEFAULT NULL,
-  `notification_text` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notification_text` text NOT NULL,
   `read` tinyint(4) NOT NULL DEFAULT 0,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
@@ -1365,26 +1525,26 @@ CREATE TABLE `notifications` (
 
 CREATE TABLE `orders` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `order_number` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `order_number` varchar(30) NOT NULL,
   `customer_id` int(11) NOT NULL,
-  `customer_name` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_phone` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `customer_email` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `contact_number` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `customer_name` varchar(250) DEFAULT NULL,
+  `customer_phone` varchar(25) DEFAULT NULL,
+  `customer_email` varchar(150) DEFAULT NULL,
+  `contact_number` varchar(15) DEFAULT NULL,
+  `address` text DEFAULT NULL,
   `register_id` int(11) DEFAULT NULL,
   `store_level_discount_code_id` int(11) DEFAULT NULL,
-  `store_level_discount_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `store_level_discount_code` varchar(30) DEFAULT NULL,
   `store_level_total_discount_percentage` decimal(8,2) NOT NULL DEFAULT 0.00,
   `store_level_total_discount_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `product_level_total_discount_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `store_level_tax_code_id` int(11) DEFAULT NULL,
-  `store_level_tax_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `store_level_tax_code` varchar(30) DEFAULT NULL,
   `store_level_total_tax_percentage` decimal(8,2) NOT NULL DEFAULT 0.00,
   `store_level_total_tax_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `store_level_total_tax_components` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `store_level_total_tax_components` text DEFAULT NULL,
   `product_level_total_tax_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `purchase_amount_subtotal_excluding_tax` decimal(13,2) NOT NULL DEFAULT 0.00,
   `sale_amount_subtotal_excluding_tax` decimal(13,2) NOT NULL DEFAULT 0.00,
@@ -1398,20 +1558,20 @@ CREATE TABLE `orders` (
   `total_order_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `total_order_amount_rounded` decimal(13,0) NOT NULL DEFAULT 0,
   `payment_method_id` int(11) DEFAULT NULL,
-  `payment_method_slack` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `payment_method` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payment_method_slack` varchar(30) DEFAULT NULL,
+  `payment_method` varchar(50) DEFAULT NULL,
+  `currency_name` varchar(50) DEFAULT NULL,
+  `currency_code` varchar(30) DEFAULT NULL,
   `business_account_id` int(11) DEFAULT NULL,
   `order_type_id` int(11) DEFAULT NULL,
-  `order_type` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_type` varchar(30) DEFAULT NULL,
   `restaurant_mode` int(11) NOT NULL DEFAULT 0,
   `bill_type_id` int(11) DEFAULT NULL,
-  `bill_type` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bill_type` varchar(150) DEFAULT NULL,
   `table_id` int(11) DEFAULT NULL,
-  `table_number` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `table_number` varchar(250) DEFAULT NULL,
   `waiter_id` int(11) DEFAULT NULL,
-  `order_origin` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'POS_WEB' COMMENT 'POS_WEB, DIGITAL_MENU',
+  `order_origin` varchar(25) NOT NULL DEFAULT 'POS_WEB' COMMENT 'POS_WEB, DIGITAL_MENU',
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `kitchen_status` int(11) DEFAULT NULL,
   `payment_status` int(11) NOT NULL DEFAULT 0,
@@ -1433,23 +1593,23 @@ CREATE TABLE `orders` (
 
 CREATE TABLE `order_products` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `order_id` int(11) NOT NULL,
   `parent_order_product_id` int(11) DEFAULT NULL,
   `product_id` int(11) NOT NULL,
-  `product_slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_slack` varchar(30) NOT NULL,
+  `product_code` varchar(30) NOT NULL,
+  `name` varchar(250) NOT NULL,
   `quantity` decimal(8,2) NOT NULL,
   `purchase_amount_excluding_tax` decimal(13,2) NOT NULL,
   `sale_amount_excluding_tax` decimal(13,2) NOT NULL,
   `discount_code_id` int(11) DEFAULT NULL,
-  `discount_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `discount_code` varchar(30) DEFAULT NULL,
   `discount_percentage` decimal(8,2) NOT NULL DEFAULT 0.00,
   `tax_code_id` int(11) DEFAULT NULL,
-  `tax_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tax_code` varchar(30) DEFAULT NULL,
   `tax_percentage` decimal(8,2) NOT NULL DEFAULT 0.00,
-  `tax_components` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tax_components` text DEFAULT NULL,
   `sub_total_purchase_price_excluding_tax` decimal(13,2) NOT NULL,
   `sub_total_sale_price_excluding_tax` decimal(13,2) NOT NULL,
   `discount_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
@@ -1474,12 +1634,12 @@ CREATE TABLE `order_products` (
 
 CREATE TABLE `otp` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `event_type` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `event_type` varchar(30) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `customer_id` int(11) DEFAULT NULL,
-  `email` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `otp` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `otp` varchar(10) DEFAULT NULL,
   `generate_counter` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1493,12 +1653,12 @@ CREATE TABLE `otp` (
 
 CREATE TABLE `payment_methods` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payment_constant` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `label` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `key_1` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `key_2` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slack` varchar(30) NOT NULL,
+  `payment_constant` varchar(30) DEFAULT NULL,
+  `label` varchar(250) NOT NULL,
+  `key_1` text DEFAULT NULL,
+  `key_2` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `activate_on_digital_menu` int(11) NOT NULL DEFAULT 0,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
@@ -1524,11 +1684,11 @@ INSERT INTO `payment_methods` (`id`, `slack`, `payment_constant`, `label`, `key_
 
 CREATE TABLE `products` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `product_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_code` varchar(30) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `description` text DEFAULT NULL,
   `category_id` int(11) NOT NULL,
   `supplier_id` int(11) NOT NULL,
   `tax_code_id` int(11) NOT NULL,
@@ -1571,9 +1731,9 @@ CREATE TABLE `product_addon_groups` (
 
 CREATE TABLE `product_images` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `filename` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `filename` text NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -1589,7 +1749,7 @@ CREATE TABLE `product_images` (
 
 CREATE TABLE `product_ingredients` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `product_id` int(11) NOT NULL,
   `ingredient_product_id` int(11) NOT NULL,
   `quantity` decimal(8,2) NOT NULL,
@@ -1608,8 +1768,8 @@ CREATE TABLE `product_ingredients` (
 
 CREATE TABLE `product_variants` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `variant_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
+  `variant_code` varchar(30) NOT NULL,
   `product_id` int(11) NOT NULL,
   `variant_option_id` int(11) DEFAULT NULL,
   `created_by` int(11) DEFAULT NULL,
@@ -1626,34 +1786,37 @@ CREATE TABLE `product_variants` (
 
 CREATE TABLE `purchase_orders` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `po_number` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `po_reference` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `po_number` varchar(50) NOT NULL,
+  `po_reference` varchar(30) DEFAULT NULL,
   `order_date` date DEFAULT NULL,
-  `order_due_date` date DEFAULT NULL,
-  `supplier_id` int(11) NOT NULL,
-  `supplier_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `supplier_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `supplier_address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tax_option_id` int(11) DEFAULT NULL,
-  `subtotal_excluding_tax` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `total_discount_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `total_after_discount` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `total_tax_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `shipping_charge` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `packing_charge` decimal(13,2) NOT NULL DEFAULT 0.00,
+  `customer_id` int(11) NOT NULL,
+  `customer_code` varchar(30) NOT NULL,
+  `customer_name` varchar(250) NOT NULL,
+  `customer_address` text DEFAULT NULL,
+  `currency_name` varchar(50) DEFAULT NULL,
+  `currency_code` varchar(30) DEFAULT NULL,
   `total_order_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `terms` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `terms` text DEFAULT NULL,
   `update_stock` tinyint(4) NOT NULL DEFAULT 0,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `payment_type` varchar(30) DEFAULT NULL,
+  `transaction_id` varchar(30) DEFAULT NULL,
+  `transaction_date` timestamp NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `purchase_orders`
+--
+
+INSERT INTO `purchase_orders` (`id`, `slack`, `store_id`, `po_number`, `po_reference`, `order_date`, `customer_id`, `customer_code`, `customer_name`, `customer_address`, `currency_name`, `currency_code`, `total_order_amount`, `terms`, `update_stock`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `payment_type`, `transaction_id`, `transaction_date`) VALUES
+(10, 'NnjmSDWmzH8qI0zZLLkCIWw0j', 24, '123456', '123', '2024-09-01', 11, '415', 'first trust', '1234567890', 'Indian rupee', 'INR', 324.00, 'due', 0, 0, 4, 1, '2024-09-22 02:05:34', '2024-09-26 13:35:18', 'NETBANKING', 'T2409270034252307678869', '2024-09-26 13:35:18'),
+(12, 'G3XoetJjKe1fy3PPsZtJG3S8f', 24, '123456111', '34324', '2024-10-01', 11, '415', 'first trust', '1234567890', 'Indian rupee', 'INR', 5000.00, NULL, 0, 1, 1, NULL, '2024-10-06 05:20:57', '2024-10-06 05:20:57', 'cash', NULL, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1663,21 +1826,11 @@ CREATE TABLE `purchase_orders` (
 
 CREATE TABLE `purchase_order_products` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `purchase_order_id` int(11) NOT NULL,
-  `product_id` int(11) DEFAULT NULL,
-  `product_slack` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `product_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `quantity` decimal(8,2) NOT NULL DEFAULT 0.00,
-  `amount_excluding_tax` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `subtotal_amount_excluding_tax` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `discount_percentage` decimal(8,2) NOT NULL DEFAULT 0.00,
-  `tax_percentage` decimal(8,2) NOT NULL DEFAULT 0.00,
-  `discount_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `total_after_discount` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `tax_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `tax_components` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_slack` varchar(30) DEFAULT NULL,
+  `product_code` varchar(30) DEFAULT NULL,
+  `name` varchar(250) NOT NULL,
   `total_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `stock_update` tinyint(4) NOT NULL DEFAULT 0,
   `status` tinyint(4) NOT NULL DEFAULT 1,
@@ -1687,6 +1840,26 @@ CREATE TABLE `purchase_order_products` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `purchase_order_products`
+--
+
+INSERT INTO `purchase_order_products` (`id`, `slack`, `purchase_order_id`, `product_slack`, `product_code`, `name`, `total_amount`, `stock_update`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(7, 'bqaNaVP2hbsbyEjtSy33FlUnv', 4, 'eO1DZNbqCRuL8rZhEJa7kErAl', NULL, 'A12', 1212.00, 0, 1, 1, NULL, '2024-09-18 02:23:58', NULL),
+(8, 'b5CUJVmYvnd90JvTkPdjk0Jd1', 4, 'B4cXD3uWt9avmhFnxB2GBWG7P', NULL, 'aaa', 1212.00, 0, 1, 1, NULL, '2024-09-18 02:23:58', NULL),
+(9, 'i8BF6TeP7cfccONKsgo6epRhC', 5, 'eO1DZNbqCRuL8rZhEJa7kErAl', NULL, 'A12', 1111.00, 0, 1, 1, NULL, '2024-09-18 03:10:41', NULL),
+(10, 'Fo1rVS2wuVOoa5eIV3K51u7Oj', 5, 'B4cXD3uWt9avmhFnxB2GBWG7P', NULL, 'aaa', 1111.00, 0, 1, 1, NULL, '2024-09-18 03:10:41', NULL),
+(11, 'WGnkn7SudT5UVe0UnIQVpsSWK', 6, 'B4cXD3uWt9avmhFnxB2GBWG7P', NULL, 'aaa', 555.00, 0, 1, 1, NULL, '2024-09-18 03:29:19', NULL),
+(12, 'KRl91IxOV8D4f1NiiTdQyd9PJ', 6, 'eO1DZNbqCRuL8rZhEJa7kErAl', NULL, 'A12', 555.00, 0, 1, 1, NULL, '2024-09-18 03:29:19', NULL),
+(13, 'uGU8Dy47cTZV9yMWQahnTTKLm', 7, 'B4cXD3uWt9avmhFnxB2GBWG7P', NULL, 'aaa', 123.00, 0, 1, 1, NULL, '2024-09-18 06:11:43', NULL),
+(14, '67LhvXwj0ADBh3cgttEKHsWHA', 7, 'eO1DZNbqCRuL8rZhEJa7kErAl', NULL, 'A12', 123.00, 0, 1, 1, NULL, '2024-09-18 06:11:43', NULL),
+(25, 'XdbNrFse4hapau90MUOrDvm6i', 3, 'eO1DZNbqCRuL8rZhEJa7kErAl', NULL, 'A12', 10000.00, 0, 1, NULL, 1, NULL, '2024-09-18 06:36:16'),
+(26, 'MQdthR5XOEac4KRE606M5zKnk', 3, 'B4cXD3uWt9avmhFnxB2GBWG7P', NULL, 'aaa', 1000.00, 0, 1, NULL, 1, NULL, '2024-09-18 06:36:16'),
+(29, 'Tv9aXV24SnJJjR5HH35Z9ny6L', 8, 'LaNzVBxSBVyAjmiaGyi0eAmZ0', NULL, 'shanti dhara', 500.00, 0, 1, NULL, 1, NULL, '2024-09-18 13:12:35'),
+(30, 'ocGhugsNHlOIq9oSTTEHcUNVO', 8, 'B4cXD3uWt9avmhFnxB2GBWG7P', NULL, 'aaa', 500.00, 0, 1, NULL, 1, NULL, '2024-09-18 13:12:35'),
+(32, 'XDUr5AA7XjjtChINbk7drqNJv', 10, 'CzyZQ8BMz8vgAZDgvzLwSt0ZJ', NULL, 'Trust daan -1', 324.00, 0, 1, 4, NULL, '2024-09-22 02:05:34', NULL),
+(33, 'Uw37tjQffABNIoKfZyir1hPwB', 12, 'CzyZQ8BMz8vgAZDgvzLwSt0ZJ', NULL, 'Trust daan -1', 5000.00, 0, 1, 1, NULL, '2024-10-06 05:20:57', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -1695,22 +1868,22 @@ CREATE TABLE `purchase_order_products` (
 
 CREATE TABLE `quotations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `quotation_number` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `quotation_reference` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quotation_number` varchar(50) NOT NULL,
+  `quotation_reference` varchar(30) DEFAULT NULL,
   `quotation_date` date DEFAULT NULL,
   `quotation_due_date` date DEFAULT NULL,
-  `subject` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bill_to` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` text DEFAULT NULL,
+  `bill_to` varchar(30) NOT NULL,
   `bill_to_id` int(11) NOT NULL,
-  `bill_to_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bill_to_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bill_to_email` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bill_to_contact` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bill_to_address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bill_to_code` varchar(30) DEFAULT NULL,
+  `bill_to_name` varchar(250) NOT NULL,
+  `bill_to_email` varchar(150) DEFAULT NULL,
+  `bill_to_contact` varchar(15) DEFAULT NULL,
+  `bill_to_address` text DEFAULT NULL,
+  `currency_name` varchar(50) DEFAULT NULL,
+  `currency_code` varchar(30) DEFAULT NULL,
   `tax_option_id` int(11) DEFAULT NULL,
   `subtotal_excluding_tax` decimal(13,2) NOT NULL DEFAULT 0.00,
   `total_discount_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
@@ -1719,7 +1892,7 @@ CREATE TABLE `quotations` (
   `shipping_charge` decimal(13,2) NOT NULL DEFAULT 0.00,
   `packing_charge` decimal(13,2) NOT NULL DEFAULT 0.00,
   `total_order_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notes` text DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -1735,12 +1908,12 @@ CREATE TABLE `quotations` (
 
 CREATE TABLE `quotation_products` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `quotation_id` int(11) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
-  `product_slack` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `product_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_slack` varchar(30) DEFAULT NULL,
+  `product_code` varchar(30) DEFAULT NULL,
+  `name` varchar(250) NOT NULL,
   `quantity` decimal(8,2) NOT NULL DEFAULT 0.00,
   `amount_excluding_tax` decimal(13,2) NOT NULL DEFAULT 0.00,
   `subtotal_amount_excluding_tax` decimal(13,2) NOT NULL DEFAULT 0.00,
@@ -1749,7 +1922,7 @@ CREATE TABLE `quotation_products` (
   `discount_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `total_after_discount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `tax_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `tax_components` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tax_components` text DEFAULT NULL,
   `total_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
@@ -1766,9 +1939,9 @@ CREATE TABLE `quotation_products` (
 
 CREATE TABLE `restaurant_tables` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `table_number` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `table_number` varchar(250) NOT NULL,
   `no_of_occupants` int(11) NOT NULL DEFAULT 0,
   `waiter_user_id` int(11) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
@@ -1786,22 +1959,25 @@ CREATE TABLE `restaurant_tables` (
 
 CREATE TABLE `roles` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
+  `role_code` varchar(30) NOT NULL,
+  `label` varchar(250) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `store_slack` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `roles`
 --
 
-INSERT INTO `roles` (`id`, `slack`, `role_code`, `label`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'aUUhs9mjycM906OVv5LB6wY7f', 'SA', 'Super Admin', 1, 1, NULL, '2021-11-26 08:57:25', '2021-11-26 08:57:25');
+INSERT INTO `roles` (`id`, `slack`, `role_code`, `label`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `store_slack`) VALUES
+(1, 'aUUhs9mjycM906OVv5LB6wY7f', 'SA', 'Super Admin', 1, 1, NULL, '2021-11-26 03:27:25', '2021-11-26 03:27:25', ''),
+(4, 'cDhQ2CNv69tFj59bbg5dsvNHW', '104', 'Trsut Admin', 1, 1, NULL, '2024-09-21 14:43:06', '2024-09-21 14:43:06', 'vkHmYyghIlYxAs64Mx17HcHq7'),
+(5, 'BrnRC1RybHEfdcJdQi9x4wSWl', '105', 'Customer Trust', 1, 4, 1, '2024-09-21 14:48:06', '2024-09-29 03:55:54', 'vkHmYyghIlYxAs64Mx17HcHq7');
 
 -- --------------------------------------------------------
 
@@ -1818,6 +1994,79 @@ CREATE TABLE `role_menus` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `role_menus`
+--
+
+INSERT INTO `role_menus` (`id`, `role_id`, `menu_id`, `created_by`, `created_at`, `updated_at`) VALUES
+(300, 4, 173, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(301, 4, 10, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(302, 4, 70, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(303, 4, 71, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(304, 4, 72, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(305, 4, 73, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(306, 4, 99, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(307, 4, 120, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(308, 4, 175, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(309, 4, 213, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(310, 4, 169, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(311, 4, 170, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(312, 4, 171, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(313, 4, 172, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(314, 4, 215, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(315, 4, 11, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(316, 4, 25, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(317, 4, 26, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(318, 4, 27, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(319, 4, 125, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(320, 4, 12, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(321, 4, 31, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(322, 4, 32, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(323, 4, 33, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(324, 4, 126, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(325, 4, 13, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(326, 4, 28, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(327, 4, 29, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(328, 4, 30, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(329, 4, 127, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(330, 4, 55, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(331, 4, 19, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(332, 4, 0, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(333, 4, 56, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(334, 4, 136, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(335, 4, 66, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(336, 4, 4, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(337, 4, 14, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(338, 4, 51, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(339, 4, 52, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(340, 4, 53, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(341, 4, 128, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(342, 4, 190, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(343, 4, 191, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(344, 4, 197, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(345, 4, 192, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(346, 4, 193, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(347, 4, 194, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(348, 4, 195, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(349, 4, 196, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06'),
+(350, 5, 173, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(351, 5, 72, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(352, 5, 10, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(353, 5, 0, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(354, 5, 120, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(355, 5, 56, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(356, 5, 19, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(357, 5, 136, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(358, 5, 147, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(359, 5, 145, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(360, 5, 144, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(361, 5, 149, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(362, 5, 194, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(363, 5, 191, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(364, 5, 190, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(365, 5, 196, 4, '2024-09-21 14:48:06', '2024-09-21 14:48:06'),
+(366, 4, 223, 1, '2024-09-21 14:43:06', '2024-09-21 14:43:06');
+
 -- --------------------------------------------------------
 
 --
@@ -1825,13 +2074,20 @@ CREATE TABLE `role_menus` (
 --
 
 CREATE TABLE `sessions` (
-  `id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(191) NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `payload` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) DEFAULT NULL,
+  `user_agent` text DEFAULT NULL,
+  `payload` text NOT NULL,
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('8sH2xXE7wrL0l3yPYIYBnUMa1Yg5softLuo1wGQh', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YToxMjp7czo2OiJfdG9rZW4iO3M6NDA6Imd4N1pnczFFbUh4Tmp4Q09vdjRMaWRqZGVHM1VGRkdZQ1laTlVsUVEiO3M6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvY2hhbGxhbnMiO31zOjY6Im91dHB1dCI7czoyNDoiMzQ2YTY4NzEzMzQ0MzEzMTMyMzkzODMwIjtzOjg6ImZ1bGxuYW1lIjtzOjE1OiJBcHBzdGhpbmcgQWRtaW4iO3M6OToiZmlyc3RuYW1lIjtOO3M6MTM6InByb2ZpbGVfaW1hZ2UiO047czo1OiJzbGFjayI7czoyNToiWEowNjk5WlNXYWp5eHZZUk50NkNCWnlHYSI7czo3OiJ1c2VyX2lkIjtpOjE7czo0OiJyb2xlIjtpOjE7czoxMjoiaW5pdGlhbF9saW5rIjtzOjMxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkIjtzOjEyOiJhY2Nlc3NfdG9rZW4iO3M6MjMzOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuZXlKcGMzTWlPaUpxZDNSZmRHOXJaVzRpTENKemRXSWlPbnNpZFhObGNsOXBaQ0k2TVN3aWRYTmxjbDl6YkdGamF5STZJbGhLTURZNU9WcFRWMkZxZVhoMldWSk9kRFpEUWxwNVIyRWlmU3dpYVdGMElqb3hOekk0TXprd016Z3dMQ0psZUhBaU9qRTNNamcwTnpZM09EQjkuQWtrbU0xMDFIMVhZNEdCTGxrMHAyQTRnUWhFQWtsMWJ0REVqV1RjNWlrVSI7fQ==', 1728392275);
 
 -- --------------------------------------------------------
 
@@ -1840,15 +2096,15 @@ CREATE TABLE `sessions` (
 --
 
 CREATE TABLE `setting_app` (
-  `company_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `app_title` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `timezone` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'UTC',
-  `app_date_time_format` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `app_date_format` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `invoice_print_logo` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `company_logo` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `navbar_logo` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `favicon` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_name` varchar(250) NOT NULL,
+  `app_title` varchar(250) DEFAULT NULL,
+  `timezone` varchar(100) NOT NULL DEFAULT 'UTC',
+  `app_date_time_format` varchar(50) NOT NULL,
+  `app_date_format` varchar(50) NOT NULL,
+  `invoice_print_logo` text DEFAULT NULL,
+  `company_logo` text DEFAULT NULL,
+  `navbar_logo` text DEFAULT NULL,
+  `favicon` text DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -1859,7 +2115,7 @@ CREATE TABLE `setting_app` (
 --
 
 INSERT INTO `setting_app` (`company_name`, `app_title`, `timezone`, `app_date_time_format`, `app_date_format`, `invoice_print_logo`, `company_logo`, `navbar_logo`, `favicon`, `updated_by`, `created_at`, `updated_at`) VALUES
-('Appsthing', 'Appsthing POS ', 'UTC', 'd-m-Y H:i', 'd-m-Y', '', NULL, NULL, NULL, 1, '2021-11-26 08:57:27', '2021-11-26 08:57:31');
+('Appsthing', 'Appsthing POS', 'UTC', 'd-m-Y H:i', 'd-m-Y', '', NULL, NULL, NULL, 1, '2021-11-26 08:57:27', '2021-11-26 08:57:31');
 
 -- --------------------------------------------------------
 
@@ -1869,16 +2125,16 @@ INSERT INTO `setting_app` (`company_name`, `app_title`, `timezone`, `app_date_ti
 
 CREATE TABLE `setting_mail` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `driver` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `host` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `port` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `encryption` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `username` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `from_email` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `from_email_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `driver` varchar(50) NOT NULL,
+  `host` varchar(250) NOT NULL,
+  `port` varchar(50) NOT NULL,
+  `encryption` varchar(50) NOT NULL,
+  `username` varchar(250) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  `from_email` varchar(250) NOT NULL,
+  `from_email_name` varchar(250) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -1894,13 +2150,13 @@ CREATE TABLE `setting_mail` (
 
 CREATE TABLE `setting_sms_gateways` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `gateway_type` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `account_id` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `token` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `twilio_number` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `auth_key` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sender_id` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slack` varchar(30) NOT NULL,
+  `gateway_type` varchar(30) NOT NULL,
+  `account_id` varchar(150) DEFAULT NULL,
+  `token` varchar(150) DEFAULT NULL,
+  `twilio_number` varchar(50) DEFAULT NULL,
+  `auth_key` varchar(100) DEFAULT NULL,
+  `sender_id` varchar(20) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -1925,11 +2181,11 @@ INSERT INTO `setting_sms_gateways` (`id`, `slack`, `gateway_type`, `account_id`,
 
 CREATE TABLE `sms_templates` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `template_key` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `message` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `available_variables` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slack` varchar(30) NOT NULL,
+  `template_key` varchar(50) NOT NULL,
+  `message` text DEFAULT NULL,
+  `available_variables` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -1952,19 +2208,19 @@ INSERT INTO `sms_templates` (`id`, `slack`, `template_key`, `message`, `availabl
 
 CREATE TABLE `stock_returns` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `return_number` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `return_number` varchar(50) NOT NULL,
   `return_date` date DEFAULT NULL,
-  `bill_to` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bill_to` varchar(30) NOT NULL,
   `bill_to_id` int(11) NOT NULL,
-  `bill_to_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bill_to_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bill_to_email` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bill_to_contact` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bill_to_address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bill_to_code` varchar(30) DEFAULT NULL,
+  `bill_to_name` varchar(250) NOT NULL,
+  `bill_to_email` varchar(150) DEFAULT NULL,
+  `bill_to_contact` varchar(15) DEFAULT NULL,
+  `bill_to_address` text DEFAULT NULL,
+  `currency_name` varchar(50) DEFAULT NULL,
+  `currency_code` varchar(30) DEFAULT NULL,
   `tax_option_id` int(11) DEFAULT NULL,
   `subtotal_excluding_tax` decimal(13,2) NOT NULL DEFAULT 0.00,
   `total_discount_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
@@ -1974,7 +2230,7 @@ CREATE TABLE `stock_returns` (
   `packing_charge` decimal(13,2) NOT NULL DEFAULT 0.00,
   `total_order_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `update_stock` tinyint(4) NOT NULL DEFAULT 0,
-  `notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notes` text DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -1990,12 +2246,12 @@ CREATE TABLE `stock_returns` (
 
 CREATE TABLE `stock_return_products` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `stock_return_id` int(11) NOT NULL,
   `product_id` int(11) DEFAULT NULL,
-  `product_slack` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `product_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_slack` varchar(30) DEFAULT NULL,
+  `product_code` varchar(30) DEFAULT NULL,
+  `name` varchar(250) NOT NULL,
   `quantity` decimal(8,2) NOT NULL DEFAULT 0.00,
   `amount_excluding_tax` decimal(13,2) NOT NULL DEFAULT 0.00,
   `subtotal_amount_excluding_tax` decimal(13,2) NOT NULL DEFAULT 0.00,
@@ -2004,7 +2260,7 @@ CREATE TABLE `stock_return_products` (
   `discount_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `total_after_discount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `tax_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `tax_components` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tax_components` text DEFAULT NULL,
   `total_amount` decimal(13,2) NOT NULL DEFAULT 0.00,
   `stock_update` tinyint(4) NOT NULL DEFAULT 0,
   `status` tinyint(4) NOT NULL DEFAULT 1,
@@ -2022,16 +2278,16 @@ CREATE TABLE `stock_return_products` (
 
 CREATE TABLE `stock_transfer` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `stock_transfer_reference` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `stock_transfer_reference` varchar(30) NOT NULL,
   `from_store_id` int(11) NOT NULL,
-  `from_store_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `from_store_name` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `from_store_code` varchar(30) DEFAULT NULL,
+  `from_store_name` varchar(250) DEFAULT NULL,
   `to_store_id` int(11) NOT NULL,
-  `to_store_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `to_store_name` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `to_store_code` varchar(30) DEFAULT NULL,
+  `to_store_name` varchar(250) DEFAULT NULL,
+  `notes` text DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -2047,19 +2303,19 @@ CREATE TABLE `stock_transfer` (
 
 CREATE TABLE `stock_transfer_products` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `stock_transfer_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `product_slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_slack` varchar(30) NOT NULL,
+  `product_code` varchar(30) NOT NULL,
+  `product_name` varchar(250) NOT NULL,
   `quantity` decimal(8,2) NOT NULL DEFAULT 0.00,
-  `inward_type` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'MERGE, NEW',
+  `inward_type` varchar(30) DEFAULT NULL COMMENT 'MERGE, NEW',
   `accepted_quantity` decimal(8,2) DEFAULT NULL,
   `destination_product_id` int(11) DEFAULT NULL,
-  `destination_product_slack` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `destination_product_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `destination_product_name` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `destination_product_slack` varchar(30) DEFAULT NULL,
+  `destination_product_code` varchar(30) DEFAULT NULL,
+  `destination_product_name` varchar(250) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -2075,37 +2331,66 @@ CREATE TABLE `stock_transfer_products` (
 
 CREATE TABLE `stores` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `store_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tax_number` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slack` varchar(30) NOT NULL,
+  `store_code` varchar(30) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `tax_number` varchar(250) DEFAULT NULL,
   `tax_code_id` int(11) DEFAULT NULL,
   `discount_code_id` int(11) DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text DEFAULT NULL,
   `country_id` int(11) NOT NULL,
-  `pincode` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `primary_contact` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `secondary_contact` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `primary_email` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `secondary_email` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `invoice_type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'SMALL',
-  `currency_name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_code` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT 'USD',
+  `pincode` varchar(15) DEFAULT NULL,
+  `primary_contact` varchar(15) DEFAULT NULL,
+  `secondary_contact` varchar(15) DEFAULT NULL,
+  `primary_email` varchar(150) DEFAULT NULL,
+  `invoice_type` varchar(50) NOT NULL DEFAULT 'SMALL',
+  `currency_name` varchar(50) DEFAULT NULL,
+  `currency_code` varchar(30) DEFAULT 'USD',
   `restaurant_mode` int(11) NOT NULL DEFAULT 0,
-  `restaurant_chef_role_id` int(11) DEFAULT NULL,
-  `restaurant_waiter_role_id` int(11) DEFAULT NULL,
-  `restaurant_billing_type_id` int(11) DEFAULT NULL,
-  `enable_customer_popup` tinyint(4) NOT NULL DEFAULT 0,
-  `enable_variants_popup` tinyint(4) NOT NULL DEFAULT 1,
-  `enable_digital_menu_otp_verification` tinyint(4) NOT NULL DEFAULT 1,
-  `digital_menu_send_order_to_kitchen` tinyint(4) NOT NULL DEFAULT 0,
   `menu_language_id` int(11) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
+  `online_payment` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `stores`
+--
+
+INSERT INTO `stores` (`id`, `slack`, `store_code`, `name`, `tax_number`, `tax_code_id`, `discount_code_id`, `address`, `country_id`, `pincode`, `primary_contact`, `secondary_contact`, `primary_email`, `invoice_type`, `currency_name`, `currency_code`, `restaurant_mode`, `menu_language_id`, `status`, `online_payment`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(24, 'vkHmYyghIlYxAs64Mx17HcHq7', '173', 'Main Trust', 'main', NULL, NULL, 'main trust', 98, '1234', '8889400010', '9575485575', 'maintrust@gmail.com', 'SMALL_V2', 'Indian rupee', 'INR', 0, 0, 1, 1, 1, 4, '2024-09-21 14:33:07', '2024-09-21 14:45:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `store_payment`
+--
+
+CREATE TABLE `store_payment` (
+  `id` int(10) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `store_slack` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payment` varchar(30) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `store_payment`
+--
+
+INSERT INTO `store_payment` (`id`, `store_id`, `store_slack`, `payment`, `created_at`, `updated_at`) VALUES
+(61, 21, 'b7l6rPsCAkpZQ6GZ8HeMx3h6r', '12', '2024-09-16 13:46:00', '2024-09-16 13:46:00'),
+(62, 22, 'nlWLhgoOoFKIYTwD0UnHySjC3', '123', '2024-09-17 10:26:30', '2024-09-17 10:26:30'),
+(63, 22, 'nlWLhgoOoFKIYTwD0UnHySjC3', '112312', '2024-09-17 10:26:30', '2024-09-17 10:26:30'),
+(64, 22, 'nlWLhgoOoFKIYTwD0UnHySjC3', '123123', '2024-09-17 10:26:30', '2024-09-17 10:26:30'),
+(65, 23, 'KqbdZEhsr2U2ZOIw2knCftqOH', 'cash', '2024-09-18 13:05:01', '2024-09-18 13:05:01'),
+(66, 23, 'KqbdZEhsr2U2ZOIw2knCftqOH', 'cheque', '2024-09-18 13:05:01', '2024-09-18 13:05:01'),
+(67, 24, 'vkHmYyghIlYxAs64Mx17HcHq7', 'cash', '2024-09-21 14:33:07', '2024-09-21 14:33:07'),
+(68, 24, 'vkHmYyghIlYxAs64Mx17HcHq7', 'cheque', '2024-09-21 14:33:07', '2024-09-21 14:33:07');
 
 -- --------------------------------------------------------
 
@@ -2115,20 +2400,28 @@ CREATE TABLE `stores` (
 
 CREATE TABLE `suppliers` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `supplier_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pincode` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `supplier_code` varchar(30) NOT NULL,
+  `name` varchar(250) NOT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `pincode` varchar(15) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `suppliers`
+--
+
+INSERT INTO `suppliers` (`id`, `slack`, `store_id`, `supplier_code`, `name`, `email`, `phone`, `address`, `pincode`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'JOl1PQlptI8Toe1b0xQD5KxKG', 21, 'SUP101', 'D1', '123@gmail.com', '2131231312', 'indore', '452010', 1, 1, NULL, '2024-09-18 06:48:48', '2024-09-18 06:48:48'),
+(2, 'FWhcsbMjxzE4Zw9nK4vRweO1w', 24, 'SUP102', 'Supplier 1', '1212@gmail.com', '8889400010', 'main', '452010', 1, 1, 1, '2024-09-24 06:43:49', '2024-09-29 05:15:20');
 
 -- --------------------------------------------------------
 
@@ -2138,7 +2431,7 @@ CREATE TABLE `suppliers` (
 
 CREATE TABLE `targets` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
   `month` date NOT NULL,
   `income` decimal(13,2) NOT NULL DEFAULT 999999.00,
@@ -2159,12 +2452,12 @@ CREATE TABLE `targets` (
 
 CREATE TABLE `tax_codes` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `label` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tax_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `label` varchar(250) NOT NULL,
+  `tax_code` varchar(30) NOT NULL,
   `total_tax_percentage` decimal(8,2) NOT NULL DEFAULT 0.00,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
@@ -2181,7 +2474,7 @@ CREATE TABLE `tax_codes` (
 CREATE TABLE `tax_code_type` (
   `id` int(10) UNSIGNED NOT NULL,
   `tax_code_id` int(11) NOT NULL,
-  `tax_type` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tax_type` varchar(50) NOT NULL,
   `tax_percentage` decimal(8,2) NOT NULL DEFAULT 0.00,
   `created_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -2196,23 +2489,23 @@ CREATE TABLE `tax_code_type` (
 
 CREATE TABLE `transactions` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `transaction_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `transaction_code` varchar(30) NOT NULL,
   `account_id` int(11) NOT NULL,
   `transaction_type` int(11) NOT NULL,
   `payment_method_id` int(11) DEFAULT NULL,
-  `payment_method` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bill_to` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'POS_ORDER, INVOICE, CUSTOMER, SUPPLIER',
+  `payment_method` varchar(50) DEFAULT NULL,
+  `bill_to` varchar(50) DEFAULT NULL COMMENT 'POS_ORDER, INVOICE, CUSTOMER, SUPPLIER',
   `bill_to_id` int(11) DEFAULT NULL,
-  `bill_to_name` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bill_to_contact` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `bill_to_address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bill_to_name` varchar(250) DEFAULT NULL,
+  `bill_to_contact` varchar(150) DEFAULT NULL,
+  `bill_to_address` text DEFAULT NULL,
+  `currency_code` varchar(30) NOT NULL,
   `amount` decimal(13,2) NOT NULL DEFAULT 0.00,
-  `notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pg_transaction_id` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `pg_transaction_status` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `pg_transaction_id` varchar(250) DEFAULT NULL,
+  `pg_transaction_status` varchar(100) DEFAULT NULL,
   `transaction_date` date DEFAULT NULL,
   `transaction_merged` tinyint(4) NOT NULL DEFAULT 0,
   `merged_from` int(11) DEFAULT NULL,
@@ -2231,17 +2524,17 @@ CREATE TABLE `transactions` (
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fullname` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `init_password` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password_reset_token` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slack` varchar(30) NOT NULL,
+  `user_code` varchar(30) NOT NULL,
+  `fullname` varchar(250) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `fresh_login` tinyint(1) NOT NULL DEFAULT 1,
+  `password_reset_token` text DEFAULT NULL,
   `password_reset_max_tries` int(11) NOT NULL DEFAULT 0,
   `password_reset_last_tried_on` datetime DEFAULT NULL,
-  `phone` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `profile_image` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `profile_image` text DEFAULT NULL,
   `role_id` int(11) DEFAULT NULL,
   `store_id` int(11) DEFAULT NULL,
   `language_id` int(11) DEFAULT NULL,
@@ -2256,9 +2549,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `slack`, `user_code`, `fullname`, `email`, `password`, `init_password`, `password_reset_token`, `password_reset_max_tries`, `password_reset_last_tried_on`, `phone`, `profile_image`, `role_id`, `store_id`, `language_id`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'XJ0699ZSWajyxvYRNt6CBZyGa', 'SA', 'Appsthing Admin', 'admin@appsthing.com', '$2y$10$YCeRIaNFfikriDJ/ALyMneUt3TPlf1u9TW3mwVvQZz5jEnveZrUwK', NULL, NULL, 0, NULL, '0000000000', NULL, 1, NULL, NULL, 1, NULL, NULL, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(2, 'j2BbhCeGif8LxAKPPNmijtdfD', 'CUSTOMER_USER', 'Customer', 'customer@appsthing.com', '', NULL, NULL, 0, NULL, '0000000000', NULL, 1, NULL, NULL, 1, NULL, NULL, '2021-11-26 08:57:32', '2021-11-26 08:57:32');
+INSERT INTO `users` (`id`, `slack`, `user_code`, `fullname`, `email`, `password`, `fresh_login`, `password_reset_token`, `password_reset_max_tries`, `password_reset_last_tried_on`, `phone`, `profile_image`, `role_id`, `store_id`, `language_id`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'XJ0699ZSWajyxvYRNt6CBZyGa', 'SA', 'Appsthing Admin', 'admin@appsthing.com', '$2y$10$3wMSDstnC/IDE7Kwv6FfUOqygz0vongvG0mxbtF1HAJAd3cyx6ozm', 0, NULL, 0, NULL, '8889400010', NULL, 1, 24, NULL, 1, NULL, NULL, '2021-11-26 08:57:25', '2024-10-08 06:56:08'),
+(4, 'sKMArEMSbUkkkTEggsQJWPwJH', '104', 'Admin Trust', 'admin@trust.com', '$2y$10$2MjAl.9t5aQdKymLs3K16O5A97J4thS7HM7CjSDnIGVxPt88QGEs2', 1, NULL, 0, NULL, '1234567890', NULL, 4, 24, NULL, 1, 1, 1, '2024-09-21 14:44:01', '2024-09-29 03:41:22');
 
 -- --------------------------------------------------------
 
@@ -2268,12 +2561,27 @@ INSERT INTO `users` (`id`, `slack`, `user_code`, `fullname`, `email`, `password`
 
 CREATE TABLE `user_access_tokens` (
   `id` int(10) UNSIGNED NOT NULL,
+  `customer_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `session_id` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `access_token` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `session_id` text DEFAULT NULL,
+  `access_token` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_access_tokens`
+--
+
+INSERT INTO `user_access_tokens` (`id`, `customer_id`, `user_id`, `session_id`, `access_token`, `created_at`, `updated_at`) VALUES
+(144, 0, 1, 'S4AkVczBT8GsqWIqgp5Vqbo5DWtndLUbsiS0sBZz', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI3NTE0NjE3LCJleHAiOjE3Mjc2MDEwMTd9.H_Ov-Tb8IQ6Rt0CLx4yKQF3pg6hzXuPHJ7ozp1M-SPI', '2024-09-28 03:40:17', '2024-09-28 03:40:17'),
+(145, 0, 1, 'KxN3n2VwpBQ76j2bPMRcHAN9y7glOXHjuMICAKz5', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI3NTk2NTY2LCJleHAiOjE3Mjc2ODI5NjZ9.vNM9v7TDb4lLOHnLK3NMkO0jS1MHtZV4NFg_pLTN_ZA', '2024-09-29 02:26:06', '2024-09-29 02:26:06'),
+(147, 0, 1, 'OHEOfg32NewtbpdtcnG1h50211kfbZ3YRhXcBbom', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MDY3ODM5LCJleHAiOjE3MjgxNTQyMzl9.JK0I2ehfJdyG6uztSmgtQtb3emb3lcnbXdktFuQ2QGE', '2024-10-04 13:20:39', '2024-10-04 13:20:39'),
+(148, 0, 1, 'j18CjzM0uAp3HgM6QMn1bUVFRXHfJCAxPJ9M0ftP', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MTIwNTM2LCJleHAiOjE3MjgyMDY5MzZ9.nAK9EG3x9L4yqbupTwXxNXTZy-8MpgMyw9umyqcqgEM', '2024-10-05 03:58:56', '2024-10-05 03:58:56'),
+(149, 0, 1, 'ibvatARxILal2CdUhMUdR9M3FlIKiYyfrzBbtEwp', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MTMzNzYzLCJleHAiOjE3MjgyMjAxNjN9.1Wp063Q43uHrsQlU5aCiaoCnZYQcswBjVWEgwVy904M', '2024-10-05 07:39:23', '2024-10-05 07:39:23'),
+(150, 0, 1, 'acBHkm1lj09J48KAJwHGynZk0XjhZMgw9Q7F2HWH', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MTU1MDUyLCJleHAiOjE3MjgyNDE0NTJ9.vfIzc-VAAgf215QYsXxPP-rGXV1hyuk96EwJ9zzlP6A', '2024-10-05 13:34:12', '2024-10-05 13:34:12'),
+(153, 0, 1, 'c9FvndNBpl8l4hQioR03FVXtwVon2arHXk1XPcrE', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MjIwNjk5LCJleHAiOjE3MjgzMDcwOTl9.N85bMK9x-7ID5sl9WqtqpdcgSq0XgOoSLc57WRiKqpo', '2024-10-06 07:48:19', '2024-10-06 07:48:19'),
+(172, 0, 1, '8sH2xXE7wrL0l3yPYIYBnUMa1Yg5softLuo1wGQh', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MzkwMzgwLCJleHAiOjE3Mjg0NzY3ODB9.AkkmM101H1XY4GBLlk0p2A4gQhEAkl1btDEjWTc5ikU', '2024-10-08 06:56:20', '2024-10-08 06:56:20');
 
 -- --------------------------------------------------------
 
@@ -2369,7 +2677,122 @@ INSERT INTO `user_menus` (`id`, `user_id`, `menu_id`, `created_by`, `created_at`
 (72, 1, 72, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (73, 1, 73, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
 (74, 1, 74, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
-(75, 1, 75, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25');
+(75, 1, 75, 1, '2021-11-26 08:57:25', '2021-11-26 08:57:25'),
+(279, 3, 0, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(280, 3, 4, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(281, 3, 10, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(282, 3, 11, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(283, 3, 12, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(284, 3, 13, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(285, 3, 14, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(286, 3, 19, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(287, 3, 21, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(288, 3, 22, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(289, 3, 25, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(290, 3, 26, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(291, 3, 27, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(292, 3, 28, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(293, 3, 29, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(294, 3, 30, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(295, 3, 31, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(296, 3, 32, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(297, 3, 33, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(298, 3, 51, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(299, 3, 52, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(300, 3, 53, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(301, 3, 54, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(302, 3, 55, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(303, 3, 56, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(304, 3, 60, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(305, 3, 61, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(306, 3, 65, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(307, 3, 66, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(308, 3, 67, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(309, 3, 70, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(310, 3, 71, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(311, 3, 72, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(312, 3, 73, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(313, 3, 99, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(314, 3, 120, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(315, 3, 125, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(316, 3, 126, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(317, 3, 127, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(318, 3, 128, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(319, 3, 136, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(320, 3, 144, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(321, 3, 145, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(322, 3, 146, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(323, 3, 147, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(324, 3, 148, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(325, 3, 149, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(326, 3, 160, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(327, 3, 168, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(328, 3, 169, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(329, 3, 170, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(330, 3, 171, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(331, 3, 172, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(332, 3, 173, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(333, 3, 175, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(334, 3, 190, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(335, 3, 191, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(336, 3, 192, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(337, 3, 193, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(338, 3, 194, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(339, 3, 195, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(340, 3, 196, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(341, 3, 197, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(342, 3, 213, 1, '2024-09-19 15:20:41', '2024-09-19 15:20:41'),
+(393, 4, 0, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(394, 4, 4, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(395, 4, 10, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(396, 4, 11, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(397, 4, 12, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(398, 4, 13, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(399, 4, 14, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(400, 4, 19, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(401, 4, 25, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(402, 4, 26, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(403, 4, 27, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(404, 4, 28, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(405, 4, 29, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(406, 4, 30, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(407, 4, 31, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(408, 4, 32, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(409, 4, 33, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(410, 4, 51, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(411, 4, 52, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(412, 4, 53, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(413, 4, 55, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(414, 4, 56, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(415, 4, 66, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(416, 4, 70, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(417, 4, 71, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(418, 4, 72, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(419, 4, 73, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(420, 4, 99, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(421, 4, 120, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(422, 4, 125, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(423, 4, 126, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(424, 4, 127, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(425, 4, 128, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(426, 4, 136, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(427, 4, 169, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(428, 4, 170, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(429, 4, 171, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(430, 4, 172, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(431, 4, 173, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(432, 4, 175, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(433, 4, 190, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(434, 4, 191, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(435, 4, 192, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(436, 4, 193, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(437, 4, 194, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(438, 4, 195, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(439, 4, 196, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(440, 4, 197, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(441, 4, 213, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(442, 4, 215, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37'),
+(443, 4, 223, 1, '2024-09-29 03:40:37', '2024-09-29 03:40:37');
 
 -- --------------------------------------------------------
 
@@ -2386,6 +2809,13 @@ CREATE TABLE `user_stores` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `user_stores`
+--
+
+INSERT INTO `user_stores` (`id`, `user_id`, `store_id`, `created_by`, `created_at`, `updated_at`) VALUES
+(5, 4, 24, 1, '2024-09-21 14:44:01', '2024-09-21 14:44:01');
+
 -- --------------------------------------------------------
 
 --
@@ -2394,16 +2824,25 @@ CREATE TABLE `user_stores` (
 
 CREATE TABLE `variant_options` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `slack` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slack` varchar(30) NOT NULL,
   `store_id` int(11) NOT NULL,
-  `variant_option_code` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `label` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `variant_option_code` varchar(30) NOT NULL,
+  `label` varchar(250) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_by` int(11) DEFAULT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `variant_options`
+--
+
+INSERT INTO `variant_options` (`id`, `slack`, `store_id`, `variant_option_code`, `label`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
+(1, 'p4u5RlN7ZwLldByLwTsHdngAr', 1, 'VO101', '1', 1, 1, NULL, '2024-09-14 13:10:10', '2024-09-14 13:10:10'),
+(2, '36K4solvY0e3Hn949wP14N3rt', 1, 'VO102', '2', 1, 1, NULL, '2024-09-14 13:10:17', '2024-09-14 13:10:17'),
+(3, '7e05dEbUlXOObSPHtA62mmUoA', 1, 'VO103', '3', 1, 1, NULL, '2024-09-14 13:10:23', '2024-09-14 13:10:23');
 
 --
 -- Indexes for dumped tables
@@ -2434,9 +2873,9 @@ ALTER TABLE `addon_group_products`
   ADD KEY `addon_group_products_product_id_addon_group_id_index` (`product_id`,`addon_group_id`);
 
 --
--- Indexes for table `particulars`
+-- Indexes for table `billing_counters`
 --
-ALTER TABLE `particulars`
+ALTER TABLE `billing_counters`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `billing_counters_slack_unique` (`slack`),
   ADD KEY `billing_counters_store_id_billing_counter_code_status_index` (`store_id`,`billing_counter_code`,`status`);
@@ -2468,6 +2907,18 @@ ALTER TABLE `category`
   ADD KEY `category_status_store_id_category_code_index` (`status`,`store_id`,`category_code`);
 
 --
+-- Indexes for table `challan_orders`
+--
+ALTER TABLE `challan_orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `challan_order_products`
+--
+ALTER TABLE `challan_order_products`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `country`
 --
 ALTER TABLE `country`
@@ -2481,6 +2932,12 @@ ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `customers_slack_unique` (`slack`),
   ADD KEY `customers_email_phone_status_index` (`email`,`phone`,`status`);
+
+--
+-- Indexes for table `customer_menus`
+--
+ALTER TABLE `customer_menus`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `discount_codes`
@@ -2700,7 +3157,7 @@ ALTER TABLE `purchase_orders`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `purchase_orders_slack_unique` (`slack`),
   ADD UNIQUE KEY `purchase_orders_po_number_unique` (`po_number`),
-  ADD KEY `purchase_orders_store_id_po_number_supplier_id_status_index` (`store_id`,`po_number`,`supplier_id`,`status`);
+  ADD KEY `purchase_orders_store_id_po_number_supplier_id_status_index` (`store_id`,`po_number`,`customer_id`,`status`);
 
 --
 -- Indexes for table `purchase_order_products`
@@ -2833,8 +3290,13 @@ ALTER TABLE `stores`
   ADD UNIQUE KEY `stores_store_code_unique` (`store_code`),
   ADD KEY `stores_status_index` (`status`),
   ADD KEY `stores_restaurant_mode_index` (`restaurant_mode`),
-  ADD KEY `menu_otp_language_index` (`enable_digital_menu_otp_verification`,`menu_language_id`),
-  ADD KEY `stores_digital_menu_send_order_to_kitchen_index` (`digital_menu_send_order_to_kitchen`);
+  ADD KEY `menu_otp_language_index` (`menu_language_id`);
+
+--
+-- Indexes for table `store_payment`
+--
+ALTER TABLE `store_payment`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `suppliers`
@@ -2925,7 +3387,7 @@ ALTER TABLE `variant_options`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `addon_groups`
@@ -2940,10 +3402,10 @@ ALTER TABLE `addon_group_products`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `particulars`
+-- AUTO_INCREMENT for table `billing_counters`
 --
-ALTER TABLE `particulars`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `billing_counters`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `bookings`
@@ -2964,6 +3426,18 @@ ALTER TABLE `category`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `challan_orders`
+--
+ALTER TABLE `challan_orders`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `challan_order_products`
+--
+ALTER TABLE `challan_order_products`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
 -- AUTO_INCREMENT for table `country`
 --
 ALTER TABLE `country`
@@ -2973,7 +3447,13 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `customer_menus`
+--
+ALTER TABLE `customer_menus`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `discount_codes`
@@ -3039,7 +3519,7 @@ ALTER TABLE `master_order_type`
 -- AUTO_INCREMENT for table `master_status`
 --
 ALTER TABLE `master_status`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `master_tax_option`
@@ -3063,7 +3543,7 @@ ALTER TABLE `measurement_units`
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=224;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -3135,13 +3615,13 @@ ALTER TABLE `product_variants`
 -- AUTO_INCREMENT for table `purchase_orders`
 --
 ALTER TABLE `purchase_orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `purchase_order_products`
 --
 ALTER TABLE `purchase_order_products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `quotations`
@@ -3165,13 +3645,13 @@ ALTER TABLE `restaurant_tables`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `role_menus`
 --
 ALTER TABLE `role_menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=367;
 
 --
 -- AUTO_INCREMENT for table `setting_mail`
@@ -3219,13 +3699,19 @@ ALTER TABLE `stock_transfer_products`
 -- AUTO_INCREMENT for table `stores`
 --
 ALTER TABLE `stores`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `store_payment`
+--
+ALTER TABLE `store_payment`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `targets`
@@ -3255,31 +3741,31 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_access_tokens`
 --
 ALTER TABLE `user_access_tokens`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
 
 --
 -- AUTO_INCREMENT for table `user_menus`
 --
 ALTER TABLE `user_menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=444;
 
 --
 -- AUTO_INCREMENT for table `user_stores`
 --
 ALTER TABLE `user_stores`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `variant_options`
 --
 ALTER TABLE `variant_options`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
