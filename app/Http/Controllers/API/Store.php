@@ -610,4 +610,55 @@ class Store extends Controller
             throw new Exception($validator->errors());
         }
     }
+
+       /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $slack
+     * @return \Illuminate\Http\Response
+     */
+    public function findStore(Request $request)
+    {
+            // Validate the incoming request data
+    $validatedData = $request->validate([
+        'phone' => 'required|string|max:15',  // Ensure phone is provided
+        'email' => 'required|email',          // Ensure email is provided and valid
+    ]);
+
+    try {
+        // Query the database for stores that match either phone or email
+        $stores = CustomerModel::select('store_id')
+            ->where('phone', $validatedData['phone'])
+            ->orWhere('email', $validatedData['email']) // Either condition can match
+            ->get();
+
+        if ($stores->isEmpty()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No stores found for the given phone or email.',
+            ]);
+        }
+
+        // Extract store_ids from the $stores collection
+        $storeIds = $stores->pluck('store_id')->toArray();
+       
+        // Query the StoreModel for the corresponding store details
+        $storeData = StoreModel::whereIn('id', $storeIds)->get();
+       
+        // If store data is found, return it
+        return response()->json([
+            'success' => true,
+            'stores' => $storeData,
+        ]);
+        } catch (\Exception $e) {
+            // Log the error (optional) and return a failure response
+            \Log::error('Error fetching stores: ' . $e->getMessage());
+    
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred while fetching stores.',
+            ], 500);  // HTTP 500 Internal Server Error
+        }
+    }
 }

@@ -59,6 +59,8 @@ class Customer extends Controller
 
     //This is the function that loads the add/edit page
     public function add_customer($slack = null){
+
+        
         //check access
         $data['menu_key'] = 'MM_USER';
         $data['action_key'] = ($slack == null)?'A_ADD_CUSTOMER':'A_EDIT_CUSTOMER';

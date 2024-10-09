@@ -19,6 +19,8 @@ Route::post('/user/sendOtp','API\User@sendOtp');
 Route::post('/user/verifyOtp','API\User@verifyOtp');
 Route::post('/user/forgot_password', 'API\User@forgot_password');
 Route::post('/user/reset_password', 'API\User@reset_password');
+Route::post('/add_new_customer', 'API\Customer@updatenew');
+Route::post('/findstore', 'API\Store@findstore');
 
 //customer order
 Route::post('/add_customer_order', 'API\Order@store_customer_order');
