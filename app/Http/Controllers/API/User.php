@@ -61,9 +61,10 @@ class User extends Controller
            
          }
          $customer = CustomerModel::where('email', $contact)->orWhere('phone', $contact)->first();
+       
          if ($customer) {
              $isFirstLogin = $customer->fresh_login;
-             return response()->json(['isFirstLogin' => $isFirstLogin, 'name' => $customer->fullname]);
+             return response()->json(['isFirstLogin' => $isFirstLogin, 'name' => $customer->name]);
          }
 
          

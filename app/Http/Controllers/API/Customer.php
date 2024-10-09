@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Customer as CustomerModel;
 use App\Models\Role as RoleModel;
+use App\Models\Store as StoreModel;
 
 use App\Http\Resources\CustomerResource;
 use App\Http\Controllers\API\Role as RoleAPI;
@@ -206,7 +207,6 @@ class Customer extends Controller
                 'customer_type' => 'CUSTOM',
                 "customer_code" => mt_rand(100,999),
                 "password" => $hashed_password,
-                "init_password" => $password,
                 "store_id" => $store_id,
                 "role_id" => $role_data->id,
                 "name" => $request->name,
@@ -393,6 +393,66 @@ class Customer extends Controller
             ));
         }
     }
+
+
+     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $slack
+     * @return \Illuminate\Http\Response
+     */
+    public function updatenew(Request $request)
+    {
+        try {
+
+            $role_data = RoleModel::select('id')->where('id', '=', $request->role)->first();
+            if (!$role_data) {
+                throw new Exception("Invalid role selected", 400);
+            }
+            $store_data = StoreModel::select('id')->where('slack', '=', $request->selectedTrust)->first();
+            if (!$store_data) {
+                throw new Exception("Invalid store selected", 400);
+            }
+           
+            $hashed_password = Hash::make($request->password);
+            DB::beginTransaction();
+            $customer = [        
+                "name" => $request->name,
+                "slack" => $this->generate_slack("customers"),
+                "customer_code" => mt_rand(100,999),
+                "email" => $request->email,
+                "phone" => $request->phone,
+                "password" => $hashed_password,
+                'store_id' => $store_data->id,
+                "role_id" => $role_data->id,
+                "address" => $request->address,
+                "dob" => $request->dob,
+                "status" => $request->status,
+                "updated_by" => $request->logged_user_id ? null : 'self', 
+            ];
+            $data = CustomerModel::where('phone', $request->phone)->orwhere('email' , $request->email)
+            ->update($customer);
+            $role_api = new RoleAPI();
+            $role_api->update_customer_roles($request, $role_data->id);
+            DB::commit();
+            return response()->json($this->generate_response(
+                array(
+                    "message" => "Customer updated successfully", 
+                    "data"    => $data
+                ), 'SUCCESS'
+            ));
+
+        }catch(Exception $e){
+            return response()->json($this->generate_response(
+                array(
+                    "message" => $e->getMessage(),
+                    "status_code" => $e->getCode()
+                )
+            ));
+        }
+    }
+
 
     public function load_customer_list(Request $request)
     {
