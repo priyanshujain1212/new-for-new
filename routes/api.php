@@ -97,53 +97,7 @@ Route::group(['middleware' => ['token_auth']], function () {
     Route::post('/supplier/{slack}', 'API\Supplier@show');
     Route::post('/supplier_list', 'API\Supplier@list');
 
-    //product
-    Route::post('/products', 'API\Product@index');
-    Route::post('/add_product', 'API\Product@store')->name('add_product');
-    Route::post('/update_product/{slack}', 'API\Product@update')->name('update_product');
-    Route::post('/get_product', 'API\Product@get_product');
-    Route::post('/generate_barcodes', 'API\Product@generate_barcodes');
-    Route::post('/load_product_for_po', 'API\Product@load_product_for_po');
-    Route::post('/load_product_for_stock_transfer', 'API\Product@load_product_for_stock_transfer');
-    Route::post('/product/{slack}', 'API\Product@show');
-    Route::post('/product_list', 'API\Product@list');
-    Route::post('/delete_product_image', 'API\Product@delete_product_image')->name('delete_product_image');
-    Route::post('/load_ingredients', 'API\Product@load_ingredients');
-    Route::post('/load_addon_group_product', 'API\Product@load_addon_group_product');
-    Route::post('/get_product_addon_groups', 'API\Product@get_product_addon_groups');
-    Route::post('/load_variant_products', 'API\Product@load_variant_products');
-    Route::post('/remove_variant_product', 'API\Product@remove_variant_product');
-
-    //tax code
-    Route::post('/tax_codes', 'API\Taxcode@index');
-    Route::post('/add_tax_code', 'API\Taxcode@store');
-    Route::post('/update_tax_code/{slack}', 'API\Taxcode@update');
-    Route::post('/tax_code/{slack}', 'API\Taxcode@show');
-    Route::post('/tax_code_list', 'API\Taxcode@list');
-
-    //order
-    Route::post('/orders', 'API\Order@index');
-    Route::post('/add_order', 'API\Order@store');
-    Route::post('/update_order/{slack}', 'API\Order@update');
-    Route::post('/delete_order/{slack}', 'API\Order@destroy');
-    Route::post('/get_hold_list', 'API\Order@get_hold_list');
-    Route::post('/get_in_kitchen_order_list', 'API\Order@get_in_kitchen_order_list');
-    Route::post('/update_kitchen_order_status', 'API\Order@update_kitchen_order_status');
-    Route::post('/get_register_order_amount', 'API\Order@get_register_order_amount');
-    Route::post('/get_running_order_list', 'API\Order@get_running_order_list');
-    Route::post('/share_invoice_sms/{slack}', 'API\Order@share_invoice_sms');
-    Route::post('/order/{slack}', 'API\Order@show');
-    Route::post('/order_list', 'API\Order@list');
-    Route::post('/get_waiter_order_list', 'API\Order@get_waiter_order_list');
-    Route::post('/update_kitchen_item_status', 'API\Order@update_kitchen_item_status');
-    Route::post('/get_digital_menu_orders_list', 'API\Order@get_digital_menu_orders_list');
-    Route::post('/get_digital_menu_orders', 'API\Order@get_digital_menu_orders');
-    Route::post('/send_order_to_kitchen', 'API\Order@send_order_to_kitchen');
-    Route::post('/toggle_order_dismissed_from_screen_status', 'API\Order@toggle_order_dismissed_from_screen_status');
-    Route::post('/get_merge_order_list', 'API\Order@get_merge_order_list');
-    Route::post('/merge_order', 'API\Order@merge_order');
-    Route::post('/unmerge_order', 'API\Order@unmerge_order');
-    
+  
     //store
     Route::post('/stores', 'API\Store@index');
     Route::post('/addtrust', 'API\Store@store');
@@ -156,13 +110,7 @@ Route::group(['middleware' => ['token_auth']], function () {
     Route::post('/update_data', 'API\Import@update_data');
     Route::post('/download_reference_sheet', 'API\Import@generate_reference_sheet');
 
-    //discount code
-    Route::post('/discount_codes', 'API\Discountcode@index');
-    Route::post('/add_discount_code', 'API\Discountcode@store');
-    Route::post('/update_discount_code/{slack}', 'API\Discountcode@update');
-    Route::post('/discount_code/{slack}', 'API\Discountcode@show');
-    Route::post('/discount_code_list', 'API\Discountcode@list');
-
+   
     //payment method
     Route::post('/payment_methods', 'API\PaymentMethod@index');
     Route::post('/add_payment_method', 'API\PaymentMethod@store');
@@ -231,25 +179,7 @@ Route::group(['middleware' => ['token_auth']], function () {
     Route::post('/filter_quotations', 'API\Quotation@filter_quotations');
     Route::post('/filter_transactions', 'API\Transaction@filter_transactions');
 
-    //invoice
-    Route::post('/invoices', 'API\Invoice@index');
-    Route::post('/add_invoice', 'API\Invoice@store');
-    Route::post('/update_invoice/{slack}', 'API\Invoice@update');
-    Route::post('/update_invoice_status/{slack}', 'API\Invoice@update_invoice_status');
-    Route::post('/load_bill_to_list', 'API\Invoice@load_bill_to_list');
-    Route::post('/delete_invoice/{slack}', 'API\Invoice@destroy');
-    Route::post('/get_invoice_pending_payment_data/{slack}', 'API\Invoice@get_invoice_pending_payment_data');
-    Route::post('/invoice/{slack}', 'API\Invoice@show');
-    Route::post('/invoice_list', 'API\Invoice@list');
-
-    //quotation
-    Route::post('/quotations', 'API\Quotation@index');
-    Route::post('/add_quotation', 'API\Quotation@store');
-    Route::post('/update_quotation/{slack}', 'API\Quotation@update');
-    Route::post('/update_quotation_status/{slack}', 'API\Quotation@update_quotation_status');
-    Route::post('/delete_quotation/{slack}', 'API\Quotation@destroy');
-    Route::post('/quotation/{slack}', 'API\Quotation@show');
-    Route::post('/quotation_list', 'API\Quotation@list');
+   
 
     //payment gateway
     Route::post('/get_stripe_payment_intent', 'API\PaymentGateway@get_stripe_payment_intent');
@@ -257,55 +187,7 @@ Route::group(['middleware' => ['token_auth']], function () {
     Route::post('/record_razorpay_payment_success', 'API\PaymentGateway@record_razorpay_payment_success');
     Route::post('/get_paypal_order_data', 'API\PaymentGateway@get_paypal_order_data');
 
-    //account
-    Route::post('/accounts', 'API\Account@index');
-    Route::post('/add_account', 'API\Account@store');
-    Route::post('/update_account/{slack}', 'API\Account@update');
-    Route::post('/account/{slack}', 'API\Account@show');
-    Route::post('/account_list', 'API\Account@list');
-
-    //transactions
-    Route::post('/transactions', 'API\Transaction@index');
-    Route::post('/add_transaction', 'API\Transaction@store');
-    Route::post('/update_transaction/{slack}', 'API\Transaction@update');
-    Route::post('/delete_transaction/{slack}', 'API\Transaction@destroy');
-    Route::post('/transaction/{slack}', 'API\Transaction@show');
-    Route::post('/transaction_list', 'API\Transaction@list');
-
-    //tables
-    Route::post('/tables', 'API\Table@index');
-    Route::post('/add_table', 'API\Table@store');
-    Route::post('/update_table/{slack}', 'API\Table@update');
-    Route::post('/delete_table/{slack}', 'API\Table@destroy');
-    Route::post('/table/{slack}', 'API\Table@show');
-    Route::post('/table_list', 'API\Table@list');
-
-    //target
-    Route::post('/targets', 'API\Target@index');
-    Route::post('/add_target', 'API\Target@store');
-    Route::post('/update_target/{slack}', 'API\Target@update');
-    Route::post('/delete_target/{slack}', 'API\Target@destroy');
-    Route::post('/target/{slack}', 'API\Target@show');
-    Route::post('/target_list', 'API\Target@list');
-
-    //stock transfer
-    Route::post('/stock_transfers', 'API\StockTransfer@index');
-    Route::post('/add_stock_transfer', 'API\StockTransfer@store');
-    Route::post('/update_stock_transfer/{slack}', 'API\StockTransfer@update');
-    Route::post('/delete_stock_transfer/{slack}', 'API\StockTransfer@destroy');
-    Route::post('/reject_stock_transfer_product/{slack}', 'API\StockTransfer@reject_stock_transfer_product');
-    Route::post('/merge_product_stock', 'API\StockTransfer@merge_product_stock');
-    Route::post('/stock_transfer/{slack}', 'API\StockTransfer@show');
-    Route::post('/stock_transfer_list', 'API\StockTransfer@list');
-
-    //stock return
-    Route::post('/stock_returns', 'API\StockReturn@index');
-    Route::post('/add_stock_return', 'API\StockReturn@store');
-    Route::post('/update_stock_return/{slack}', 'API\StockReturn@update');
-    Route::post('/delete_stock_return/{slack}', 'API\StockReturn@destroy');
-    Route::post('/stock_return/{slack}', 'API\StockReturn@show');
-    Route::post('/stock_return_list', 'API\StockReturn@list');
-
+   
     //notification
     Route::post('/notifications', 'API\Notification@index');
     Route::post('/add_notification', 'API\Notification@store');
@@ -316,14 +198,7 @@ Route::group(['middleware' => ['token_auth']], function () {
     Route::post('/mark_as_read', 'API\Notification@mark_as_read');
     Route::post('/remove_all_notifications', 'API\Notification@remove_all_notifications');
 
-    //business registers
-    Route::post('/business_registers', 'API\BusinessRegister@index');
-    Route::post('/open_register', 'API\BusinessRegister@open_register');
-    Route::post('/close_register', 'API\BusinessRegister@close_register');
-    Route::post('/delete_register/{slack}', 'API\BusinessRegister@destroy');
-    Route::post('/business_register/{slack}', 'API\BusinessRegister@show');
-    Route::post('/business_register_list', 'API\BusinessRegister@list');
-
+ 
     //sms templates
     Route::post('/sms_templates', 'API\SmsTemplate@index');
     Route::post('/update_sms_template/{slack}', 'API\SmsTemplate@update');
@@ -335,21 +210,7 @@ Route::group(['middleware' => ['token_auth']], function () {
     Route::post('/billing_counter/{slack}', 'API\BillingCounter@show');
     Route::post('/billing_counter_list', 'API\BillingCounter@list');
 
-    //masters
-    Route::post('/get_billing_master_account_type', 'API\Master@get_billing_master_account_type');
-    Route::post('/get_billing_type', 'API\Master@get_billing_type');
-    Route::post('/get_master_invoice_print_type', 'API\Master@get_master_invoice_print_type');
-    Route::post('/get_master_order_type', 'API\Master@get_master_order_type');
-    Route::post('/get_master_status', 'API\Master@get_master_status');
-    Route::post('/get_master_transaction_type', 'API\Master@get_master_transaction_type');
-
-    //measurement unit
-    Route::post('/measurement_units', 'API\MeasurementUnit@index');
-    Route::post('/add_measurement_unit', 'API\MeasurementUnit@store');
-    Route::post('/update_measurement_unit/{slack}', 'API\MeasurementUnit@update');
-    Route::post('/measurement_unit/{slack}', 'API\MeasurementUnit@show');
-    Route::post('/measurement_unit_list', 'API\MeasurementUnit@list');
-
+  
     //booking
     Route::post('/bookings', 'API\Booking@index');
     Route::post('/add_booking', 'API\Booking@store');
@@ -359,17 +220,14 @@ Route::group(['middleware' => ['token_auth']], function () {
     Route::post('/delete_booking/{slack}', 'API\Booking@destroy');
     Route::post('/load_events', 'API\Booking@load_events');
 
-    //add on group
-    Route::post('/addon_groups', 'API\AddonGroup@index');
-    Route::post('/add_addon_group', 'API\AddonGroup@store');
-    Route::post('/update_addon_group/{slack}', 'API\AddonGroup@update');
-    Route::post('/addon_group/{slack}', 'API\AddonGroup@show');
-    Route::post('/addon_group_list', 'API\AddonGroup@list');
-
-    //variant option
-    Route::post('/variant_options', 'API\VariantOption@index');
-    Route::post('/add_variant_option', 'API\VariantOption@store');
-    Route::post('/update_variant_option/{slack}', 'API\VariantOption@update');
-    Route::post('/variant_option/{slack}', 'API\VariantOption@show');
-    Route::post('/variant_option_list', 'API\VariantOption@list');
+   //invoice
+   Route::post('/invoices', 'API\Invoice@index');
+   Route::post('/add_invoice', 'API\Invoice@store');
+   Route::post('/update_invoice/{slack}', 'API\Invoice@update');
+   Route::post('/update_invoice_status/{slack}', 'API\Invoice@update_invoice_status');
+   Route::post('/load_bill_to_list', 'API\Invoice@load_bill_to_list');
+   Route::post('/delete_invoice/{slack}', 'API\Invoice@destroy');
+   Route::post('/get_invoice_pending_payment_data/{slack}', 'API\Invoice@get_invoice_pending_payment_data');
+   Route::post('/invoice/{slack}', 'API\Invoice@show');
+   Route::post('/invoice_list', 'API\Invoice@list');
 });

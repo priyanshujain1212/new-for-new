@@ -78,15 +78,14 @@
                         </ErrorMessage>
                         </div>
                         <div v-else>
+                            <label for="order_date">{{ "Raisd Date" }}</label>
                             <div class="ml-2" style="font-size: 1.2rem">
                                 <span for="po_number">{{ order_date }}</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group col-md-3">
-                    
-                    </div>
+                  
 
                     <div class="form-group col-md-3">
                         <label for="po_reference">{{ "Reference Raisd Number (if any)" }}</label>

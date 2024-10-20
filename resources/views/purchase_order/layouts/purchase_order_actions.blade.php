@@ -23,7 +23,7 @@
     </a>
     @endif
 
-<button class="btn btn-sm btn-outline-primary dropdown-toggle actions-dropdown-btn" type="button" id="poStatusDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<!-- <button class="btn btn-sm btn-outline-primary dropdown-toggle actions-dropdown-btn" type="button" id="poStatusDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <i class="actions-dropdown"></i> {{ __("Change status") }}
 </button>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="poStatusDropdown">
@@ -35,7 +35,7 @@
             @endforeach
         @endif
     
-</div>
+</div> -->
 
 </div>
 

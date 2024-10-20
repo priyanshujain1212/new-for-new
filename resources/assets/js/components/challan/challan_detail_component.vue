@@ -6,7 +6,7 @@
                 <div class="mr-auto">
                    <div class="d-flex">
                         <div>
-                            <span class="text-title"> {{ ("Rasid") }} #{{ po_basic.po_number }} </span>
+                            <span class="text-title"> {{ ("Challan") }} -{{ po_basic.po_number }} </span>
                         </div>
                     </div>
                 </div>
@@ -21,8 +21,8 @@
 
             <div class="d-flex flex-wrap mb-4" v-if="po_statuses != ''">
                 <div class="form-group col-md-3">
-                    <dev style="font-size: 1.5rem">{{ po_basic.supplier_code }}{{ " - " }}{{ po_basic.supplier_name }}</dev>
-                    <dev class="ml-2">{{ po_basic.supplier_address }}</dev>
+                    <dev style="font-size: 1.5rem">{{ po_basic.supplier_name }}</dev>
+                    <!-- <dev class="ml-2">{{ po_basic.supplier_address }}</dev> -->
                 </div>
                 
                
@@ -77,7 +77,7 @@
             </div>
             <hr>
 
-       
+<!--        
             <div v-if="po_basic.invoices != null && po_basic.invoices.length != 0">
                 <hr>
                 <div class="mb-2">
@@ -90,10 +90,10 @@
                 </div>
             </div>
             
-            <hr>
+            <hr> -->
 
             <div class="mb-2">
-                <span class="text-subhead">{{ ("Product Information") }}</span>
+                <span class="text-subhead">{{ ("Particular Information") }}</span>
             </div>
 
             <div class="form-row">

@@ -37,6 +37,7 @@ import profilecomponent from './components/user/profile_component.vue';
 import editprofilecomponent from './components/user/edit_profile_component.vue';
 import importcomponent from './components/import/import_component.vue';
 import updatedatacomponent from './components/import/update_data_component.vue';
+import challanslistingcomponent from './components/challan/challanslistingcomponent';
 
 // Create the Vue app
 const app = createApp({});
@@ -78,5 +79,7 @@ app.component('profilecomponent', profilecomponent);
 app.component('editprofilecomponent', editprofilecomponent);
 app.component('importcomponent', importcomponent);
 app.component('updatedatacomponent', updatedatacomponent);
+app.component('challanslistingcomponent', challanslistingcomponent);
+
 // Mount the app
 app.mount('#app');

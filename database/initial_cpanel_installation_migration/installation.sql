@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 08, 2024 at 02:59 PM
+-- Generation Time: Oct 11, 2024 at 01:26 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -598,7 +598,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `slack`, `customer_type`, `password`, `fresh_login`, `name`, `customer_code`, `role_id`, `email`, `phone`, `address`, `profile_image`, `dob`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `store_id`) VALUES
-(11, 'RT4ZOpbTEpib3DihE3L2KhIR9', 'CUSTOM', '$2y$10$obmoyO9VlOYSPi2MD1xBxembVzH.qp5E64QC4.AH6Cclp2rlXmoKa', 1, 'first trust', '415', 5, 'first@trust.com', '1234567890', '1234567890', NULL, '2024-09-01', 1, 4, 4, '2024-09-21 14:49:03', '2024-10-07 12:58:44', 24);
+(11, 'RT4ZOpbTEpib3DihE3L2KhIR9', 'CUSTOM', '$2y$10$obmoyO9VlOYSPi2MD1xBxembVzH.qp5E64QC4.AH6Cclp2rlXmoKa', 1, 'first trust', '415', 5, 'first@trust.com', '1234567890', '1234567890', NULL, '2024-09-01', 1, 4, 4, '2024-09-21 14:49:03', '2024-10-07 12:58:44', 24),
+(233, 'f3J5YP9osWR2DMHLh6uVVcCel', 'CUSTOM', '$2y$10$CMFaJiVx7Um0nix1Y6ftIe8CgaSKVP7SVou.V/GRC.uzPnXRobO1S', 0, 'Priyanshu Jain', '871', 5, 'priyanshujain1212@gmail.com', '8889400010', '180, sundar nagar main', NULL, '2024-10-01', 1, 4, 0, '2024-09-21 14:49:03', '2024-10-09 10:39:48', 24);
 
 -- --------------------------------------------------------
 
@@ -635,7 +636,23 @@ INSERT INTO `customer_menus` (`id`, `customer_id`, `menu_id`, `created_by`, `cre
 (24, 11, 190, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
 (25, 11, 191, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
 (26, 11, 194, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
-(27, 11, 196, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45');
+(27, 11, 196, 4, '2024-09-21 14:54:45', '2024-09-21 14:54:45'),
+(28, 233, 0, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(29, 233, 10, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(30, 233, 19, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(31, 233, 56, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(32, 233, 72, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(33, 233, 120, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(34, 233, 136, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(35, 233, 144, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(36, 233, 145, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(37, 233, 147, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(38, 233, 149, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(39, 233, 173, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(40, 233, 190, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(41, 233, 191, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(42, 233, 194, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00'),
+(43, 233, 196, 0, '2024-10-09 10:15:00', '2024-10-09 10:15:00');
 
 -- --------------------------------------------------------
 
@@ -2087,7 +2104,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('8sH2xXE7wrL0l3yPYIYBnUMa1Yg5softLuo1wGQh', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YToxMjp7czo2OiJfdG9rZW4iO3M6NDA6Imd4N1pnczFFbUh4Tmp4Q09vdjRMaWRqZGVHM1VGRkdZQ1laTlVsUVEiO3M6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvY2hhbGxhbnMiO31zOjY6Im91dHB1dCI7czoyNDoiMzQ2YTY4NzEzMzQ0MzEzMTMyMzkzODMwIjtzOjg6ImZ1bGxuYW1lIjtzOjE1OiJBcHBzdGhpbmcgQWRtaW4iO3M6OToiZmlyc3RuYW1lIjtOO3M6MTM6InByb2ZpbGVfaW1hZ2UiO047czo1OiJzbGFjayI7czoyNToiWEowNjk5WlNXYWp5eHZZUk50NkNCWnlHYSI7czo3OiJ1c2VyX2lkIjtpOjE7czo0OiJyb2xlIjtpOjE7czoxMjoiaW5pdGlhbF9saW5rIjtzOjMxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZGFzaGJvYXJkIjtzOjEyOiJhY2Nlc3NfdG9rZW4iO3M6MjMzOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpJVXpJMU5pSjkuZXlKcGMzTWlPaUpxZDNSZmRHOXJaVzRpTENKemRXSWlPbnNpZFhObGNsOXBaQ0k2TVN3aWRYTmxjbDl6YkdGamF5STZJbGhLTURZNU9WcFRWMkZxZVhoMldWSk9kRFpEUWxwNVIyRWlmU3dpYVdGMElqb3hOekk0TXprd016Z3dMQ0psZUhBaU9qRTNNamcwTnpZM09EQjkuQWtrbU0xMDFIMVhZNEdCTGxrMHAyQTRnUWhFQWtsMWJ0REVqV1RjNWlrVSI7fQ==', 1728392275);
+('Jp381zvp8eYDOTOnrDYuFj8ICcprBrWjUJKExdRV', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36', 'YToxMTp7czo2OiJfdG9rZW4iO3M6NDA6ImR2Q0kxa0x3Y1FBd0pOM3NEdnVSaHZuUlZ1eUNWNlJtTVRVdUMzaUkiO3M6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6ODoiZnVsbG5hbWUiO3M6MTU6IkFwcHN0aGluZyBBZG1pbiI7czo5OiJmaXJzdG5hbWUiO047czoxMzoicHJvZmlsZV9pbWFnZSI7TjtzOjU6InNsYWNrIjtzOjI1OiJYSjA2OTlaU1dhanl4dllSTnQ2Q0JaeUdhIjtzOjc6InVzZXJfaWQiO2k6MTtzOjQ6InJvbGUiO2k6MTtzOjEyOiJpbml0aWFsX2xpbmsiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO3M6MTI6ImFjY2Vzc190b2tlbiI7czoyMzM6ImV5SjBlWEFpT2lKS1YxUWlMQ0poYkdjaU9pSklVekkxTmlKOS5leUpwYzNNaU9pSnFkM1JmZEc5clpXNGlMQ0p6ZFdJaU9uc2lkWE5sY2w5cFpDSTZNU3dpZFhObGNsOXpiR0ZqYXlJNklsaEtNRFk1T1ZwVFYyRnFlWGgyV1ZKT2REWkRRbHA1UjJFaWZTd2lhV0YwSWpveE56STROVFEyTmpFMUxDSmxlSEFpT2pFM01qZzJNek13TVRWOS5oRUFnU0l3SmFvU2FjdWxtLW8xU182UkpFalpYVFNkR3czNUNfMW55SzZJIjtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMDoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2NoYWxsYW5zIjt9fQ==', 1728566644);
 
 -- --------------------------------------------------------
 
@@ -2550,7 +2567,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `slack`, `user_code`, `fullname`, `email`, `password`, `fresh_login`, `password_reset_token`, `password_reset_max_tries`, `password_reset_last_tried_on`, `phone`, `profile_image`, `role_id`, `store_id`, `language_id`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`) VALUES
-(1, 'XJ0699ZSWajyxvYRNt6CBZyGa', 'SA', 'Appsthing Admin', 'admin@appsthing.com', '$2y$10$3wMSDstnC/IDE7Kwv6FfUOqygz0vongvG0mxbtF1HAJAd3cyx6ozm', 0, NULL, 0, NULL, '8889400010', NULL, 1, 24, NULL, 1, NULL, NULL, '2021-11-26 08:57:25', '2024-10-08 06:56:08'),
+(1, 'XJ0699ZSWajyxvYRNt6CBZyGa', 'SA', 'Appsthing Admin', 'admin@appsthing.com', '$2y$10$3wMSDstnC/IDE7Kwv6FfUOqygz0vongvG0mxbtF1HAJAd3cyx6ozm', 0, NULL, 0, NULL, '1234500000', NULL, 1, 24, NULL, 1, NULL, NULL, '2021-11-26 08:57:25', '2024-10-08 06:56:08'),
 (4, 'sKMArEMSbUkkkTEggsQJWPwJH', '104', 'Admin Trust', 'admin@trust.com', '$2y$10$2MjAl.9t5aQdKymLs3K16O5A97J4thS7HM7CjSDnIGVxPt88QGEs2', 1, NULL, 0, NULL, '1234567890', NULL, 4, 24, NULL, 1, 1, 1, '2024-09-21 14:44:01', '2024-09-29 03:41:22');
 
 -- --------------------------------------------------------
@@ -2581,7 +2598,9 @@ INSERT INTO `user_access_tokens` (`id`, `customer_id`, `user_id`, `session_id`, 
 (149, 0, 1, 'ibvatARxILal2CdUhMUdR9M3FlIKiYyfrzBbtEwp', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MTMzNzYzLCJleHAiOjE3MjgyMjAxNjN9.1Wp063Q43uHrsQlU5aCiaoCnZYQcswBjVWEgwVy904M', '2024-10-05 07:39:23', '2024-10-05 07:39:23'),
 (150, 0, 1, 'acBHkm1lj09J48KAJwHGynZk0XjhZMgw9Q7F2HWH', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MTU1MDUyLCJleHAiOjE3MjgyNDE0NTJ9.vfIzc-VAAgf215QYsXxPP-rGXV1hyuk96EwJ9zzlP6A', '2024-10-05 13:34:12', '2024-10-05 13:34:12'),
 (153, 0, 1, 'c9FvndNBpl8l4hQioR03FVXtwVon2arHXk1XPcrE', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MjIwNjk5LCJleHAiOjE3MjgzMDcwOTl9.N85bMK9x-7ID5sl9WqtqpdcgSq0XgOoSLc57WRiKqpo', '2024-10-06 07:48:19', '2024-10-06 07:48:19'),
-(172, 0, 1, '8sH2xXE7wrL0l3yPYIYBnUMa1Yg5softLuo1wGQh', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MzkwMzgwLCJleHAiOjE3Mjg0NzY3ODB9.AkkmM101H1XY4GBLlk0p2A4gQhEAkl1btDEjWTc5ikU', '2024-10-08 06:56:20', '2024-10-08 06:56:20');
+(172, 0, 1, '8sH2xXE7wrL0l3yPYIYBnUMa1Yg5softLuo1wGQh', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4MzkwMzgwLCJleHAiOjE3Mjg0NzY3ODB9.AkkmM101H1XY4GBLlk0p2A4gQhEAkl1btDEjWTc5ikU', '2024-10-08 06:56:20', '2024-10-08 06:56:20'),
+(175, 233, 0, '0GsJxVCwc0zVxDo3NwcYPWZLEuRCl15VP7mcm0vz', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsiY3VzdG9tZXJfaWQiOjIzMywiY3VzdG9tZXJfc2xhY2siOiJmM0o1WVA5b3NXUjJETUhMaDZ1VlZjQ2VsIn0sImlhdCI6MTcyODQ5MDMxMywiZXhwIjoxNzI4NTc2NzEzfQ.JWE90c4k0b_RYNtDAIon2IOTejrKGzB14YAL7uEOIgQ', '2024-10-09 10:41:53', '2024-10-09 10:41:53'),
+(176, 0, 1, 'Jp381zvp8eYDOTOnrDYuFj8ICcprBrWjUJKExdRV', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJqd3RfdG9rZW4iLCJzdWIiOnsidXNlcl9pZCI6MSwidXNlcl9zbGFjayI6IlhKMDY5OVpTV2FqeXh2WVJOdDZDQlp5R2EifSwiaWF0IjoxNzI4NTQ2NjE1LCJleHAiOjE3Mjg2MzMwMTV9.hEAgSIwJaoSaculm-o1S_6RJEjZXTSdGw35C_1nyK6I', '2024-10-10 02:20:15', '2024-10-10 02:20:15');
 
 -- --------------------------------------------------------
 
@@ -3447,13 +3466,13 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234;
 
 --
 -- AUTO_INCREMENT for table `customer_menus`
 --
 ALTER TABLE `customer_menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `discount_codes`
@@ -3747,7 +3766,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_access_tokens`
 --
 ALTER TABLE `user_access_tokens`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
 
 --
 -- AUTO_INCREMENT for table `user_menus`

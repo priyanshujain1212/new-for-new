@@ -322,13 +322,13 @@ class Customer extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $slack)
-    {
+    {  
         try {
-
+         
             if(!check_access(['A_EDIT_CUSTOMER'], true)){
                 throw new Exception("Invalid request", 400);
             }
-
+          
             $this->validate_request($request);
 
             //check email already exists

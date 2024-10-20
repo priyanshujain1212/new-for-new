@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="form-group col-md-3">
-                        <label for="po_number">{{ "Challan Number" }}</label>
+                        
                         <div v-if="!challan_order_slack">
                             <label for="order_date">{{ "Challan Date" }}</label>
                         <Field  name="order_date"  v-model="order_date" as="input"  type="date" rules="required"  class="form-control form-control-custom" placeholder="Pick a date or type a date"  style="width: 275px;" />

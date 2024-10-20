@@ -23,7 +23,7 @@
                 </ul>
 
                 <ul class="navbar-nav ml-auto mt-lg-0 pt-1" v-if="user_slack || customer_slack">
-                    <li class="nav-item text-right pl-md-4 pl-lg-4 pl-xl-4" v-if="quick_link_array && quick_link_array.length > 0">
+                    <!-- <li class="nav-item text-right pl-md-4 pl-lg-4 pl-xl-4" v-if="quick_link_array && quick_link_array.length > 0">
                         <div class="dropdown">
                             <a href="#" class="nav-link quick-link dropdown-toggle text-bold" id="quicklink_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bolt"></i>
@@ -32,7 +32,7 @@
                                 <a class="dropdown-item" v-for="(quick_link, index) in quick_link_array" v-bind:key="index" :href="quick_link.route">{{ quick_link.label }}</a>
                             </div>
                         </div>
-                    </li>
+                    </li> -->
 
                     <li class="nav-item text-right pl-md-4 pl-lg-4 pl-xl-4">
                         <a href="/search" class="nav-link nav-link-dark text-bold"><i class="fas fa-search search-icon"></i> {{ "Search" }}</a>

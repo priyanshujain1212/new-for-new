@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12">
 
-            <div class="d-flex flex-wrap mb-4">
+            <div class="d-flex flex-wrap mb-4" v-bind:class="po_basic.status.color">
                 <div class="mr-auto">
                    <div class="d-flex">
                         <div>
@@ -11,20 +11,18 @@
                     </div>
                 </div>
                 <div class="">
-                    <button type="button" class="btn btn-outline-primary mr-1" v-if="update_stock === 'Due'" v-on:click="generate_invoice()">
-                        {{ ("Payment") }}
-                    </button>
+                  
                     <span v-bind:class="po_basic.status.color">{{ po_basic.status.label }}</span>
                 </div>
                 
             </div>
 
-            <div class="d-flex flex-wrap mb-4" v-if="po_statuses != ''">
-                <div class="form-group col-md-3">
-                    <dev style="font-size: 1.5rem">{{ po_basic.customer_code }}{{ " - " }}{{ po_basic.customer_name }}</dev>
-                    <dev class="ml-2">{{ po_basic.customer_address }}</dev>
-                </div>
-                
+            <div class="d-flex flex-wrap mb-2" v-if="po_statuses != ''">
+             <div class="form-group col-md-4">
+                <div style="font-size: 1.5rem">{{ po_basic.customer_name }}</div>
+                <div class="ml">{{ po_basic.customer_address }}</div>
+            </div>
+
                
                 <p v-html="server_errors" v-bind:class="[error_class]"></p>
 
@@ -32,8 +30,8 @@
                     
                     <a class="btn btn-outline-primary mr-1" v-bind:href="'/print_purchase_order/'+slack" target="_blank">{{ ("Print") }}</a>
                 
-
-                    <button type="button" class="btn btn-outline-primary mr-1"  v-if="create_invoice_from_po_access == true" v-on:click="generate_invoice()" v-bind:disabled="generate_invoice_processing == true"> <i class='fa fa-circle-notch fa-spin' v-if="generate_invoice_processing == true"></i> {{ ("Generate Invoice") }}</button>
+                    <a v-if="update_stock === 'Due'" :href="`/phonepe/${slack}`" class="btn btn-outline-primary mr-1"> <i class="fas fa-wallet"></i> Payment </a>
+                    <!-- <button type="button" class="btn btn-outline-primary mr-1"  v-if="create_invoice_from_po_access == true" v-on:click="generate_invoice()" v-bind:disabled="generate_invoice_processing == true"> <i class='fa fa-circle-notch fa-spin' v-if="generate_invoice_processing == true"></i> {{ ("Generate Invoice") }}</button> -->
 
                     <button type="submit" class="btn btn-danger mr-1" v-show="!block_delete_po.includes(po_basic.status.constant)" v-if="delete_po_access == true" v-on:click="delete_po()" v-bind:disabled="po_delete_processing == true"> <i class='fa fa-circle-notch fa-spin'  v-if="po_delete_processing == true"></i> {{ ("Delete Purchase Order") }}</button>
 
@@ -41,9 +39,9 @@
                         <button class="btn btn-primary dropdown-toggle" type="button" id="po_action" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ ("Change Status") }}
                         </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="po_action">
+                        <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="po_action">
                             <button class="dropdown-item" type="button" v-for="(po_status, key, index) in po_statuses" v-bind:value="po_status.value_constant" v-bind:key="index" v-on:click="change_po_status(po_status.value_constant)">Mark as {{ po_status.label }}</button>
-                        </div>
+                        </div> -->
                     </div>
 
                 </div>
@@ -76,7 +74,7 @@
                 </div>
                
             </div>
-            <hr>
+            <!-- <hr>
 
        
             <div v-if="po_basic.invoices != null && po_basic.invoices.length != 0">
@@ -89,12 +87,12 @@
                         <span v-if="invoice.detail_link != ''"><a v-bind:href="invoice.detail_link" target="_blank">{{ invoice.invoice_number }}</a></span><span v-else>{{ invoice.invoice_number }}</span> &nbsp;&middot;&nbsp;
                     </span>
                 </div>
-            </div>
+            </div> -->
             
             <hr>
 
             <div class="mb-2">
-                <span class="text-subhead">{{ ("Product Information") }}</span>
+                <span class="text-subhead">{{ ("Particular Information") }}</span>
             </div>
 
             <div class="form-row">

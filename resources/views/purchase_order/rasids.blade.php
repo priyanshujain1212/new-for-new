@@ -15,8 +15,8 @@
             </div>
         </div>
         <div class="table-responsive">
-        <table id="listing-table" class="table display nowrap w-100">
-                <thead>
+            <table id="listing-table" class="table table-striped table-bordered display nowrap w-100">
+                   <thead>
                     <tr>
                         <th>{{ __("Rasid Number") }}</th>
                         <th>{{ __("Customer Name") }}</th>
@@ -38,7 +38,9 @@
 @endsection
 
 @push('scripts')
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.0/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> <!-- Bootstrap JS -->
     <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('js/datatable.js') }}"></script>

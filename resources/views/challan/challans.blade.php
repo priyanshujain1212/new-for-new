@@ -3,7 +3,6 @@
 @section("content")
 <div class="row">
     <div class="col-md-12">
-        
         <div class="d-flex flex-wrap mb-4">
             <div class="mr-auto">
                 <span class="text-title">{{ __("Challan") }}</span>
@@ -14,8 +13,10 @@
                 @endif
             </div>
         </div>
+
+        <!-- Responsive table container -->
         <div class="table-responsive">
-        <table id="listing-table" class="table display nowrap w-100">
+            <table id="listing-table" class="table table-striped table-bordered display nowrap w-100">
                 <thead>
                     <tr>
                         <th>{{ __("Challan Number") }}</th>
@@ -28,10 +29,10 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- The rows will be populated via DataTables using the JS file -->
                 </tbody>
             </table>
         </div>
-
     </div>
 </div>
 @endsection
@@ -39,11 +40,10 @@
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.0/js/jquery.dataTables.min.js"></script>
-
     <script src="{{ asset('plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('js/datatable.js') }}"></script>
     <script src="{{ asset('js/pages/challans.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> <!-- Add Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> <!-- Bootstrap JS -->
     <script>
         'use strict';
         var challans = new Challans();

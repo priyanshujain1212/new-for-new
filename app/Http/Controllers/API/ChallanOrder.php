@@ -637,6 +637,8 @@ $response = [
                 'product_code' => $product_data->product_code,
                 'name' => $product_name,
                 'total_amount' => $item_total,
+                'stock_update' => $request->update_stock,
+                'status' =>$request->update_stock,
             ];
         }
          $total_order_amount = $request->grand_total;

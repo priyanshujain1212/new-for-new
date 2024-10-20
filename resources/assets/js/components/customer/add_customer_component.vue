@@ -202,7 +202,7 @@ export default {
             this.processing = true;
             const formData = new FormData();
             const { name, email, phone, role, address, dob, status } = this;
-
+            formData.append("access_token", window.settings.access_token);
             formData.append("name", name || '');
             formData.append("email", email || '');
             formData.append("phone", phone || '');
@@ -212,11 +212,25 @@ export default {
             formData.append("status", status || '');
 
             axios.post(this.api_link, formData)
-                .then(response => {
-                    this.processing = false;
-                    this.$emit("success", response.data);
-                })
-                .catch(error => {
+            .then((response) => {
+        if (response.data.status_code == 200) {
+            this.show_response_message( 'SUCCESS');
+
+            setTimeout(() => {
+              window.location.href = '/customers'; // Update the URL as per your route path
+            }, 1000);
+        } else {
+            this.show_modal = false;
+            this.processing = false;
+            try {
+                var error_json = JSON.parse(response.data.msg);
+                this.loop_api_errors(error_json);
+            } catch (err) {
+                this.server_errors = response.data.msg;
+            }
+            this.error_class = 'error';
+        }
+    }).catch(error => {
                     this.processing = false;
                     this.errors = error.response.data.errors || {};  // Update errors object
                     this.server_errors = error.response.data.message || 'An error occurred.';

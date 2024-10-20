@@ -161,22 +161,24 @@ export default {
             formData.append("status", this.status || '');
 
             axios.post(this.api_link, formData).then((response) => {
-                if (response.data.status_code == 200) {
-                    this.show_response_message(response.data.msg, 'SUCCESS');
-                    setTimeout(() => location.reload(), 1000);
-                } else {
-                    this.show_modal = false;
-                    this.processing = false;
-                    try {
-                        const error_json = JSON.parse(response.data.msg);
-                        this.loop_api_errors(error_json);
-                    } catch (err) {
-                        this.server_errors = response.data.msg;
-                    }
-                    this.error_class = 'error';
-                }
-            })
-            .catch((error) => {
+        if (response.data.status_code == 200) {
+            this.show_response_message( 'SUCCESS');
+
+            setTimeout(() => {
+              window.location.href = '/suppliers'; // Update the URL as per your route path
+            }, 1000);
+        } else {
+            this.show_modal = false;
+            this.processing = false;
+            try {
+                var error_json = JSON.parse(response.data.msg);
+                this.loop_api_errors(error_json);
+            } catch (err) {
+                this.server_errors = response.data.msg;
+            }
+            this.error_class = 'error';
+        }
+    }).catch((error) => {
                 console.log(error);
                 this.processing = false;
             });

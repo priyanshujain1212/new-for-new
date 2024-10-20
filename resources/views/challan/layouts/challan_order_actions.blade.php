@@ -17,26 +17,9 @@
         </a>
     @endif
 
-    @if ($challan_order['update_stock'] == 1) <!-- Display print button if status is clear (0) -->
-        <a href="print_challan_order/{{ $challan_order['slack'] }}" class="btn btn-sm btn-outline-success">
-            <i class="fas fa-payment"></i> {{ __("Payment") }}
-        </a>
-    @endif
+   
 
-    <button class="btn btn-sm btn-outline-primary " dropdown-toggle actions-dropdown-btn" type="button" id="poStatusDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <i class=" actions-dropdown"></i> {{ __("Change status") }}
-    </button>
-    @if ($challan_order['update_stock'] == 0)
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="poStatusDropdown">
-        @if (check_access(['A_EDIT_STATUS_RASID'], true) && isset($po_statuses))
-            @foreach($po_statuses as $status)
-                <a href="javascript:void(0);" class="dropdown-item" onclick="updateStatus('{{ $challan_order['slack'] }}', '{{ $status->value_constant }}')">
-                    {{ $status->label }}
-                </a>
-            @endforeach
-        @endif
-        @endif
-</div>
+   
 
 </div>
 
