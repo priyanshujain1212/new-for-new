@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
         Auth::viaRequest('user-token', function ($request) {
             
             $token = $request->header('Authorization');
-            
+          
             if(empty($token)){
                 return;
             }

@@ -254,8 +254,7 @@ class Store extends Controller
             
             $store_id = StoreModel::create($store)->id;
 
-            $this->create_default_business_account($request, $store_id);
-
+         
             $store_slack = StoreModel::where('id', $store_id)->value('slack'); 
 
             $payment_types = explode("," , $request->payment_types);

@@ -199,25 +199,36 @@ export default {
         },
     methods: {
         submit_form() {
-            this.processing = true;
-            const formData = new FormData();
-            const { name, email, phone, role, address, dob, status } = this;
-            formData.append("access_token", window.settings.access_token);
-            formData.append("name", name || '');
-            formData.append("email", email || '');
-            formData.append("phone", phone || '');
-            formData.append("role", role || '');
-            formData.append("address", address || '');
-            formData.append("dob", dob ? moment(dob).format('YYYY-MM-DD') : '');
-            formData.append("status", status || '');
+    this.processing = true;
+    const formData = new FormData();
+    const { name, email, phone, role, address, dob, status, access_token = window.settings.access_token} = this;
+    
+    // Append the form fields
+    formData.append("access_token", access_token);
+    formData.append("name", name || '');
+    formData.append("email", email || '');
+    formData.append("phone", phone || '');
+    formData.append("role", role || '');
+    formData.append("address", address || '');
+    formData.append("dob", dob ? moment(dob).format('YYYY-MM-DD') : '');
+    formData.append("status", status || '');
 
-            axios.post(this.api_link, formData)
-            .then((response) => {
+    // Log the access token for debugging
+    console.log(window.settings.access_token);
+
+    // Submit the form
+    axios.post(this.api_link, formData, {
+        headers: {
+            'access_token': `Bearer ${window.settings.access_token}`,  // Pass token in Authorization header
+            'X-XSRF-TOKEN': window.settings.csrfToken, // CSRF token
+        },
+        withCredentials: true  // Ensure cookies are sent along with the request
+    })
+    .then((response) => {
         if (response.data.status_code == 200) {
-            this.show_response_message( 'SUCCESS');
-
+            this.show_response_message('SUCCESS');
             setTimeout(() => {
-              window.location.href = '/customers'; // Update the URL as per your route path
+                window.location.href = '/customers';  // Update the URL as per your route path
             }, 1000);
         } else {
             this.show_modal = false;
@@ -230,13 +241,16 @@ export default {
             }
             this.error_class = 'error';
         }
-    }).catch(error => {
-                    this.processing = false;
-                    this.errors = error.response.data.errors || {};  // Update errors object
-                    this.server_errors = error.response.data.message || 'An error occurred.';
-                    this.error_class = 'text-danger';
-                });
-        },
+    })
+    .catch(error => {
+        this.processing = false;
+        // Update error handling
+        this.errors = error.response?.data?.errors || {};
+        this.server_errors = error.response?.data?.message || 'An error occurred.';
+        this.error_class = 'text-danger';
+    });
+},
+
         reset_password() {
         this.show_password_reset_confirm = true; // Show reset confirmation modal
     },

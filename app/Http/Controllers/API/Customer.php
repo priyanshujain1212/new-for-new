@@ -162,10 +162,15 @@ class Customer extends Controller
      */
     public function store(Request $request)
     {
+       
         try {
 
-            if(!check_access(['A_ADD_CUSTOMER'], true)){
-                throw new Exception("Invalid request", 400);
+            
+            $data['action_key'] = 'A_ADD_CUSTOMER';
+            if(check_access(array($data['action_key']), true) == false){
+                dd(check_access);
+                return $response;
+           
             }
 
             $this->validate_request($request);

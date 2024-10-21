@@ -437,7 +437,7 @@ export default {
 },
 
 show_response_message(message) {
-        
+    alert(message);
     },
 
     },

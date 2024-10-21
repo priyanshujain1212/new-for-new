@@ -147,7 +147,7 @@ class User extends Controller
              $resource = $type === 'user' ? new UserResource($detail) : new CustomerResource($detail);
              $resource = collect($resource);
              $resource['access_token'] = $access_token;
-     
+           
              return [
                  "message" => "Authenticated successfully",
                  "data" => $resource,

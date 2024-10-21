@@ -35,7 +35,7 @@ class Controller extends BaseController
 
     // decode jwt token
     public function jwt_decode($token = "")
-    {
+    {  
         return JWT::decode($token, env('JWT_KEY', config('app.jwt_key')), ['HS256']);
     }
 
@@ -52,7 +52,8 @@ class Controller extends BaseController
         session()->put('role', $user->role_id);    
         session()->put('initial_link', $user->initial_link);     
         session()->put('access_token', $token);
-        //Session::save();
+       
+        Session::save();
     }
 
     public function set_customer_session($customer, $token)

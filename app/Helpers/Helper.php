@@ -12,7 +12,7 @@ if (! function_exists('check_access')) {
         $access_check_array = [];
 
         $logged_user_role_id = request()->logged_user_role_id;
-
+       
         //For super admin by default allow all the actions and menus
         if ($logged_user_role_id != 1) {
             $menu_ids = MenuModel::select('id')->active()->whereIn('menu_key', $menu_array)->get()->pluck('id');
@@ -24,6 +24,7 @@ if (! function_exists('check_access')) {
             
             if (count($menu_ids) > 0) {
                 foreach ($menu_ids as $menu_array_item) {
+                        
                     if (is_array($logged_user_menus_access) && !in_array($menu_array_item, $logged_user_menus_access) ) {
                         $access_check_array[] = false;
                     } else {
@@ -38,7 +39,7 @@ if (! function_exists('check_access')) {
         }
 
         $access_check_result = (in_array(false, $access_check_array))?false:true;
-        
+     
         if($return == false){
             ($access_check_result == false)?abort(404):$access_check_result;
         }else{

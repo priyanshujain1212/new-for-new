@@ -13,7 +13,6 @@ use App\Models\Taxcode as TaxcodeModel;
 use App\Models\Discountcode as DiscountcodeModel;
 use App\Models\MasterInvoicePrintType as MasterInvoicePrintTypeModel;
 use App\Models\Country as CountryModel;
-use App\Models\Account as AccountModel;
 use App\Models\MasterBillingType as MasterBillingTypeModel;
 use App\Models\Role as RoleModel;
 use App\Models\Language as LanguageModel;
@@ -81,11 +80,6 @@ class Store extends Controller
                 abort(404);
             }
 
-            $data['accounts'] = AccountModel::withoutGlobalScopes()->select('accounts.slack', 'accounts.label', 'master_account_type.label as account_type_label')
-            ->where('store_id', '=', $store->id)
-            ->masterAccountTypeJoin()
-            ->active()
-            ->get();
 
             $store_data = new StoreResource($store);
             $data['store_data'] = $store_data;

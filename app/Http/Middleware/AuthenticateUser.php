@@ -40,7 +40,7 @@ class AuthenticateUser
             $token_decode = (new Controller())->jwt_decode($token, env('JWT_KEY', config('aconfig.jwt_key')), ['HS256']);
             $decoded_data = $token_decode->sub;      
            
-
+          
             if (isset($decoded_data->user_id)) {
             $user_id = $decoded_data->user_id;
             $user_slack = $decoded_data->user_slack;
@@ -60,6 +60,7 @@ class AuthenticateUser
                 $request->is_super_admin        = ($user_exists->role_id == 1)?true:false;
                 
                 $menus = $this->get_user_menu($request, $user_id, 'user');
+           
                 $request->logged_user_menus = $menus;
                 
                 $user_stores = $this->get_available_stores($request, $user_id, 'user');
